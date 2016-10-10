@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- param앞에 #면 넘어온 값이 실제 칼럼 타입에 맞게 변환해서 입력. $면 전달되어 온 값의 타입 그대로 전달.
+		 param은 소문자-->
+<!-- ctrl + shift + X 누르면 대문자로 변경 -->
+<mapper namespace="com.spring.Hit.dao.BoardIDao">
+	<!-- 게시판 글 갯수 -->
+	<select id="boardCountDao" resultType="java.lang.Integer">
+		select count(title) from board_t
+	</select>
+	<!-- 게시판 글 목록 보기 & 페이징 처리 , 비교연산자가 있는 경우 CDATA-->
+	<select id="boardDao" resultType="com.spring.Hit.dto.BoardDto">
+		<![CDATA[
+		select * from (select a.*, rownum as rnum from (board_t)a where rownum<= #{strNum}+14 and title is not null and board_step = 0)a where rnum>=#{strNum} order by board_no asc
+		]]>
+	</select> 
+	<!-- 게시판 검색하기 -->
+	<select id="boardSearchDao" resultType="com.spring.Hit.dto.BoardDto">
+		select * from board_t where ${category} like '%${content}%' and title is not null order by board_no asc
+	</select>
+	<!-- 게시판 상세 글보기 -->
+	<select id="boardContentDao" resultType="com.spring.Hit.dto.BoardDto">
+		select * from board_t where board_no = #{board_no}
+	</select>
+	<!-- 게시글 조회수 증가 -->
+	<update id="boardHitsUpDao">
+		update board_t set hits = hits + 1 where board_no = #{board_no}
+	</update>
+	<!-- 게시판 글쓰기 -->
+	<insert id="boardWriteDao">
+		insert into board_t(board_no, id, name, title, category, content, hits, board_group, board_step, board_indent) 
+		values(board_seq.nextval, #{id}, #{name}, #{title}, #{category}, #{content}, 0, board_seq.currval, 0, 0)
+	</insert>
+	<!-- 게시판 글 수정 -->
+	<update id="boardUpdateDao">
+		update board_t set title = #{title}, content = #{content}, category = #{category} where board_no = #{board_no}
+	</update>
+	<!-- 게시판 글 삭제 -->
+	<delete id="boardDeleteDao">
+		delete from board_t where board_group = #{board_no}
+	</delete>
+	<!-- 게시판 댓글 리스트 -->
+	<select id="boardReplyListDao" resultType="com.spring.Hit.dto.BoardDto">
+		<![CDATA[
+		select * from board_t where board_group = #{board_no} and board_step > 0 order by board_step asc 
+		]]>
+	</select>
+	<!-- 게시판 댓글 쓰기 -->
+	<insert id="boardReplyWriteDao">
+		insert into board_t(board_no, id, name, content, hits, board_group, board_step, board_indent) 
+		values(board_seq.nextval, #{id}, #{name}, #{content}, 0, #{board_group}, #{board_step}+1, #{board_indent}+1)
+	</insert>
+	<!-- 댓글 모양 셋팅(board_step 증가) -->
+	<update id="boardReplyShapeDao">
+		<![CDATA[
+		update board_t set board_step = board_step + 1 where board_group = #{board_group} and board_step > #{board_step}
+		]]>
+	</update>
+	<!-- 게시판 댓글 삭제 -->
+	
+</mapper>

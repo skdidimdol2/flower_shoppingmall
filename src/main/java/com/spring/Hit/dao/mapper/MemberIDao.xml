@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- param앞에 #면 넘어온 값이 실제 칼럼 타입에 맞게 변환해서 입력. $면 전달되어 온 값의 타입 그대로 전달. param은 
+	소문자 -->
+<!-- ctrl + shift + X 누르면 대문자로 변경 -->
+<mapper namespace="com.spring.Hit.dao.MemberIDao">
+	<!-- 메인 페이지 -->
+	<select id="mainDao" resultType="com.spring.Hit.dto.ProductDto">
+		select * from item_t order by item_no desc
+	</select>
+<!-- 박종영 -->
+	<!-- 회원 가입 쿼리 -->
+	<insert id="memberJoinDao"> 
+		INSERT INTO member_t(id, password, name, birthday, email, phone, gender) 
+		VALUES(#{id},#{password},#{name},#{birthday},#{email},#{phone},#{gender}) 
+	</insert>
+	<!-- ID중복확인 쿼리 -->
+	<select id="memberId" resultType="String"> 
+		select id from member_t where id = #{id} 
+	</select>
+<!-- 이지원 -->	
+	<!-- 회원 체크 -->
+	<select id="checkDao" resultType="java.lang.Integer"> 
+		select count(*) from member_t where id = #{id} and password = #{password} 
+	</select>
+	<!-- 회원 정보 보기 -->
+	<select id="viewMemberDao" resultType="com.spring.Hit.dto.MemberDto"> 
+		select * from member_t where id = #{id}
+	</select>
+	<!-- 회원 탈퇴 쿼리 -->
+	<delete id="deleteDao"> 
+		DELETE FROM member_t WHERE id = #{id}
+	</delete>
+	<!-- 회원 수정 쿼리 -->
+	<update id="updateDao"> 
+		UPDATE member_t SET password= #{password}, email= #{email}, phone= #{phone} where id = #{id}
+	</update>
+<!-- 전도해 -->
+	<!-- 로그인 처리 -->
+	<select id="loginDao" resultType="int" parameterType="com.spring.Hit.dto.MemberDto"> 
+		select count(*) cnt from member_t where id=#{id} and password=#{password} 
+	</select>
+	<!-- 장바구니 불러오기 -->
+	<select id="cartDao" resultType="com.spring.Hit.dto.BoardDto"> 
+		select * from basket_t where id=#{id} 
+	</select>
+</mapper>

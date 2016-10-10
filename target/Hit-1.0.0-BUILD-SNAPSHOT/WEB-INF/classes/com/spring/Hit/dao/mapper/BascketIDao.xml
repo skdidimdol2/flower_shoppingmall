@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- param앞에 #면 넘어온 값이 실제 칼럼 타입에 맞게 변환해서 입력. $면 전달되어 온 값의 타입 그대로 전달.
+	 param은 소문자-->
+<!-- ctrl + shift + X 누르면 대문자로 변경 --> 
+<mapper namespace="com.spring.Hit.dao.BasketIDao">
+	
+	<!-- 장바구니 전체 목록 보기 (select *)-->
+	<select id="viewbasketDao" resultType="com.spring.Hit.dto.BasketDto">
+		select b.item_no,i.img, i.item_name,i.category,b.buy_vol,i.price*b.buy_vol price,b.basket_no
+		from item_t i,basket_t b 
+		where i.item_no=b.item_no order by basket_no
+	</select>
+	
+	<!-- 장바구니에 보관하기 (insert into )-->
+	<insert id="writebasketDao">
+		insert into basket_t values(basket_seq.nextval,#{item_no},'user01',#{buy_vol})
+	</insert>
+	
+	<!-- 장바구니 하나의 목록 비우기 (delete one) -->
+	<delete id="deletebasketDao">
+		delete from basket_t where basket_no = #{basket_no}
+	</delete>
+	
+	<!-- 선택 장바구니 비우기 (delete where)-->
+	<delete id="delchoiceBasket">
+		delete from basket_t where basket_no in 
+		<foreach collection="array" item="item" index="index" separator="," open="(" close=")" >
+			#{item.value}
+		</foreach>
+	</delete>
+	
+	<!-- 장바구니에서 선택 목록 주문서 이동 -->
+	<select id="buychoiceBasket" resultType="com.spring.Hit.dto.BasketDto">
+		select b.item_no,i.img, i.item_name,i.category,b.buy_vol,i.price*b.buy_vol price,b.basket_no
+		from item_t i,basket_t b 
+		where i.item_no=b.item_no and b.basket_no in 
+		<foreach collection="array" item="item" index="index" separator="," open="(" close=")" >
+			#{item.value}
+		</foreach>
+		order by b.basket_no
+	</select>
+
+	</mapper>

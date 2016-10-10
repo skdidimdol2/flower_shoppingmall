@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.Hit.dao.ReplyDao">
+
+	<!-- 댓글 리스트  -->
+	<select id="list" resultType="com.spring.Hit.dto.ReplyDto">
+		select
+		*
+		from
+		reply_t
+		where item_no =	#{item_no}
+		order by reply_group desc, reply_step asc
+	</select>
+
+	<!-- 댓글 생성  -->
+	<insert id="create">
+		insert into reply_t (reply_no, item_no, reply_con, id, reply_date, reply_group, reply_step)
+		values (reply_seq.nextval, #{item_no},#{reply_con},#{id}, sysdate, reply_seq.currval, 1)
+	</insert>
+
+	<!-- 대댓글 생성 -->
+	<insert id="repcreate">
+		insert into reply_t (reply_no, item_no, reply_con, id, reply_date, reply_group, reply_step, reply_level)
+		values (reply_seq.nextval, #{item_no},#{reply_con},#{id}, sysdate, #{reply_group}, #{reply_step}+1, #{reply_level}+1)
+	</insert>
+	
+	<!-- 대댓글 업데이트  대댓글 등록시, 생성보다 업데이트가 먼저 되야함 -->
+	<update id="repupdate">
+		update reply_t
+		set reply_step = reply_step+1, reply_date = sysdate
+		where reply_group = #{reply_group} and reply_step > #{reply_step}
+	</update>
+	
+	<!-- 댓글 수정 -->
+	<update id="update">
+		update reply_t 
+		set reply_con = #{reply_con}, reply_date = sysdate
+		where reply_no = #{reply_no}
+	</update>
+
+	<!-- 댓글 삭제 -->
+	<delete id="delete">
+		delete from reply_t where reply_no = #{reply_no}
+	</delete>
+
+	<!-- 댓글 리스트 & 페이징처리  -->
+	<select id="listPage" resultType="com.spring.Hit.dto.ReplyDto">
+ 		<![CDATA[
+		select * 
+		from ( select rownum rnum, a.*
+		       from (
+	 	          select * from reply_t order by reply_group desc, reply_step asc
+	           )a
+	           where rownum <= #{cri.pageEnded} and item_no = #{item_no}
+		)
+		where rnum > #{cri.pageStart}
+		]]>
+	</select>
+
+	<!-- 상품번호(item_no) 수  -->
+	<select id="count" resultType="int">
+	 	select count(item_no) from reply_t where item_no =#{item_no}
+	</select>
+
+	<!-- 상품번호 추출 -->
+	<select id="getItemNo" resultType="int">
+ 		select item_no from reply_t where reply_no = #{reply_no}
+	</select>
+	
+	
+</mapper>
+

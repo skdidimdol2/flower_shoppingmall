@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- param앞에 #면 넘어온 값이 실제 칼럼 타입에 맞게 변환해서 입력. $면 전달되어 온 값의 타입 그대로 전달.
+	 param은 소문자-->
+<!-- ctrl + shift + X 누르면 대문자로 변경 --> 
+<mapper namespace="com.spring.Hit.dao.AdminIDao">
+		
+	<!-- 매출 월별 출력 쿼리 -->
+	<select id="totalDao" resultType="com.spring.Hit.dto.OrderDto">
+		select to_char(order_date,'mm') as month, sum(payment_price) as payment_price_sum
+		from order_t
+		where to_char(order_date,'yyyymm') between '201601' and '201612'
+		group by to_char(order_date, 'mm')
+		order by to_char(order_date,'mm') asc
+	</select>
+	
+	<!-- 매출 월단위 정보 출력 쿼리 -->
+	<select id="monthDao" resultType="com.spring.Hit.dto.OrderDto">
+		select *
+		from order_t
+		where to_char(order_date,'mm') = #{month}
+		order by to_char(order_date,'mm') asc
+	</select>
+	
+	
+	<!-- 주문 관리 -->
+	<select id="vieworder" resultType="com.spring.Hit.dto.OrderDto">
+		select *
+		from order_t
+		order by order_no desc
+	</select>
+	
+	
+	<!-- 배송 처리 -->
+	<update id="delsuc" parameterType="com.spring.Hit.dto.OrderDto">
+		update order_t
+		set
+		del_bool = 'Y' where order_no = #{order_no}
+	</update>
+	
+	
+	<!-- 배송 검색 -->
+	<select id="searchDao" resultType="com.spring.Hit.dto.OrderDto">
+		select *
+		from order_t
+		where ${category} like '%${content}%' order by order_no desc
+	</select>
+	
+	
+	<!-- 배송 상세 1 -->
+	<select id="deliver1" resultType="com.spring.Hit.dto.OrderDto">
+		select *
+		from order_t
+		where del_bool = 'N'
+		order by order_no desc
+	</select>
+	<!-- 배송 상세 2 -->
+	<select id="deliver2" resultType="com.spring.Hit.dto.OrderDto">
+		select *
+		from order_t
+		where cancel_bool = 'Y'
+		order by order_no desc
+	</select>
+	
+</mapper>
