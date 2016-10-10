@@ -92,7 +92,10 @@
 	.container>.row>.col-sm-4>div>div{
 		margin-left:7px;margin-top:7px;
 	}
-  	
+<%-- first 내용 --%>
+	.first{
+		min-height:426px;
+	}  	
 <%-- footer --%>
 	#footer {
 		background-color:#ddddff;  
@@ -141,11 +144,11 @@
 			<div class="collapse navbar-collapse" id="pcNavbar">
 				<ul class="nav navbar-nav">
 					<li><a href="../member/main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
-					<li><a href="javascript:void(0);">회원 관리</a></li>
+					<li><a href="adminMember">회원 관리</a></li>
 					<li><a href="itemMan">상품 관리</a></li>
 					<li><a href="javascript:void(0);">게시판 관리</a></li>
 					<li><a href="admin_sales?bool=0">매출 관리</a></li>
-					<li><a href="javascript:void(0);">배송 관리</a></li>			
+					<li><a href="delivery">배송 관리</a></li>				
 				</ul>
 			</div>
 		</div>
