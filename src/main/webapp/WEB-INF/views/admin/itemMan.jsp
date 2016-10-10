@@ -101,10 +101,27 @@
 <title>admin Page</title> 
 </head>
 <body>
-<!--header -->
+
+	<!--header -->
 	<header>
 		<div class="contatiner-fluid">		
-			<a href="../admin/main">관리자 페이지</a>
+			<a href="main">관리자 페이지</a>
+			<div id="users">
+				<c:if test="${sessionScope.id!=null}">
+					${sessionScope.id}님 환영합니다&emsp;&emsp;
+				</c:if>
+				<c:choose>
+					<c:when test="${sessionScope.id==null}">
+						<a href="../member/loginForm">Login</a>&emsp;&emsp;
+					</c:when>
+					<c:otherwise>
+						<a href="../member/logout">logout</a><span></span>&emsp;&emsp;
+					</c:otherwise>
+				</c:choose>
+				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
+				<a href="../member/order">Order</a>&emsp;&emsp;
+				<a href="../member/myPage">My Page</a>&emsp;&emsp;
+			</div>
 		</div>
 	</header>
 <!-- navbar -->	
@@ -124,15 +141,42 @@
 			<div class="collapse navbar-collapse" id="pcNavbar">
 				<ul class="nav navbar-nav">
 					<li><a href="../member/main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
-					<li><a href="adminMember">회원 관리</a></li>
+					<li><a href="javascript:void(0);">회원 관리</a></li>
 					<li><a href="itemMan">상품 관리</a></li>
 					<li><a href="javascript:void(0);">게시판 관리</a></li>
 					<li><a href="admin_sales?bool=0">매출 관리</a></li>
-					<li><a href="../admin/delivery">배송 관리</a></li>			
+					<li><a href="javascript:void(0);">배송 관리</a></li>			
 				</ul>
 			</div>
 		</div>
 	</nav>
+<div class="first">
+	<div class="second" style="margin-left: 50;margin-top: 100">
+
+		<table border="1" style="width: 700; width: 90%; "> 
+		<tr style="background-color: red">
+			<td align="center">상품 번호</td>
+			<td align="center">상품명</td>
+			<td align="center">카테고리</td>
+			<td align="center">가격</td>
+			<td align="center">수량</td>
+			<td align="center">등록 일자</td>
+		</tr>
+		<c:forEach items="${item}" var="item"> 
+			<tr>
+				<td align="center">${item.item_no }</td>
+				<td align="center"><a href="modifyItem?item_no=${item.item_no }">${item.item_name}</a></td>
+				<td align="center">${item.category}</td>
+				<td align="center">${item.price}</td>
+				<td align="center">${item.volume}</td>
+				<td align="center">${item.reg_date }</td>
+			</tr>
+		</c:forEach>
+		</table>
+		<a href="insertItem"><h3>새 상품 추가</h3></a>
+	</div>
+	<br><br><br><br><br>
+</div>
 <!-- footer -->	
 	<footer class="container-fluid text-left" id="footer">
 		

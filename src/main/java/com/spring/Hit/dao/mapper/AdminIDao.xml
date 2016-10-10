@@ -7,26 +7,49 @@
 <!-- ctrl + shift + X 누르면 대문자로 변경 -->
 <mapper namespace="com.spring.Hit.dao.AdminIDao">
 
+	<!-- 상품의 모든 리스트 출력 -->
+	<select id="adminItem" resultType="com.spring.Hit.dto.ProductDto">
+		select * from item_t order by item_no 
+	</select>
+	
+	<!-- 상품 수정페이지 이동(detail) -->
+	<select id="adminOneitem" resultType="com.spring.Hit.dto.ProductDto">
+		select * from item_t where item_no=#{item_no}
+	</select>
+	
+	<!-- 상품 삭제 -->
+	<delete id="adminDelitem">
+		delete from item_t where item_no=#{item_no}
+	</delete>
+	
+	<!-- 새 상품 추가(insert) -->
+	<insert id="adminInsitem">
+		insert into item_t(item_no,item_name,category,price,volume,img,item_content) 
+		values(item_seq.nextval,#{item_name},#{category},#{price},#{volume},#{img},#{item_content})
+	</insert>	
+	
+	<!-- 상품 수정(update) -->
+	<update id="adminModitem">
+		update item_t set item_name=#{item_name}, img = #{img} , price = #{price}, volume = #{volume} , 
+		item_content = #{item_content} where item_no = #{item_no} 
+	</update>
+	
+	
 	<!-- 매출 월별 출력 쿼리 -->
 	<select id="totalDao" resultType="com.spring.Hit.dto.OrderDto">
-		select to_char(order_date,'mm')
-		as month, sum(payment_price) as payment_price_sum
+		select to_char(order_date,'mm') as month, sum(payment_price) as payment_price_sum
 		from order_t
-		where
-		to_char(order_date,'yyyymm') between '201601' and '201612'
-		group by
-		to_char(order_date, 'mm')
+		where to_char(order_date,'yyyymm') between '201601' and '201612'
+		group by to_char(order_date, 'mm')
 		order by to_char(order_date,'mm') asc
 	</select>
-
+	
 	<!-- 매출 월단위 정보 출력 쿼리 -->
 	<select id="monthDao" resultType="com.spring.Hit.dto.OrderDto">
 		select *
 		from order_t
-		where
-		to_char(order_date,'mm') = #{month}
-		order by to_char(order_date,'mm')
-		asc
+		where to_char(order_date,'mm') = #{month}
+		order by to_char(order_date,'mm') asc
 	</select>
 
 

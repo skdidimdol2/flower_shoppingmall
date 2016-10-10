@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 
 import com.spring.Hit.dto.MemberDto;
 import com.spring.Hit.dto.OrderDto;
+import com.spring.Hit.dto.ProductDto;
 
 @Repository
 public class AdminIDaoImpl implements AdminIDao{
@@ -30,6 +31,35 @@ public class AdminIDaoImpl implements AdminIDao{
 	@Override
 	public List<OrderDto> monthDao(OrderDto odt) {
 		return session.selectList(namespace+".monthDao", odt);
+	}
+	
+	@Override
+	public List<ProductDto> adminItem(ProductDto pdt) {
+		return session.selectList("adminItem", pdt);
+	}
+	
+	@Override
+	public ProductDto adminOneitem(int item_no) {
+		return session.selectOne("adminOneitem", item_no);
+	}
+	
+	@Override
+	public void adminDelitem(int item_no) {
+		AdminIDao ado = session.getMapper(AdminIDao.class);
+		ado.adminDelitem(item_no);
+	}
+	
+	@Override
+	public void adminInsitem(ProductDto pdt) {
+		AdminIDao ado = session.getMapper(AdminIDao.class);
+		ado.adminInsitem(pdt);
+		
+	}
+
+	@Override
+	public void adminModitem(ProductDto pdt) {
+		AdminIDao ado = session.getMapper(AdminIDao.class);
+		ado.adminModitem(pdt);
 	}
 
 	@Override

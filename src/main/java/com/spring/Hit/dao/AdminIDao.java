@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 
 import com.spring.Hit.dto.MemberDto;
 import com.spring.Hit.dto.OrderDto;
+import com.spring.Hit.dto.ProductDto;
 
 public interface AdminIDao {
 	
@@ -15,6 +16,20 @@ public interface AdminIDao {
 	//월별 매출표 
 	public List<OrderDto> monthDao(OrderDto odt);
 	
+	//상품 리스트들 출력
+	public List<ProductDto> adminItem(ProductDto pdt);
+		
+	//상품 상세정보 및 수정페이지
+	public ProductDto adminOneitem(int item_no);
+	
+	//상품 삭제
+	public void adminDelitem(int item_no);
+		
+	//신상품 등록
+	public void adminInsitem(ProductDto pdt);
+	
+	//상품 수정
+	public void adminModitem(ProductDto pdt);
 	// 주문 현황
 	public List<OrderDto> vieworder(OrderDto odt);
 	

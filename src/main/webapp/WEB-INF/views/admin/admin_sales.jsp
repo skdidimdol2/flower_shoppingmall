@@ -2,7 +2,6 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE>
 <html>
 <head>
@@ -14,13 +13,17 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- jquery의 jqplot 그래프 사용 -->
-<link class="include" rel="stylesheet" type="text/css" href="../resources/jquery.jqplot.css" />
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
+<jsp:useBean id="now" class="java.util.Date"/>
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.8/jquery.jqplot.min.css" />
 <script type="text/javascript" src="../resources/jquery.jqplot.js"></script>
 <script type="text/javascript" src="../resources/plugins/jqplot.categoryAxisRenderer.js"></script>
 <script type="text/javascript" src="../resources/plugins/jqplot.barRenderer.js"></script>
-
 <style>
 
 <%-- header --%> 
@@ -109,12 +112,16 @@
 </style>
 
 <script>
+	$(function(){
+		$("#savedate").datepicker({
+			dateFormat: 'yy-mm-dd'
+		});
+	});
 	function toXLS() {
 		var file_name = $("#title").val()+" "+$("#savedate").val();
 		$("#bool").attr('value',1);
 		location.href = "/Hit/admin/admin_sales?bool="+$("#bool").val()+"&file_name="+file_name+".xls";
 	} 
-	
 </script>
 
 <%
@@ -156,58 +163,56 @@
 		
 			<div class="collapse navbar-collapse" id="pcNavbar">
 				<ul class="nav navbar-nav">
-					<li><a href="main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
+					<li><a href="../member/main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
 					<li><a href="javascript:void(0);">회원 관리</a></li>
 					<li><a href="javascript:void(0);">상품 관리</a></li>
 					<li><a href="javascript:void(0);">게시판 관리</a></li>
 					<li><a href="admin_sales?bool=0">매출 관리</a></li>
-					<li><a href="../admin/delivery">배송 관리</a></li>			
+					<li><a href="javascript:void(0);">배송 관리</a></li>			
 				</ul>
 			</div>
 		</div>
 	</nav>
 <!-- body -->
 <input type="hidden" id='bool' value=0>
-	<div align="center">
-		<input type="button" id="save" onclick="toXLS()" value="저장하기">
-		<input type="button" id="preview" value="미리보기">
-		<input type="button" id="print" value="출력하기">
-	</div><br>
 	<body>
+	<br>
 	<div align="center">
 		<table border="1" style="width:100%;">
 			<tr>
-				<td align="center">제목</td>
-				<td><input type="text" id='title' style="width:50%;" value="2016년 월별 매출"></td>
-				<td align="center">저장 일시</td>
-				<td><input type="text" id='savedate' style="width:50%;" value='2016-10-06'></td>
+				<td align="center" colspan="2">제목</td>
+				<td colspan="4"><input type="text" id='title' style="width:70%;" value="2016년 월별 매출"></td>
+				<td align="center" colspan="2">저장 일시</td>
+				<td colspan="4">
+				<input type="text" id='savedate' style="width:70%;" value="<fmt:formatDate value="${now}" type="date" pattern="yyyy-MM-dd"/>">
+				</td>
+				<td><input type="button" id="save" onclick="toXLS()" value="저장하기"></td>
 			</tr>
 			<tr>
-				<td colspan="4" align="center"><h1>월별 매출 현황</h1></td>
+				<td colspan="13" align="center"><h1>월별 매출 현황</h1></td>
 			</tr>
-			<!-- <tr>
-				<td colspan="4" align="center"><h4>월별 매출 현황표</h4></td>
-			</tr> -->
 			<tr align="center">
-				<td colspan="2">
+				<td>
 					<h4>구분</h4>
 				</td>
-				<td colspan="2">
+				<c:forEach items="${list}" var="list">
+				<td><a href="admin_sales_month?bool=0&month=${list.month}">${list.month} 월</a></td>
+				</c:forEach>
+			</tr>
+			<tr  align="center">
+				<td>
 					<h4>매출</h4>
 				</td>
+				<c:set var="sum" value="0"/>
+				<c:forEach items="${list}" var="list">
+				<td><fmt:formatNumber value="${list.payment_price_sum}" groupingUsed="true"/>원</td>					
+				<c:set var="sum" value="${sum+list.payment_price_sum}"/>
+				</c:forEach>
 			</tr>
-			<c:set var="sum" value="0"/>
-			<c:forEach items="${list}" var="list">
-				<tr align="center">
-					<td colspan="2"><a href="admin_sales_month?bool=0&month=${list.month}">${list.month} 월</a></td>
-					<td colspan="2"><fmt:formatNumber value="${list.payment_price_sum}" groupingUsed="true"/>원</td>
-					<c:set var="sum" value="${sum+list.payment_price_sum}"/>
-				</tr>
-			</c:forEach>
-			<tr align="center">
-				<td colspan="2">총 매출액</td>
-				<td colspan="2"><fmt:formatNumber value="${sum}" groupingUsed="true"/> 원</td>
-			</tr>
+			<tr>
+				<td align="center"><h4>총 매출액</h4>
+				<td colspan="12" align="center"><h4><strong><fmt:formatNumber value="${sum}" groupingUsed="true"/> 원</h4>
+			</tr>			
 		</table>
 	</div>
 	<br>

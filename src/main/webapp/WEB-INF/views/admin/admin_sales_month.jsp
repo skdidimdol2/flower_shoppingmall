@@ -14,6 +14,18 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- jquery의 jqplot 그래프 사용 -->
+<!-- <link class="include" rel="stylesheet" type="text/css" href="../resources/jquery.jqplot.css" /> -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.8/jquery.jqplot.min.css" />
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
+ <jsp:useBean id="now" class="java.util.Date"/>
+ 
+<script type="text/javascript" src="../resources/jquery.jqplot.js"></script>
+<script type="text/javascript" src="../resources/plugins/jqplot.categoryAxisRenderer.js"></script>
+<script type="text/javascript" src="../resources/plugins/jqplot.barRenderer.js"></script>
 <style>
 
 <%-- header --%> 
@@ -102,6 +114,12 @@
 </style>
 
 <script>
+	$(function(){
+		$("#savedate").datepicker({
+			dateFormat: 'yy-mm-dd'
+		});
+	});
+
 	function toXLS() {
 		var file_name = $("#title").val()+" "+$("#savedate").val();
 		$("#bool").attr('value',1);
@@ -147,7 +165,7 @@
 		
 			<div class="collapse navbar-collapse" id="pcNavbar">
 				<ul class="nav navbar-nav">
-					<li><a href="main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
+					<li><a href="../member/main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
 					<li><a href="javascript:void(0);">회원 관리</a></li>
 					<li><a href="javascript:void(0);">상품 관리</a></li>
 					<li><a href="javascript:void(0);">게시판 관리</a></li>
@@ -172,7 +190,7 @@
 				<td align="center">제목</td>
 				<td colspan="2"><input type="text" id='title' style="width:50%;" value="2016년 <%=month%>월 매출"></td>
 				<td align="center">저장 일시</td>
-				<td colspan="2"><input type="text" id='savedate' style="width:50%;" value='2016-10-06'></td>
+				<td colspan="2"><input type="text" id='savedate' style="width:70%;" value="<fmt:formatDate value="${now}" type="date" pattern="yyyy-MM-dd"/>"></td>
 			</tr>
 			<tr>
 				<td colspan="6" align="center"><h1><%= month %>월 매출 현황</h1></td>
@@ -189,7 +207,7 @@
 					<h4>상품 수량</h4>
 				</td>
 				<td>
-					<h4>유저 ID</h4>
+					<h4>사용자</h4>
 				</td>
 				<td>
 					<h4>주문 날짜</h4>

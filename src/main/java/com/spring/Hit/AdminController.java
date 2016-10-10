@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.spring.Hit.dao.AdminIDao;
 import com.spring.Hit.dto.MemberDto;
 import com.spring.Hit.dto.OrderDto;
+import com.spring.Hit.dto.ProductDto;
 import com.spring.Hit.mail.SendMail;
 
 @Controller
@@ -46,20 +47,73 @@ public class AdminController {
 		}
 	}
 
-	// 관리자 매출 관리
-	@RequestMapping(value = "/admin_sales", method = RequestMethod.GET)
-	public void salesGET(@ModelAttribute("odt") OrderDto odt, Model model) {
-		logger.info("매출 페이지");
-		model.addAttribute("list", dao.totalDao(odt));
-	}
+	// 관리자 상품관리
+		@RequestMapping(value = "/itemMan")
+		public String itemlist(Model model, @ModelAttribute("pdt") ProductDto pdt) {
+			model.addAttribute("item", dao.adminItem(pdt));
+			return "/admin/itemMan";
 
-	// 관리자 매출 관리
-	@RequestMapping(value = "/admin_sales_month", method = RequestMethod.GET)
-	public void salesMonth(@ModelAttribute("odt") OrderDto odt, @RequestParam("month") String month, Model model) {
-		logger.info("월 페이지");
-		odt.setMonth(month);
-		model.addAttribute("list", dao.monthDao(odt));
-	}
+		}
+
+		@RequestMapping(value = "/insertItem")
+		public String insertItem() {
+			return "/admin/insertItem";
+		}
+
+		// 상품 추가
+		@RequestMapping(value = "/adminInsitem")
+		public String insertItem(HttpServletRequest req, ProductDto pdt) {
+			pdt.setItem_name(req.getParameter("item_name"));
+			pdt.setCategory(req.getParameter("category"));
+			pdt.setPrice(Integer.parseInt(req.getParameter("price")));
+			pdt.setVolume(Integer.parseInt(req.getParameter("volume")));
+			pdt.setImg("../resources/image/" + req.getParameter("img"));
+			pdt.setItem_content(req.getParameter("item_content"));
+			dao.adminInsitem(pdt);
+			return "redirect:itemMan";
+		}
+
+		// 상품 수정페이지 이동
+		@RequestMapping(value = "/modifyItem")
+		public String modifyItem(Model model, HttpServletRequest req) {
+			int item_no = Integer.parseInt(req.getParameter("item_no"));
+			model.addAttribute("item", dao.adminOneitem(item_no));
+			return "/admin/modifyItem";
+		}
+		
+		@RequestMapping(value="/modifyOk")
+		public String modifyItem(HttpServletRequest req,ProductDto pdt){
+			pdt.setItem_name(req.getParameter("item_name"));
+			pdt.setPrice(Integer.parseInt(req.getParameter("price")));
+			pdt.setVolume(Integer.parseInt(req.getParameter("volume")));
+			pdt.setImg("../resources/image/"+req.getParameter("img"));
+			pdt.setItem_content(req.getParameter("item_content"));
+			pdt.setItem_no(Integer.parseInt(req.getParameter("item_no")));
+			dao.adminModitem(pdt);
+			return "redirect:itemMan";
+		}
+
+		@RequestMapping(value = "/adminDelitem")
+		public String adminDelitem(HttpServletRequest req, Model model) {
+			int item_no = Integer.parseInt(req.getParameter("item_no"));
+			dao.adminDelitem(item_no);
+			return "redirect:itemMan";
+		}
+
+		// 관리자 매출 관리
+		@RequestMapping(value = "/admin_sales", method = RequestMethod.GET)
+		public void salesGET(@ModelAttribute("odt") OrderDto odt, Model model) {
+			logger.info("매출 페이지");
+			model.addAttribute("list", dao.totalDao(odt));
+		}
+
+		// 관리자 매출 관리
+		@RequestMapping(value = "/admin_sales_month", method = RequestMethod.GET)
+		public void salesMonth(@ModelAttribute("odt") OrderDto odt, @RequestParam("month") String month, Model model) {
+			logger.info("월 페이지");
+			odt.setMonth(month);
+			model.addAttribute("list", dao.monthDao(odt));
+		}
 
 	// 관리자 배송 관리
 	@RequestMapping(value = "/delivery", method = RequestMethod.GET)
