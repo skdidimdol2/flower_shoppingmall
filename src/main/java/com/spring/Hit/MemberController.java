@@ -1,8 +1,5 @@
 package com.spring.Hit;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -55,59 +52,25 @@ public class MemberController {
 //	}
 
 	// ID 중복 확인
-	@RequestMapping("/member_Id")
-	public String member_Id(Model model, HttpServletRequest req) {
-		String id = req.getParameter("id");
-		
-		String a = dao.memberId(id);
-		if(a==null){
-			System.out.println(id);
-			model.addAttribute("id", id);
-		}else{
-			
-		}
-		
-		return "/member/member_join";
-	}
+//	@RequestMapping("/member_Id")
+//	public String member_Id(Model model, HttpServletRequest req) {
+//		String id = req.getParameter("id");
+//		
+//		String a = dao.memberId(id);
+//		if(a==null){
+//			System.out.println(id);
+//			model.addAttribute("id", id);
+//		}else{
+//			
+//		}
+//		
+//		return "/member/member_join";
+//	}
 
 /*
  * 	작성자 : 이지원
  * 	수정일 : 2016.10.3
  */	
-   //로그인 페이지
-//   @RequestMapping("/login")
-//   public String login(Model model) {
-//      
-//      return "/member/login";
-//   }
-   
-   //로그인 처리
-   @RequestMapping("/loginProc")
-   public String loginProc(Model model, MemberDto dto, HttpServletRequest request) throws Exception {
-      
-      if(dao.checkDao(dto) == 0){            
-         return "/member/main";
-      }
-      
-      if(request.getSession()!=null){
-         request.getSession().setAttribute("id",dto.getId());
-         request.getSession().setAttribute("password",dto.getPassword());
-      
-         return "/member/main";
-      }
-      
-      return "/member/login";
-   }
-   
-   //로그아웃
-   @RequestMapping("/logout")
-   public String logout(Model model, HttpSession session) {
-      
-      if(session.getAttribute("id") != null)
-         session.removeAttribute("id");
-      
-      return "/member/main";
-   }
    
    //마이페이지
    @RequestMapping("/myPage")
@@ -169,29 +132,15 @@ public class MemberController {
    }
 	
    @RequestMapping("/login")
-   public String login(MemberDto dto, HttpSession session) {
-	   int cnt = dao.loginDao(dto);
-	   System.out.println(dto.getId());
-		
-		// dao로부터 id,pwd를 넘겨서 데이터베이스에서 로그인된 사용자인지 아닌지를 판별
-	   if (cnt > 0) {
-			// 로그인 된 사용자 이기 때문에 세션을 저장한다.
-		   session.setAttribute("id", dto.getId());
-		   session.setAttribute("password", dto.getPassword());
-		   session.setAttribute("logininfo", true);
-		   System.out.println("Login 성공!");
-	   } else {
-			// 잘못된 접속이라는 뷰를 보여주도록 뷰의 정보를 지정.
-		   System.out.println("잘못된 접근");
-		   return "member/loginForm";
-	   }
+   public String login(Model model, HttpServletRequest req, HttpSession sess) {
+	   model.addAttribute("req", req);
+	   return dao.loginDao(model, sess);
+   }
+   @RequestMapping("/logout")
+   public String logout(HttpSession session){	
+	   session.invalidate();
 	   return "member/main";
    }
-//   @RequestMapping("/logout")
-//   public String logout(HttpSession session){	
-//	   session.invalidate();
-//	   return "member/main";
-//   }
 	
    @RequestMapping("/cart")
    public String cart(HttpSession session){	
@@ -206,18 +155,13 @@ public class MemberController {
    @RequestMapping("/wishList")
    public String wishList(HttpSession session){
 	   	return "member/wishList";
-}
+   }
 	
    @RequestMapping("/findlogin")
    public void findlogin(HttpSession session){
 	   session.setAttribute("logininfo", true);
    }
 	
-   @RequestMapping("/error")
-   public String error(HttpSession session) {
-      return "member/error";
-   }
-   
 //   @RequestMapping("/myPage")
 //   public String myPage(Model model, HttpSession session) {
 //	   String id = (String)session.getAttribute("id");
@@ -225,5 +169,5 @@ public class MemberController {
 //	   model.addAttribute("dto", dao.viewMemberDao(id)); 
 //	   return "/member/myPage";
 //   }
-
+   
 }

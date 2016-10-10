@@ -2,6 +2,7 @@ package com.spring.Hit;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,8 +38,8 @@ public class BoardController {
 	public String board(Model model, HttpServletRequest req) {
 		
 		model.addAttribute("req", req);
-		model.addAttribute("list", dao.boardDao(model));
-		model.addAttribute("count", dao.boardCountDao());
+		model.addAttribute("list", dao.boardDao(model));	//데이터 리스트
+		model.addAttribute("count", dao.boardCountDao());	//페이징 처리
 	//	model.addAttribute("tableName",dao.boardTName(req.getParameter("tName")));
 		
 		return "/board/board";
@@ -63,9 +64,7 @@ public class BoardController {
 	}
 	//게시글 폼 열기
 	@RequestMapping("/boardWriteForm")
-	public String boardWriteForm(Model model, HttpServletRequest req) {
-		String id = "admin123";
-		model.addAttribute("list", id);//제목,내용,작성자로 검색
+	public String boardWriteForm(Model model, HttpSession sess) {
 		
 		return "/board/boardWriteForm";
 	}

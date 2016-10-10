@@ -59,6 +59,4 @@
 		update board_t set board_step = board_step + 1 where board_group = #{board_group} and board_step > #{board_step}
 		]]>
 	</update>
-	<!-- 게시판 댓글 삭제 -->
-	
 </mapper>

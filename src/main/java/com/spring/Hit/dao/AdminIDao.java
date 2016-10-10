@@ -1,12 +1,10 @@
 package com.spring.Hit.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.core.annotation.Order;
 import org.springframework.ui.Model;
 
-import com.spring.Hit.dto.BoardDto;
+import com.spring.Hit.dto.MemberDto;
 import com.spring.Hit.dto.OrderDto;
 
 public interface AdminIDao {
@@ -33,6 +31,15 @@ public interface AdminIDao {
 	
 	// 주문 상세
 	public List<OrderDto> deliver2(OrderDto odt);
+	
+	
+	public List<MemberDto> adminMemberListDao();
+	
+	public List<MemberDto> adminSearchMemberDao(Model model);
+	
+	public void adminMemberDeleteDao(Model model);
+	
+	public List<MemberDto> adminMemberSortDao(MemberDto dto);
 	
 	
 	

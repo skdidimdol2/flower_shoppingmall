@@ -39,14 +39,7 @@
 		text-decoration:none; 
 	}
 <%-- board --%>	
-	#board_navbar{
-		margin-top:70;
-		position:absolute;
-		left:80px;
-		border:1px solid;
-		border-color:#8888ff;
-		padding-top:35;padding-bottom:35;padding-left:55;padding-right:55;
-	}
+	
 	#left_nav{
 		margin-top:10;
 		margin-bottom:10;
@@ -54,8 +47,8 @@
 	}
 	#board_content{
 		position:absolute;
-		left:300px;
-		width:800px;
+		left:200px;
+		width:900px;
 	}
 	.btn{
 		float:right;
@@ -95,11 +88,11 @@
 	<header>
 		<div class="contatiner-fluid">
 			<div id="users">
-				<c:if test="${sessionScope.id!=null}">
-					${sessionScope.id}님 환영합니다&emsp;&emsp;
+				<c:if test="${sessionScope.name!=null}">
+					<b>${sessionScope.name}</b>님 환영합니다&emsp;&emsp;
 				</c:if>
 				<c:choose>
-					<c:when test="${sessionScope.id==null}">
+					<c:when test="${sessionScope.name==null}">
 						<a href="../member/loginForm">Login</a>&emsp;&emsp;
 					</c:when>
 					<c:otherwise>
@@ -107,7 +100,7 @@
 					</c:otherwise>
 				</c:choose>
 				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../product/myorder">Order</a>&emsp;&emsp;
+				<a href="../member/order">Order</a>&emsp;&emsp;
 				<a href="../member/wishList">Wish List</a>&emsp;&emsp;
 				<a href="../member/myPage">My Page</a>&emsp;&emsp;
 			</div>
@@ -115,22 +108,17 @@
 		</div>
 	</header>
 <!-- board -->
-	<div class="text-centet" id="board_navbar">
-		<div>
-			<div id="left_nav"><a href="#">Q&A</a></div>
-			<div id="left_nav"><a href="#">리뷰</a></div>
-			<div id="left_nav"><a href="#">댓글</a></div>
-		</div>
-	</div>
+	
 	<div class="text-center" id="board_content">
 		<p></p>
-		<b style="font-size:24">Q&A </b>
+		<b style="font-size:24">게시판 </b>
 		<p></p>
 			<button id="boardList" class="btn btn-primary" onclick="board()">목록보기</button>
 			<!-- 회원 본인일때만 버튼이 나오도록 추가, 로그인 id값이랑 글쓴이 id값이랑 비교 -->
-			<button id="boardUpdate" class="btn btn-primary" onclick="boardUpdate()">글수정</button>
-			<button id="boardDelete" class="btn btn-primary" onclick="boardDelete()">글삭제</button>
-			
+			<c:if test="${sessionScope.id==dto.id}">
+				<button id="boardUpdate" class="btn btn-primary" onclick="boardUpdate()">글수정</button>
+				<button id="boardDelete" class="btn btn-primary" onclick="boardDelete()">글삭제</button>
+			</c:if>
 			<table style="width:100%;" border="1" class="text-center">
 				<tr> 
 					<td style="background-color:ff5555">글번호</td>
@@ -164,6 +152,8 @@
 			<p></p>
 			<div id="reply_form1">
 				<form id= "re_form1" action="boardReplyWrite" method="POST">
+					<input type="hidden" name="id" value="${sessionScope.id}"/>
+					<input type="hidden" name="name" value="${sessionScope.name}"/>
 					<input type="hidden" name="board_no" value="${dto.board_no}">
 					<input type="hidden" name="board_group" value="${dto.board_group}">
 					<input type="hidden" name="board_step" value="${dto.board_step}">
@@ -174,6 +164,8 @@
 			</div>
 			<div id="reply_form2">
 				<form id= "re_form2" action="boardReplyWrite" method="POST">
+					<input type="hidden" name="id" value="${sessionScope.id}"/>
+					<input type="hidden" name="name" value="${sessionScope.name}"/>
 					<input type="hidden" name="board_no" value="${dto.board_no}">
 					<input type="hidden" name="board_group" value="${dto.board_group}">
 					<input type="hidden" name="board_step" id="board_step">

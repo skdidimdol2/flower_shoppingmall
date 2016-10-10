@@ -2,6 +2,8 @@ package com.spring.Hit.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.ui.Model;
 
 import com.spring.Hit.dto.BoardDto;
@@ -20,7 +22,7 @@ public interface MemberIDao {
 	//회원 가입
 	public void memberJoinDao(Model model);
 	//ID 중복 확인
-	public String memberId(String id);
+	public String memberId(Model model);
 
 /*
  * 	작성자 : 이지원
@@ -39,7 +41,7 @@ public interface MemberIDao {
  * 	수정일 : 2016.10.3
  */	
 	// 로그인
-	public int loginDao(MemberDto dto);
+	public String loginDao(Model model, HttpSession sess);
 
 	
 }

@@ -105,24 +105,24 @@
 	<header>
 		<div class="contatiner-fluid">
 			<div id="users">
-				<c:if test="${sessionScope.id!=null}">
-					${sessionScope.id}님 환영합니다&emsp;&emsp;
+				<c:if test="${sessionScope.name!=null}">
+					<b>${sessionScope.name}</b>님 환영합니다&emsp;&emsp;
 				</c:if>
 				<c:if test="${sessionScope.id.equals('admin123')==true}">
-					<a href="../admin/main" style="color:red">관리자페이지로 이동</a>&emsp;&emsp;
+					<a href="../admin/main" style="color:blue">관리자페이지로 이동</a>&emsp;&emsp;
 				</c:if>
 				<c:choose>
-					<c:when test="${sessionScope.id==null}">
+					<c:when test="${sessionScope.name==null}">
 						<a href="loginForm">Login</a>&emsp;&emsp;
 					</c:when>
 					<c:otherwise>
 						<a href="logout">logout</a><span></span>&emsp;&emsp;
-						<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-						<a href="../product/myorder">Order</a>&emsp;&emsp;
 					</c:otherwise>
 				</c:choose>
-				<a href="../member/main">Wish List</a>&emsp;&emsp;
-				<a href="../member/main">My Page</a>&emsp;&emsp;
+				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
+				<a href="order">Order</a>&emsp;&emsp;
+				<a href="wishList">Wish List</a>&emsp;&emsp;
+				<a href="myPage">My Page</a>&emsp;&emsp;
 			</div>		
 			<a href="main">Flower</a>
 		</div>
@@ -156,9 +156,7 @@
 					<li><a href="../product/list?category=서양란">서양란</a></li>
 					<li><a href="../product/list?category=축하화환">축하화환</a></li>
 					<li><a href="../product/list?category=근조화환">근조화환</a></li>
-					<li><a href="../board/boardList">자유게시판</a></li>
-					<!-- <li><a href="../product/myorder">결제정보</a></li> -->
-					
+					<li><a href="../board/boardList">게시판</a></li>
 					
 				</ul>
 				<input type="text" style="width:170px;margin-bottom:10px;margin-left:3px;" placeholder=" 검색어 입력">
@@ -196,81 +194,77 @@
 			</div>
     	</div>
 	</div>
-
-<!-- mainpage best item & new item -->   
-   <div class="container">
-      <div class="row">
-         <p></p>
-         <b style="font-size:24;margin-left:10px">인기상품 </b>&nbsp;|&nbsp;
-         <a href="#">더보기</a>
-         <p></p>
-         <div class="col-sm-4">
-            <div onclick="Moving();">
-               <a href="../product/detail?item_no=8"><img alt="flower" src="../resources/image/flower8.jpg" style="width: 100%;height:30%" class="img-responsive"></a>
-               <div>카네이션꽃바구니</div>
-               <span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
-               <span><b>20,000원</b></span>
-               <p></p>
-            </div>
-         </div>
-         <div class="col-sm-4">
-            <div onclick="Moving();">
-               <a href="../product/detail?item_no=10"><img alt="flower" src="../resources/image/flower10.jpg" style="width:100%;height:30%" class="img-responsive"></a>
-               <div>누군가에게</div>
-               <span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
-               <span><b>5,000원</b></span>
-               <p></p>
-            </div>
-         </div>
-         <div class="col-sm-4">
-            <div onclick="Moving();">
-               <a href="../product/detail?item_no=11"><img alt="flower" src="../resources/image/flower11.jpg" style="width:100%;height:30%" class="img-responsive"></a>
-               <div>너만을 사랑해 </div>
-               <span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
-               <span><b>10,000원</b></span>
-               <p></p>
-            </div>
-         </div>
-      </div>   
-      <div class="row">
-         <p></p>
-            <b style="font-size:24;margin-left:10px">신상품 </b>&nbsp;|&nbsp;
-            <a href="#">더보기</a>
-         <p></p>
-         <div class="col-sm-4">
-            <div onclick="Moving();">
-               <a href="../product/detail?item_no=22"><img alt="flower" src="../resources/image/flower22.jpg" style="width:100%;height:30%" class="img-responsive"></a>
-               <div>축하수국3단</div>
-               <span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
-               <span><b>200,000원</b></span>
-               <p></p>
-            </div>
-         </div>
-         <div class="col-sm-4">
-            <div onclick="Moving();">
-               <a href="../product/detail?item_no=18"><img alt="flower" src="../resources/image/flower18.jpg" style="width:100%;height:30%" class="img-responsive"></a>
-               <div>만천홍</div>
-               <span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
-               <span><b>120,000원</b></span>
-               <p></p>
-            </div>
-         </div>
-         <div class="col-sm-4">
-            <div onclick="Moving();">
-               <a href="../product/detail?item_no=27"><img alt="flower" src="../resources/image/flower27.jpg" style="width:100%;height:30%" class="img-responsive"></a>
-               <div>고급화환3단</div>
-               <span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
-               <span><b>230,000원</b></span>
-               <p></p>
-            </div>
-         </div>
-      </div>
-      
-   </div>
-   <br>
-
-
-
+<!-- mainpage best item & new item -->	
+	<div class="container">
+		<div class="row">
+			<p></p>
+			<b style="font-size:24;margin-left:10px">인기상품 </b>&nbsp;|&nbsp;
+			<a href="#">더보기</a>
+			<p></p>
+			<div class="col-sm-4">
+				<div onclick="Moving();">
+					<img alt="flower" src="../resources/image/img_flower1.jpg" style="width: 100%;height:30%" class="img-responsive">
+					<div>감사 화환</div>
+					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
+					<span><b>20,000원</b></span>
+					<p></p>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div onclick="Moving();">
+					<img alt="flower" src="../resources/image/img_flower2.jpg" style="width:100%;height:30%" class="img-responsive">
+					<div>축하 화환</div>
+					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
+					<span><b>120,000원</b></span>
+					<p></p>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div onclick="Moving();">
+					<img alt="flower" src="../resources/image/img_flower3.jpg" style="width:100%;height:30%" class="img-responsive">
+					<div>선인장 머리 화분 </div>
+					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
+					<span><b>9,900원</b></span>
+					<p></p>
+				</div>
+			</div>
+		</div>	
+		<div class="row">
+			<p></p>
+				<b style="font-size:24;margin-left:10px">신상품 </b>&nbsp;|&nbsp;
+				<a href="#">더보기</a>
+			<p></p>
+			<div class="col-sm-4">
+				<div onclick="Moving();">
+					<img alt="flower" src="../resources/image/img_flower4.jpg" style="width:100%;height:30%" class="img-responsive">
+					<div>심쿵 꽃다발</div>
+					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
+					<span><b>50,000원</b></span>
+					<p></p>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div onclick="Moving();">
+					<img alt="flower" src="../resources/image/img_flower5.jpg" style="width:100%;height:30%" class="img-responsive">
+					<div>사랑스러운 만천홍</div>
+					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
+					<span><b>70,000원</b></span>
+					<p></p>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div onclick="Moving();">
+					<img alt="flower" src="../resources/image/img_flower6.jpg" style="width:100%;height:30%" class="img-responsive">
+					<div>돈이 최고지 꽃바구니</div>
+					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
+					<span><b>80,000원</b></span>
+					<p></p>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<br>
 <!-- footer -->	
 	<footer class="container-fluid text-left" id="footer">
 		

@@ -10,6 +10,7 @@ public class MemberDto {
 	private Date birthday;
 	private String email;
 	private String phone;
+	private String address;
 	private String gender;
 	private int point;
 	private Timestamp joindate;
@@ -21,14 +22,15 @@ public class MemberDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberDto(String id, String password, String name, Date birthday, String email, String phone, String gender,
-			int point, Timestamp joindate, int reply, int review, String admin) {
+	public MemberDto(String id, String password, String name, Date birthday, String email, String phone, String address,
+			String gender, int point, Timestamp joindate, int reply, int review, String admin) {
 		this.id = id;
 		this.password = password;
 		this.name = name;
 		this.birthday = birthday;
 		this.email = email;
 		this.phone = phone;
+		this.address = address;
 		this.gender = gender;
 		this.point = point;
 		this.joindate = joindate;
@@ -83,6 +85,14 @@ public class MemberDto {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getGender() {

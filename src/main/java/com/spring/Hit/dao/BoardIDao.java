@@ -10,8 +10,6 @@ public interface BoardIDao {
 	
 	//게시판 글 갯수
 	public int boardCountDao();
-	//게시판 종류 확인하기
-	public String boardTName(String tName);
 	//게시판 목록보기
 	public List<BoardDto> boardDao(Model model);
 	//게시판 검색

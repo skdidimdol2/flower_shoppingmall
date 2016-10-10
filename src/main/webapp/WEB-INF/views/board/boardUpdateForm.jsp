@@ -21,19 +21,18 @@
 </head>
 <body>
 	<form action="boardUpdate" method="POST">
-		<input type="hidden" name="name" value="사용자02"/>
+		
 		<input type="hidden" name="board_no" value="${dto.board_no}"/>
 		<input type="hidden" name="hits" value="${dto.hits}"/>
 		<input type="hidden" name="post_date" value="${dto.post_date}"/>
 		<h4>글쓰기</h4>
 		<!-- sessionScope.id -->
-		<input type="text" name="id" value="${dto.id}"/>
+		<input type="hidden" name="id" value="${sessionScope.id}"/>
 		<!-- sessionScope.name -->
-		
+		<input type="text" name="name" value="${sessionScope.name}" readonly/>
 		<p></p>
 		<input type="text" name="title"  placeholder="글제목" style="height:30;width:300" value="${dto.title}">
 		<select name="category" id="category" style="height:30">
-			<option value="">카테고리</option>
 			<option value="꽃바구니">꽃바구니</option>
 			<option value="꽃다발">꽃다발</option>
 			<option value="꽃상자">꽃상자</option>

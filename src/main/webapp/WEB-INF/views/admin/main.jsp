@@ -124,7 +124,7 @@
 			<div class="collapse navbar-collapse" id="pcNavbar">
 				<ul class="nav navbar-nav">
 					<li><a href="../member/main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
-					<li><a href="javascript:void(0);">회원 관리</a></li>
+					<li><a href="adminMember">회원 관리</a></li>
 					<li><a href="javascript:void(0);">상품 관리</a></li>
 					<li><a href="javascript:void(0);">게시판 관리</a></li>
 					<li><a href="admin_sales?bool=0">매출 관리</a></li>

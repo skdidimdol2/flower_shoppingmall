@@ -39,15 +39,7 @@
 		text-decoration:none; 
 	}
 <%-- board --%>
-	#board_navbar{
-		margin-top:70;
-		position:absolute;
-		left:80px;
-		border:1px solid;
-		border-color:#8888ff;
-		padding-top:35;padding-bottom:35;padding-left:55;padding-right:55;
-		
-	}
+
 	#left_nav{
 		margin-top:10;
 		margin-bottom:10;
@@ -55,8 +47,9 @@
 	}	
 	#board_list{
 		position:absolute;
-		left:300px;
-		width:800px;
+		left:200px;
+		width:900px;
+		margin-bottom:50;
 	}
 	#writeFormBtn{
 		float:right;
@@ -71,11 +64,11 @@
 	<header>
 		<div class="contatiner-fluid">
 			<div id="users">
-				<c:if test="${sessionScope.id!=null}">
-					${sessionScope.id}님 환영합니다&emsp;&emsp;
+				<c:if test="${sessionScope.name!=null}">
+					<b>${sessionScope.name}</b>님 환영합니다&emsp;&emsp;
 				</c:if>
 				<c:choose>
-					<c:when test="${sessionScope.id==null}">
+					<c:when test="${sessionScope.name==null}">
 						<a href="../member/loginForm">Login</a>&emsp;&emsp;
 					</c:when>
 					<c:otherwise>
@@ -83,24 +76,19 @@
 					</c:otherwise>
 				</c:choose>
 				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../product/myorder">Order</a>&emsp;&emsp;
+				<a href="../member/order">Order</a>&emsp;&emsp;
 				<a href="../member/wishList">Wish List</a>&emsp;&emsp;
 				<a href="../member/myPage">My Page</a>&emsp;&emsp;
 			</div>
 			<a href="../member/main">Flower</a>
 		</div>
 	</header>
+
 <!-- board -->
-	<div class="text-centet" id="board_navbar">
-		<div>
-			<div id="left_nav"><a href="boardList">Q&A</a></div>
-			<div id="left_nav"><a href="boardList">리뷰</a></div>
-			<div id="left_nav"><a href="boardList">댓글</a></div>
-		</div>
-	</div>
+
 	<div class="text-center" id="board_list">
 		<p></p>
-		<b style="font-size:24">Q&A</b>
+		<b style="font-size:24">게시판</b>
 		<p></p>
 		<form action="boardSearch" method="get">
 			<select name="type" id="type" style="height:30">
@@ -112,44 +100,57 @@
 			<input type="text" name="query" style="height:30"/>
 			<input type="submit" class="btn btn-primary" value="검색"/>
 			<p></p>
-			<table style="width:100%;" border="1" class="text-center">
-			<tr style="background-color:ff5555">
-				<td>글번호</td>
-				<td>이름</td>
-				<td>제목</td>
-				<td>카테고리</td>
-				<td>조회수</td>
-				<td>등록일</td>
-			<tr>
-				<c:forEach items="${list}" var="dto">
+			<table style="width:100%;" class="text-center table table-striped">
+				<thead>
+					<tr style="background-color:ff5555">
+						<td>글번호</td>
+						<td>이름</td>
+						<td>제목</td>
+						<td>카테고리</td>
+						<td>조회수</td>
+						<td>등록일</td>
 					<tr>
-						<td><a href="boardContent?board_no=${dto.board_no}">${dto.board_no}</a></td>
-						<td><a href="boardContent?board_no=${dto.board_no}">${dto.name}</a></td>
-						<td><a href="boardContent?board_no=${dto.board_no}">${dto.title}</a></td>
-						<td><a href="boardContent?board_no=${dto.board_no}">${dto.category}</a></td>
-						<td><a href="boardContent?board_no=${dto.board_no}">${dto.hits}</a></td>
-						<td><a href="boardContent?board_no=${dto.board_no}">${dto.post_date}</a></td>
-					<tr>
-				</c:forEach>
+				</thead>
+				<tbody>
+					<c:forEach items="${list}" var="dto">
+						<tr onclick="boardContent(${dto.board_no});">
+							<td>${dto.board_no}</td>
+							<td>${dto.name}</td>
+							<td>${dto.title}</td>
+							<td>${dto.category}</td>
+							<td>${dto.hits}</td>
+							<td>${dto.post_date}</td>
+						</tr>
+					</c:forEach>
+				</tbody>	
 			</table>
 			<p></p>
-			<c:forEach var="cnt" begin="1" end="${count/15+1}">
-				<button type="button" class="btn btn-primary" onclick="paging(${cnt})">${cnt}</button>
-			</c:forEach>
+			<button onclick="writeForm()" type="button" class="btn btn-primary" id="writeFormBtn">글쓰기</button>
+		<!-- bootstrap 의 pagination 사용-->	
+			<ul class="pagination">
+				<c:forEach var="cnt" begin="1" end="${count/16+1}">
+					<li><a href="boardList?strNum=${(cnt-1)*15+1}">${cnt}</a></li>
+				</c:forEach>
+			</ul>
 		</form>
-		<p></p>
-		<button onclick="writeForm()" type="button" class="btn btn-primary" id="writeFormBtn">글쓰기</button>
 	</div>
-
-	
 <script>
 	function writeForm(){
-		var option = "toolbar=no, menubar=no, location=no, directories=no, status=no, scrollbars=no,"
-		option += "resizable=no, width=500, height=500, top=100, left=300";
-		window.open("boardWriteForm","",option);
+		if(${sessionScope.id == null}){
+			alert("로그인 후 이용해 주세요.");
+			location.href="../member/loginForm";
+		}else{
+			var option = "toolbar=no, menubar=no, location=no, directories=no, status=no, scrollbars=no,"
+			option += "resizable=no, width=500, height=500, top=100, left=300";
+			window.open("boardWriteForm","",option);
+		} 
 	}
+<%-- javascript에서 +연산자를 사용하기 위해서 Number()사용 --%>	
 	function paging(cnt){
 		location.href="boardList?strNum="+Number((cnt-1)*15+1);
+	}
+	function boardContent(no){
+		location.href="boardContent?board_no="+no;
 	}
 </script>	
 </body>

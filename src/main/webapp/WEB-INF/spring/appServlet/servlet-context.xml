@@ -49,6 +49,21 @@
 	</beans:bean>
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	<beans:bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
+		<beans:property value="smtp.gmail.com" name="host"/>
+		<beans:property value="25" name="port"/>
+		<beans:property value="yourID@gmail.com" name="username"/>
+		<beans:property value="yourPassword" name="password"/>
+		<!-- 계정 사용 권한 설정 -->
+		<!-- https://www.google.com/settings/security/lesssecureapps -->
+		<beans:property name="javaMailProperties">
+			<beans:props>
+				<beans:prop key="mail.smtp.ssl.trust">smtp.gmail.com</beans:prop>
+				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+				<beans:prop key="mail.smtp.auth">true</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
 	
 <mvc:interceptors>
 	<mvc:interceptor>

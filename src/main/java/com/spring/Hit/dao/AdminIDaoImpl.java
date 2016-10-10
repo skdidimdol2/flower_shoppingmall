@@ -1,6 +1,5 @@
 package com.spring.Hit.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,11 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
-import com.spring.Hit.dto.BasketDto;
-import com.spring.Hit.dto.BoardDto;
+import com.spring.Hit.dto.MemberDto;
 import com.spring.Hit.dto.OrderDto;
-import com.spring.Hit.dto.ProductDto;
-import com.spring.Hit.dto.ReviewDto;
 
 @Repository
 public class AdminIDaoImpl implements AdminIDao{
@@ -75,7 +71,112 @@ public class AdminIDaoImpl implements AdminIDao{
 	}
 	
 	
-	
+	//회원 관리 페이지 리스트
+		@Override
+		public List<MemberDto> adminMemberListDao() {
+			// TODO Auto-generated method stub
+			return session.selectList("adminMemberListDao");
+		}
+		//회원 관리 리스트 검색
+		@Override
+		public List<MemberDto> adminSearchMemberDao(Model model) {
+			// TODO Auto-generated method stub
+			Map<String,Object> map = model.asMap();
+			HttpServletRequest req = (HttpServletRequest)map.get("req");
+			String id = req.getParameter("id");
+			String name = req.getParameter("name");
+			String email = req.getParameter("email");
+			String phone = req.getParameter("phone");
+			String address = req.getParameter("address");
+			String gender = req.getParameter("gender");
+			String birthday1 = req.getParameter("birthday1");
+			String birthday2 = req.getParameter("birthday2");
+			String joindate1 = req.getParameter("joindate1");
+			String joindate2 = req.getParameter("joindate2");
+			String query = "";	//where절에 들어갈 쿼리문
+			MemberDto dto = new MemberDto();
+			if(!id.equals("")){
+				query += " id = '"+id+"'";
+			}	
+			if(!name.equals("")){
+				if(!query.equals("")){
+					query += " and name like '%"+name+"%'";
+				}else{
+					query += " name like '%"+name+"%'";
+				}
+			}
+			if(!email.equals("")){
+				if(!query.equals("")){
+					query += " and email like '%"+email+"%'";
+				}else{
+					query += " email like '%"+email+"%'";
+				}
+			}
+			if(!phone.equals("")){
+				if(!query.equals("")){
+					query += " and phone = "+phone;
+				}else{
+					query += " phone = "+phone;
+				}
+			}
+			if(!address.equals("")){
+				if(!query.equals("")){
+					query += " and address like '%"+address+"%'";
+				}else{
+					query += " address like '%"+address+"%'";
+				}
+			}
+			if(!gender.equals("")){
+				if(!query.equals("")){
+					if(!gender.equals("전체")){
+						query += " and gender = '"+gender+"'";
+					}
+				}else{
+					if(!gender.equals("전체")){
+						query += " gender = '"+gender+"'";
+					}
+				}
+			}
+			if(!birthday1.equals("")){
+				if(!query.equals("")){
+					query += " and birthday between '"+birthday1+"' and '"+birthday2+"'";
+				}else{
+					query += " birthday between '"+birthday1+"' and '"+birthday2+"'";
+				}
+			}
+			if(!joindate1.equals("")){
+				if(!query.equals("")){
+					query += " and joindate between '"+joindate1+"' and '"+joindate2+"'";
+				}else{
+					query += " joindate between '"+joindate1+"' and '"+joindate2+"'";
+				}
+			}
+			//검색 버튼만 눌렀을 경우. Data값이 하나도 없을 때
+			if(query.equals(""))
+				query +=" gender is not null";
+			dto.setId(query);	//id값에 query를 넣어서 사용.
+		//	System.out.println(query);
+			return session.selectList("adminSearchMemberDao", dto);
+		}
+		//회원 삭제
+		@Override
+		public void adminMemberDeleteDao(Model model) {
+			// TODO Auto-generated method stub
+			Map<String,Object> map = model.asMap();
+			HttpServletRequest req = (HttpServletRequest)map.get("req");
+			String[] id = req.getParameterValues("id");
+			for (int i = 0; i < id.length; i++) {
+				session.delete("adminMemberDeleteDao", id[i]);
+			}
+			
+		}
+		//회원 리스트 정렬
+		@Override
+		public List<MemberDto> adminMemberSortDao(MemberDto dto) {
+			// TODO Auto-generated method stub
+			return session.selectList("adminMemberSortDao", dto);
+		}
+
 	
 	
 	
