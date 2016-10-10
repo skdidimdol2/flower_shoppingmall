@@ -112,8 +112,6 @@
 		left:20px;
 		width:1300px;
 	}
-
-
 </style>
 
 </head>
