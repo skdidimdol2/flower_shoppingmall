@@ -112,8 +112,6 @@
 		left:20px;
 		width:1300px;
 	}
-
-
 </style>
 
 </head>
@@ -140,7 +138,7 @@
 					<li><a href="itemMan">상품 관리</a></li>
 					<li><a href="javascript:void(0);">게시판 관리</a></li>
 					<li><a href="admin_sales?bool=0">매출 관리</a></li>
-					<li><a href="../admin/delivery">배송 관리</a></li>			
+					<li><a href="delivery">배송 관리</a></li>				
 				</ul>
 			</div>
 		</div>

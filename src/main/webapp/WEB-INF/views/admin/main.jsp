@@ -72,25 +72,9 @@
     	color:#ff5555;
     	font-size:17px; 
     }
-<%-- carousel --%>
-	.carousel-inner > .item > img,
-  	.carousel-inner > .item > a > img {
-    	width: 100%;
-    	height:300px;
-    	margin: auto;
-  	}
-<%-- main list --%>
-	h3{
-		width:100%
-	}
-	
-	.container>.row>.col-sm-4>div{
-		border:1px solid;
-		border-color:#dddddd;
-		font-family:고딕
-	}
-	.container>.row>.col-sm-4>div>div{
-		margin-left:7px;margin-top:7px;
+<%-- content --%>
+	.content{
+		min-height:426px;
 	}
   	
 <%-- footer --%>
@@ -128,11 +112,14 @@
 					<li><a href="itemMan">상품 관리</a></li>
 					<li><a href="javascript:void(0);">게시판 관리</a></li>
 					<li><a href="admin_sales?bool=0">매출 관리</a></li>
-					<li><a href="../admin/delivery">배송 관리</a></li>			
+					<li><a href="delivery">배송 관리</a></li>			
 				</ul>
 			</div>
 		</div>
 	</nav>
+	<div class="content">
+	<!-- 내용 -->
+	</div>
 <!-- footer -->	
 	<footer class="container-fluid text-left" id="footer">
 		
