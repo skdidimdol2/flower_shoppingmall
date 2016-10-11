@@ -112,12 +112,6 @@
 <title>delivery Page</title> 
 </head>
 
-<!--header -->
-	<header>
-		<div class="contatiner-fluid">		
-			<a href="main">관리자 페이지</a>
-		</div>
-	</header>
 <!-- navbar -->	
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -134,12 +128,12 @@
 		
 			<div class="collapse navbar-collapse" id="pcNavbar">
 				<ul class="nav navbar-nav">
-					<li><a href="main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
-					<li><a href="javascript:void(0);">회원 관리</a></li>
-					<li><a href="javascript:void(0);">상품 관리</a></li>
+					<li><a href="../member/main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
+					<li><a href="adminMember">회원 관리</a></li>
+					<li><a href="itemMan">상품 관리</a></li>
 					<li><a href="javascript:void(0);">게시판 관리</a></li>
 					<li><a href="admin_sales?bool=0">매출 관리</a></li>
-					<li><a href="../admin/delivery;">배송 관리</a></li>			
+					<li><a href="../admin/delivery">배송 관리</a></li>			
 				</ul>
 			</div>
 		</div>
@@ -149,11 +143,13 @@
 	<body>
 	<div align="center">
 		<form name="deliver" method="get" action="../admin/deliver_detail">
-			<button type="hidden" value="a" name="a">배송 처리</button>
-			<button type="hidden" value="b" name="a">취소/환불 처리</button>
-		</form>	
-	</div><br>
-	
+			<button type="hidden" value="a" name="detail">배송 처리</button>
+		</form>
+		<form name="deliver" method="get" action="../admin/deliver_detail">
+			<button type="hidden" value="b" name="detail">취소/환불 처리</button>
+		</form>
+		
+	</div><br>	
 	<div class="basket1" style="margin-bottom: 50;margin-right: 10">
 	<div class="basket2" style="margin-left: 100;margin-bottom: 10;margin-right: 10">
 	&nbsp;&nbsp;&nbsp;&nbsp;

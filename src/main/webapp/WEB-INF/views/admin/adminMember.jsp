@@ -118,12 +118,7 @@
 
 </head>
 <body>
-<!--header -->
-	<header>
-		<div class="contatiner-fluid">		
-			<a href="adminMain">관리자 페이지</a>
-		</div>
-	</header>
+
 <!-- navbar -->	
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -142,10 +137,10 @@
 				<ul class="nav navbar-nav">
 					<li><a href="../member/main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
 					<li><a href="adminMember">회원 관리</a></li>
-					<li><a href="javascript:void(0);">상품 관리</a></li>
+					<li><a href="itemMan">상품 관리</a></li>
 					<li><a href="javascript:void(0);">게시판 관리</a></li>
-					<li><a href="javascript:void(0);">매출 관리</a></li>
-					<li><a href="javascript:void(0);">배송 관리</a></li>			
+					<li><a href="admin_sales?bool=0">매출 관리</a></li>
+					<li><a href="../admin/delivery">배송 관리</a></li>			
 				</ul>
 			</div>
 		</div>

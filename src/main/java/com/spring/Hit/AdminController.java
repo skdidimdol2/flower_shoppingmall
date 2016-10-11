@@ -143,13 +143,13 @@ public class AdminController {
 	// 硅价 惑技 其捞瘤 贸府
 	@RequestMapping(value = "/deliver_detail", method = RequestMethod.GET)
 	public void deliver(@ModelAttribute("odt") OrderDto odt, Model model, HttpServletRequest request) {
-		String a = request.getParameter("a");
-		if(a.equals("a")){
+		String detail = request.getParameter("detail");
+		if(detail.equals("a")){
 			
 			logger.info(odt.toString());
 			model.addAttribute("list", dao.deliver1(odt));
 			
-		}else if(a.equals("b")){
+		}else if(detail.equals("b")){
 			
 			logger.info(odt.toString());
 			model.addAttribute("list", dao.deliver2(odt));

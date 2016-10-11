@@ -134,10 +134,10 @@ function buysel(){
 					</c:when>
 					<c:otherwise>
 						<a href="../member/logout">logout</a><span></span>&emsp;&emsp;
+						<a href="../product/myorder">Order</a>&emsp;&emsp;
 					</c:otherwise>
 				</c:choose>
 				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../product/myorder">Order</a>&emsp;&emsp;
 				<a href="../member/main">Wish List</a>&emsp;&emsp;
 				<a href="../member/main">My Page</a>&emsp;&emsp;
 			</div>

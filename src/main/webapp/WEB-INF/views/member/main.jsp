@@ -117,10 +117,10 @@
 					</c:when>
 					<c:otherwise>
 						<a href="logout">logout</a><span></span>&emsp;&emsp;
+						<a href="../product/myorder">Order</a>&emsp;&emsp;
 					</c:otherwise>
 				</c:choose>
 				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="order">Order</a>&emsp;&emsp;
 				<a href="wishList">Wish List</a>&emsp;&emsp;
 				<a href="myPage">My Page</a>&emsp;&emsp;
 			</div>		
