@@ -8,6 +8,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+<!-- plugins -->
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/font-awesome.min.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/datatables.bootstrap.min.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/animate.min.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/style.css" />"/>
+<!-- end: Css -->
+<link rel="shortcut icon" href="/resources/asset/img/logomi.png">
+	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
@@ -185,10 +194,24 @@
 				<button onclick="refresh();">새로고침</button>	
 			</div>	
 			<p></p>
-			<table class="table table-striped">
+			<table id="datatables" class="table table-striped table-bordered">
 				<thead>
 					<tr>
 						<td><input type="checkbox" name="selectPoint" id="selectAll" onclick="selectAll(${list.size()})" value="All"></td>
+						<th>아이디</th>
+						<th>비밀번호</th>
+						<th>이름</th>
+						<th>생일</th>
+						<th>이메일</th>
+						<th>연락처</th>
+						<th>주소</th>
+						<th>성별</th>
+						<th>포인트</th>
+						<th>가입일</th>
+						<th>댓글수</th>
+						<th>리뷰수</th>
+						<th>관리자</th>
+			<!-- 			
 						<th onmouseover="show('Tid');" onmouseout="hide('Tid');">아이디<span class="glyphicon glyphicon-resize-vertical" id="Tid" onclick="sort('id');"></span></th>
 						<th onmouseover="show('Tpd');" onmouseout="hide('Tpd');">비밀번호<span class="glyphicon glyphicon-resize-vertical" id="Tpd" onclick="sort('password');"></span></th>
 						<th onmouseover="show('Tna');" onmouseout="hide('Tna');">이름<span class="glyphicon glyphicon-resize-vertical" id="Tna" onclick="sort('name');"></span></th>
@@ -202,7 +225,7 @@
 						<th onmouseover="show('Trp');" onmouseout="hide('Trp');">댓글수<span class="glyphicon glyphicon-resize-vertical" id="Trp" onclick="sort('reply');"></span></th>
 						<th onmouseover="show('Trv');" onmouseout="hide('Trv');">리뷰수<span class="glyphicon glyphicon-resize-vertical" id="Trv" onclick="sort('review');"></span></th>
 						<th onmouseover="show('Tam');" onmouseout="hide('Tam');">관리자<span class="glyphicon glyphicon-resize-vertical" id="Tam" onclick="sort('admin');"></span></th>
-						
+				-->		
 					</tr>
 				</thead>
 				<tbody id="memberList">
@@ -230,6 +253,12 @@
 	</div>
 	<input type="hidden" id="sort" value="${requestScope.sort }"/>
 	<input type="hidden" id="col2" value="${requestScope.col2 }"/>
+
+<!-- plugins -->
+<script src="<c:url value="/resources/asset/js/plugins/moment.min.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/resources/asset/js/plugins/jquery.datatables.min.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/resources/asset/js/plugins/datatables.bootstrap.min.js"/>" type="text/javascript"></script> 
+<script src="<c:url value="/resources/asset/js/plugins/jquery.nicescroll.js"/>" type="text/javascript"></script>
 
 <script>
 	<%-- checkbox 전체 선택 jstl varStatus(현재index값) 이용해서 id값 지정--%>
@@ -274,7 +303,8 @@
 	}
 	<%-- toggle --%>
 	$(document).ready(function(){
-		$(".glyphicon-resize-vertical").hide();
+		$('#datatables').DataTable();
+		//$(".glyphicon-resize-vertical").hide();
 	});
 	
 	function show(col){
