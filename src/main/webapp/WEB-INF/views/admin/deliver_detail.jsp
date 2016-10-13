@@ -9,16 +9,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+<!-- plugins -->
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/font-awesome.min.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/datatables.bootstrap.min.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/animate.min.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/style.css" />"/>
+<!-- end: Css -->
+<link rel="shortcut icon" href="/resources/asset/img/logomi.png">
+	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- jquery의 jqplot 그래프 사용 -->
-<link class="include" rel="stylesheet" type="text/css" href="../resources/jquery.jqplot.css" />
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="../resources/jquery.jqplot.js"></script>
-<script type="text/javascript" src="../resources/plugins/jqplot.categoryAxisRenderer.js"></script>
-<script type="text/javascript" src="../resources/plugins/jqplot.barRenderer.js"></script>
+
 
 <style>
 
@@ -100,18 +104,60 @@
 	.container>.row>.col-sm-4>div>div{
 		margin-left:7px;margin-top:7px;
 	}
-  	
+ <%-- content --%>
+	.content{
+		min-height:100%; 
+		width:1200px;
+	}
+<%-- search --%>
+	#searchForm{
+		position:relative;
+		left:70px;
+	}
+	#searchBtn{
+		position:relative;
+		left:100px;
+	}
+<%-- btnGroup --%>
+	#btnGroup{
+		position:relative;
+		left:70px;
+	}		
+<%-- board --%>
+	#board_table{
+		position:relative;
+		left:20px;
+		width:1300px;
+	}
 <%-- footer --%>
 	#footer {
 		background-color:#ddddff;  
 	}  	
 </style>
 
+<script type="text/javascript">
+function searchCheck(frm){
+	        //검색
+	       
+	        if(frm.keyWord.value ==""){
+	            alert("검색 단어를 입력하세요.");
+	            frm.keyWord.focus();
+	            return;
+	        }
+	        frm.submit();      
+	    }
+</script>
+
 
 
 <title>delivery Page</title> 
 </head>
-
+<!--header -->
+	<header>
+		<div class="contatiner-fluid">		
+			<a href="main">관리자 페이지</a>
+		</div>
+	</header>
 <!-- navbar -->	
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -128,12 +174,12 @@
 		
 			<div class="collapse navbar-collapse" id="pcNavbar">
 				<ul class="nav navbar-nav">
-					<li><a href="../member/main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
+					<li><a href="main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
 					<li><a href="adminMember">회원 관리</a></li>
 					<li><a href="itemMan">상품 관리</a></li>
 					<li><a href="javascript:void(0);">게시판 관리</a></li>
 					<li><a href="admin_sales?bool=0">매출 관리</a></li>
-					<li><a href="../admin/delivery">배송 관리</a></li>			
+					<li><a href="delivery">배송 관리</a></li>			
 				</ul>
 			</div>
 		</div>
@@ -141,48 +187,55 @@
 <!-- body -->
 
 	<body>
-	<div align="center">
-		<form name="deliver" method="get" action="../admin/deliver_detail">
-			<button type="hidden" value="a" name="detail">배송 처리</button>
-		</form>
-		<form name="deliver" method="get" action="../admin/deliver_detail">
-			<button type="hidden" value="b" name="detail">취소/환불 처리</button>
-		</form>
-		
-	</div><br>	
-	<div class="basket1" style="margin-bottom: 50;margin-right: 10">
-	<div class="basket2" style="margin-left: 100;margin-bottom: 10;margin-right: 10">
-	&nbsp;&nbsp;&nbsp;&nbsp;
-		<h3><b><font color="red">주문 목록</font></b>  </h3>
-		
-		
-		<table border="1" style="margin-left: 10;margin-top: 20;margin-bottom:20;margin-right: 10">
+	<div class="search">
+		<div>
+			<button onclick="order()">전체 목록</button>&emsp;
+			<button onclick="a()">배송 처리</button>&emsp;
+			<button onclick="b()">취소/환불 처리</button>
+		</div>
+	</div><br>
+	
+	<form action="search" method="get">
+			<select name="type" id="type" style="height:30">
+				<option value="0">---선택---</option>
+				<option value="order_no">주문번호</option>
+				<option value="item_no">상품번호</option>
+				<option value="id">아이디</option>
+			</select>
+			<input type="text" name="query" style="height:30"/>
+			<input type="submit" class="btn btn-primary" value="검색"/>
+	</form>
+	
+	<div id="order_table">
+	<div id="table">
+			<table id="datatable" class="table table-striped table-bordered">
+			<thead>
 				<tr>
-					<td style="background-color: red" align="center" width="100">주문번호</td>
-					<td style="background-color: red" align="center" width="100">상품번호</td>
-					<td style="background-color: red" align="center" width="100">아이디</td>
-					<td style="background-color: red" align="center" width="100">주문량</td>
-					<td style="background-color: red" align="center" width="100">결제방법</td>
-					<td style="background-color: red" align="center" width="100">결제유무</td>
-					<td style="background-color: red" align="center" width="100">주문일자</td>
-					<td style="background-color: red" align="center" width="100">주문액</td>
-
-					<td style="background-color: red" align="center" width="100">배송상태</td>
+					<th>주문번호</th>
+					<th>상품번호</th>
+					<th>아이디</th>
+					<th>주문량</th>
+					<th>결제방법</th>
+					<th>결제유무</th>
+					<th>주문일자</th>
+					<th>주문액</th>
+					<th>배송상태</th>
 				</tr>
-		
+			</thead>
+			<tbody id=orderlist">
 			 <c:forEach items="${list}" var="l">
 				<tr>
-					<td align="center" width="100">${l.order_no}</td>
-					<td align="center" width="100">${l.item_no }</td>
-					<td align="center" width="100">${l.id }</td>
-					<td align="center" width="100">${l.order_vol}</td>	
-					<td align="center" width="100">${l.payment_way}</td>
-					<td align="center" width="100">${l.payment_bool}</td>
-					<td align="center" width="100">${l.order_date}</td>
-					<td align="center" width="100">${l.payment_price}</td>
+					<td>${l.order_no}</td>
+					<td>${l.item_no }</td>
+					<td>${l.id }</td>
+					<td>${l.order_vol}</td>	
+					<td>${l.payment_way}</td>
+					<td>${l.payment_bool}</td>
+					<td>${l.order_date}</td>
+					<td>${l.payment_price}</td>
 					<c:choose>
 						<c:when test="${l.del_bool == 'Y' }">
-							<td align="center" width="100">배송완료</td>
+							<td>배송완료</td>
 						</c:when>
 						<c:otherwise>
 						<form name="delsuc" method="get" action="../admin/delsuc">
@@ -201,21 +254,37 @@
 					</c:if>
 				</tr>
 			</c:forEach>
+			</tbody>
 		</table>
-		
-		
 	</div>
 </div>	
 	<br>
-	</body>
-<!-- footer -->	
-	<footer class="container-fluid text-left" id="footer">
-		
-		<div style="margin-left:40px;margin-bottom:15px;">
-			<br>
-			상호 : Flower  |  Tel : 112  |  Fax : 119<br>
-			주소 : 대한민국 꽃밭 어디든<br>
-			Copyright ⓒ <b>Java Study</b> All rights reserved. 
-		</div>
-	</footer>
+	
+<!-- plugins -->
+<script src="<c:url value="/resources/asset/js/plugins/moment.min.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/resources/asset/js/plugins/jquery.datatables.min.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/resources/asset/js/plugins/datatables.bootstrap.min.js"/>" type="text/javascript"></script> 
+<script src="<c:url value="/resources/asset/js/plugins/jquery.nicescroll.js"/>" type="text/javascript"></script>
+	
+<script>
+function order(){
+	location.href="/Hit/admin/delivery";	
+}
+
+function a(){
+	location.href="/Hit/admin/deliver_detail?detail=a";
+}
+function b(){
+	location.href="/Hit/admin/deliver_detail?detail=b";
+}
+
+<%-- toggle --%>
+$(document).ready(function(){
+	$('#datatable').DataTable();
+});
+
+</script>
+
+</body>
+
 </html>
