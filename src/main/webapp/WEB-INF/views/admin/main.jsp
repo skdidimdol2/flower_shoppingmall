@@ -76,7 +76,6 @@
 	.content{
 		min-height:426px;
 	}
-  	
 <%-- footer --%>
 	#footer {
 		background-color:#ddddff;  
