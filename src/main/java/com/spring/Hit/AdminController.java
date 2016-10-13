@@ -127,7 +127,7 @@ public class AdminController {
 	public String delsuc(HttpServletRequest request) {
 		int order_no = Integer.parseInt(request.getParameter("order_no"));
 		dao.delsuc(order_no);
-		return "redirect:/admin/delivery";
+		return "redirect:delivery";
 	}
 
 	
