@@ -12,19 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.Hit.dao.BoardIDao;
 
-/**
- * 
- * 게시판 컨트롤러
- *
- * @author 수험번호 이 름 
- * @since  2016. 10. 3.
- * @version 1.0
- * 
- * 수정일           수정자               수정내용
- * -------------  --------    ---------------------------
- * 2016. 10. 3.    이 름      최초 생성
- * 
- */
 @Controller
 @RequestMapping("/board")
 public class BoardController {

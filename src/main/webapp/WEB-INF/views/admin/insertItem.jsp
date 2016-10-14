@@ -22,9 +22,26 @@ function readImg(input){
                 .width(400)
                 .height(300);
         };
-
         reader.readAsDataURL(input.files[0]);
     }
+}
+
+function insertCondition(){
+	if($('#category option:selected').val()==0){
+		alert("카테고리를 선택하여 주세요.");
+	}else if(document.item.img.value==''){
+		alert("이미지를 넣어 주세요.");
+	}else if(document.item.item_name.value==''){
+		alert("상품명을 입력하세요.");
+	}else if(document.item.volume.value==''){
+		alert("수량을 입력하세요.");
+	}else if(document.item.price.value==''){
+		alert("가격을 입력하세요.");
+	}else{
+		alert("상품이 추가되었습니다.");
+		document.name.submit();
+		
+	} 
 }
 </script>
 <style>
@@ -139,10 +156,10 @@ function readImg(input){
 					</c:when>
 					<c:otherwise>
 						<a href="../member/logout">logout</a><span></span>&emsp;&emsp;
-						<a href="../product/myorder">Order</a>&emsp;&emsp;
 					</c:otherwise>
 				</c:choose>
 				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
+				<a href="../member/order">Order</a>&emsp;&emsp;
 				<a href="../member/myPage">My Page</a>&emsp;&emsp;
 			</div>
 		</div>
@@ -164,11 +181,11 @@ function readImg(input){
 			<div class="collapse navbar-collapse" id="pcNavbar">
 				<ul class="nav navbar-nav">
 					<li><a href="../member/main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
-					<li><a href="adminMember">회원 관리</a></li>
+					<li><a href="javascript:void(0);">회원 관리</a></li>
 					<li><a href="itemMan">상품 관리</a></li>
 					<li><a href="javascript:void(0);">게시판 관리</a></li>
 					<li><a href="admin_sales?bool=0">매출 관리</a></li>
-					<li><a href="../admin/delivery">배송 관리</a></li>			
+					<li><a href="javascript:void(0);">배송 관리</a></li>			
 				</ul>
 			</div>
 		</div>
@@ -178,10 +195,10 @@ function readImg(input){
 		<div class="second">			
 		<p></p>
 			<p></p>
-			<form action="adminInsitem" method="get">
+			<form action="adminInsitem" method="get" name="item" onsubmit="insertCondition();return false">
 			<img src="">
-			<input type="file" accept=".gif, .jpg, .png" name="img" onchange="readImg(this);"><br>
-			<img id="blah" src="#" alt="이미지를 첨부하여 주세요" /><br><br>
+			<input type="file" accept=".gif, .jpg, .png" name="img" onchange="readImg(this);" style="display: none;"><br>
+			<img id="blah" src="#" alt="이미지를 첨부하여 주세요" onclick="document.all.img.click();"/><br><br>
 
 			<b>상품명  :</b><br>  <input type="text" name="item_name" size="20">  <br><br>
 			<select id="category" name="category">

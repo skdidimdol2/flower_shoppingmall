@@ -24,7 +24,6 @@ import com.spring.Hit.mail.SendMail;
 public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
-
 	@Inject
 	private AdminIDao dao;
 	
