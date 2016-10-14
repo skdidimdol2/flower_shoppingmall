@@ -203,28 +203,29 @@
 			<p></p>
 			<div class="col-sm-4">
 				<div onclick="Moving();">
-					<img alt="flower" src="../resources/image/img_flower1.jpg" style="width: 100%;height:30%" class="img-responsive">
-					<div>감사 화환</div>
+					<a href="../product/detail?item_no=1"><img alt="flower" src="../resources/image/flower1.jpg" style="width: 100%;height:30%" class="img-responsive"></a>
+					<div>장미꽃다발</div>
 					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
-					<span><b>20,000원</b></span>
+					<span><b>10,000원</b></span>
+					<p></p>
+				</div>
+			</div>
+			
+			<div class="col-sm-4">
+				<div onclick="Moving();">
+					<a href="../product/detail?item_no=2"><img alt="flower" src="../resources/image/flower2.jpg" style="width:100%;height:30%" class="img-responsive"></a>
+					<div>카네이션꽃다발</div>
+					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
+					<span><b>10,000원</b></span>
 					<p></p>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<div onclick="Moving();">
-					<img alt="flower" src="../resources/image/img_flower2.jpg" style="width:100%;height:30%" class="img-responsive">
-					<div>축하 화환</div>
+					<a href="../product/detail?item_no=3"><img alt="flower" src="../resources/image/flower3.jpg" style="width:100%;height:30%" class="img-responsive"></a>
+					<div>안개꽃다발 </div>
 					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
-					<span><b>120,000원</b></span>
-					<p></p>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div onclick="Moving();">
-					<img alt="flower" src="../resources/image/img_flower3.jpg" style="width:100%;height:30%" class="img-responsive">
-					<div>선인장 머리 화분 </div>
-					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
-					<span><b>9,900원</b></span>
+					<span><b>10,000원</b></span>
 					<p></p>
 				</div>
 			</div>
@@ -236,28 +237,28 @@
 			<p></p>
 			<div class="col-sm-4">
 				<div onclick="Moving();">
-					<img alt="flower" src="../resources/image/img_flower4.jpg" style="width:100%;height:30%" class="img-responsive">
-					<div>심쿵 꽃다발</div>
+					<a href="../product/detail?item_no=4"><img alt="flower" src="../resources/image/flower4.jpg" style="width:100%;height:30%" class="img-responsive"></a>
+					<div>노란 장미꽃다발</div>
 					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
-					<span><b>50,000원</b></span>
+					<span><b>10,000원</b></span>
 					<p></p>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<div onclick="Moving();">
-					<img alt="flower" src="../resources/image/img_flower5.jpg" style="width:100%;height:30%" class="img-responsive">
-					<div>사랑스러운 만천홍</div>
+					<a href="../product/detail?item_no=5"><img alt="flower" src="../resources/image/flower5.jpg" style="width:100%;height:30%" class="img-responsive"></a>
+					<div>노란 장미 꽃바구니</div>
 					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
-					<span><b>70,000원</b></span>
+					<span><b>20,000원</b></span>
 					<p></p>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<div onclick="Moving();">
-					<img alt="flower" src="../resources/image/img_flower6.jpg" style="width:100%;height:30%" class="img-responsive">
-					<div>돈이 최고지 꽃바구니</div>
+					<a href="../product/detail?item_no=6"><img alt="flower" src="../resources/image/flower6.jpg" style="width:100%;height:30%" class="img-responsive"></a>
+					<div>안개꽃바구니</div>
 					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
-					<span><b>80,000원</b></span>
+					<span><b>20,000원</b></span>
 					<p></p>
 				</div>
 			</div>
