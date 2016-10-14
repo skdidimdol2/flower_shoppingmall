@@ -35,7 +35,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <strong>[ Admin Page ]</strong>
+                    <a href="../admin/main"><strong>[ Admin Page ]</strong></a>
                 </div>
 
             </div>
