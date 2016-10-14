@@ -348,20 +348,17 @@ body .container .content .signup-cont {
 	<header>
 		<div class="contatiner-fluid">
 			<div id="users">
-			<%if(session.getAttribute("id")!=null){ %>
+			<c:if test="${sessionScope.id!=null}">
 				${sessionScope.id}님 환영합니다&emsp;&emsp;
-				<%
-				}%>
-				
-				<%if(session.getAttribute("id")==null){ %>
-				<a href="loginForm">Login</a>&emsp;&emsp;
-				<%
-				}else{
-					%>
+			</c:if>
+			<c:choose>
+				<c:when test="${sessionScope.id}님 환영합니다&emsp;&emsp;">
+					<a href="loginForm">Login</a>&emsp;&emsp;
+				</c:when>
+				<c:otherwise>
 					<a href="logout">logout</a><span></span>&emsp;&emsp;
-					<%
-				}
-				%>
+				</c:otherwise>
+			</c:choose>
 				<a href="cart">Cart</a>&emsp;&emsp;
 				<a href="order">Order</a>&emsp;&emsp;
 				<a href="wishList">Wish List</a>&emsp;&emsp;
