@@ -105,14 +105,14 @@
 	<header>
 		<div class="contatiner-fluid">
 			<div id="users">
-				<c:if test="${sessionScope.name!=null}">
+				<c:if test="${sessionScope.id!=null}">
 					<b>${sessionScope.name}</b>님 환영합니다&emsp;&emsp;
 				</c:if>
 				<c:if test="${sessionScope.id.equals('admin123')==true}">
 					<a href="../admin/main" style="color:blue">관리자페이지로 이동</a>&emsp;&emsp;
 				</c:if>
 				<c:choose>
-					<c:when test="${sessionScope.name==null}">
+					<c:when test="${sessionScope.id==null}">
 						<a href="loginForm">Login</a>&emsp;&emsp;
 					</c:when>
 					<c:otherwise>

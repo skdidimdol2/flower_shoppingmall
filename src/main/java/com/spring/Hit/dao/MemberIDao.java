@@ -30,9 +30,9 @@ public interface MemberIDao {
 	//회원 정보 보기
 	public MemberDto viewMemberDao(String id);
 	//회원 정보 수정
-	public void updateDao(MemberDto dto);
+	public String updateMemberDao(Model model, HttpSession sess);
 	//회원 정보 삭제
-	public void deleteDao(String id);
+	public String deleteMemberDao(Model model, HttpSession sess);
 	//로그인 정보 체크
 	public int checkDao(MemberDto dto);
 /*

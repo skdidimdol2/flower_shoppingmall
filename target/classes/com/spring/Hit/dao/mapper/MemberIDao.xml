@@ -31,12 +31,12 @@
 		select * from member_t where id = #{id}
 	</select>
 	<!-- 회원 탈퇴 쿼리 -->
-	<delete id="deleteDao"> 
-		DELETE FROM member_t WHERE id = #{id}
+	<delete id="deleteMemberDao" parameterType="com.spring.Hit.dto.MemberDto"> 
+		DELETE FROM member_t WHERE id = #{id} and password = #{password}
 	</delete>
 	<!-- 회원 수정 쿼리 -->
-	<update id="updateDao"> 
-		UPDATE member_t SET password= #{password}, email= #{email}, phone= #{phone} where id = #{id}
+	<update id="updateMemberDao"> 
+		UPDATE member_t SET ${name} where id = #{id}
 	</update>
 <!-- 전도해 -->
 	<!-- 로그인 처리 -->

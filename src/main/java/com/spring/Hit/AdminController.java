@@ -191,35 +191,5 @@ public class AdminController {
 		   dao.adminMemberDeleteDao(model);
 		   return "redirect:adminMember";
 	   }
-	   //회원 리스트 정렬하기
-	   @RequestMapping("/adminMemberSort")
-	   public String adminMemberSort(Model model, HttpServletRequest req){
-		   String col1 = req.getParameter("col1");	//정렬할 칼럼 이름
-		   String col2 = req.getParameter("col2");
-		   String sort = req.getParameter("sort");	//이전에 정렬한 칼럼
-		   
-		   MemberDto dto = new MemberDto();
-		   if(!col2.equals("")){
-			   if(col1.equals(col2)){
-				   if(sort.equals("desc")){
-					   sort = "asc";
-				   }else{
-					   sort = "desc";
-				   }
-			   }else{
-				   sort = "desc";
-			   }
-			   
-			   dto.setId(col1+" "+sort);
-		   }else{
-			   sort = "desc";
-			   dto.setId(col1+" "+sort);
-		   }
-		   model.addAttribute("list", dao.adminMemberSortDao(dto));
-		   model.addAttribute("col2", col1);
-		   model.addAttribute("sort", sort);
-		   return "/admin/adminMember";
-	   }
 
-	
 }

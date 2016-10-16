@@ -47,14 +47,14 @@ public interface AdminIDao {
 	// 주문 상세
 	public List<OrderDto> deliver2(OrderDto odt);
 	
-	
+	//회원 리스트
 	public List<MemberDto> adminMemberListDao();
-	
+	//회원 검색
 	public List<MemberDto> adminSearchMemberDao(Model model);
-	
+	//회원 삭제
 	public void adminMemberDeleteDao(Model model);
 	
-	public List<MemberDto> adminMemberSortDao(MemberDto dto);
+	
 	
 	
 	

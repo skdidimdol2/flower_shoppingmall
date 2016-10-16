@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!-- fn은 jstl에서 substring을 사용하기 위해서 -->	
 <!DOCTYPE>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	
 
 <title>회원관리 페이지</title>
 <style>	
@@ -139,7 +138,7 @@
 							<td>${dto.address}</td>
 							<td>${dto.gender}</td>
 							<td>${dto.point}</td>
-							<td>${dto.joindate}</td>
+							<td>${fn:substring(dto.joindate,0,10)}</td>
 							<td>${dto.reply}</td>
 							<td>${dto.review}</td>
 							<td>${dto.admin}</td>
@@ -198,23 +197,7 @@
 	$(document).ready(function(){
 		$('#datatables').DataTable();
 	});
-	
-	function show(col){
-		$("#"+col).show();
-	}
-	function hide(col){
-		$("#"+col).hide();
-	}
-	<%-- sort column --%>
-	function sort(col){
-		//한번 정렬한 칼럼 값을 다시 받아서 내림 차순을 할 것인지 다른 칼럼 오름차순을 할 것인지 판별.
-		var sort = "";
-		var col2 = "";
-			sort = $("#sort").val();
-			col2 = $("#col2").val();
-		
-		location.href="adminMemberSort?col1="+col+"&col2="+col2+"&sort="+sort;	
-	}
+
 	function refresh(){
 		location.href="adminMember";
 	}

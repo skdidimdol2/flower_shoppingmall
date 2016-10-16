@@ -20,7 +20,9 @@ public interface ProductIDao {
 
 	// 전체 리뷰 출력
 	public List<ReviewDto> getReview(int item_no);
-
+	
+	// 전체 리뷰 출력(아이디)
+	public List<ReviewDto>getReviewList(String id);
 	// 리뷰 등록
 	public void addReview(ReviewDto rd);
 
@@ -38,7 +40,10 @@ public interface ProductIDao {
 
 	// 결제 테이블
 	public List<OrderDto> vieworderDao(String id);
-
+	
+	// 최근 주문 목록 리스트
+	public List<OrderDto> viewRecentOrderDao(String id);
+	
 	// 결제 취소
 	public void deleteorder(int order_no);
 	

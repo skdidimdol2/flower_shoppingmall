@@ -65,15 +65,47 @@ public class MemberIDaoImpl implements MemberIDao{
 		return (MemberDto) session.selectOne("viewMemberDao", id);
 	}
 	@Override
-	public void updateDao(MemberDto dto) {
+	public String updateMemberDao(Model model, HttpSession sess) {
 		// TODO Auto-generated method stub
-		session.update("updateDao", dto);
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest req = (HttpServletRequest)map.get("req");
+		String id = (String)sess.getAttribute("id");
+		String passwords = (String)sess.getAttribute("password");	//세션의 비밀번호
+		String password1 = req.getParameter("password1");			//현재 비밀번호
+		String types = req.getParameter("types");				//변경할 칼럼
+		String value = req.getParameter("value");				//변경할 값
+		if(passwords.equals(password1)){
+			MemberDto dto = new MemberDto();
+			value = types+" = '"+ value+"'";
+		    dto.setId(id);
+			dto.setName(value);
+			session.update("updateMemberDao", dto);
+			return "redirect:myPage";
+		}else{
+			return "redirect:myPage";
+		}
 	}
-	
+	//회원 삭제
 	@Override
-	public void deleteDao(String id) {
+	public String deleteMemberDao(Model model, HttpSession sess) {
 		// TODO Auto-generated method stub
-		session.delete("deleteDao", id);
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest req = (HttpServletRequest)map.get("req");
+		String id = (String)sess.getAttribute("id");
+	    String password = req.getParameter("password");
+	    MemberDto dto = new MemberDto();
+	    dto.setId(id);
+	    dto.setPassword(password);
+	    
+		int result = session.delete("deleteMemberDao", dto);
+		
+		if(result==1){
+			sess.removeAttribute("id");
+			return "redirect:main";
+		}else{
+			return "redirect:myPage";
+		}
+		
 	}
 	
 	@Override

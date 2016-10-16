@@ -112,11 +112,5 @@
 	<delete id="adminMemberDeleteDao">
 		 delete from member_t where id = #{id} 
 	</delete>
-	<select id="adminMemberSortDao" resultType="com.spring.Hit.dto.MemberDto"> 
-		select * from
-		member_t order by ${id} 
-	</select>
-
-
 
 </mapper>
