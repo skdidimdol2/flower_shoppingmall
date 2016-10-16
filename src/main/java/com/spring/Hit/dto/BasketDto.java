@@ -26,10 +26,12 @@ public class BasketDto extends ProductDto{
 		this.basket_no = basket_no;
 	}
 
+	@Override
 	public int getItem_no() {
 		return item_no;
 	}
 
+	@Override
 	public void setItem_no(int item_no) {
 		this.item_no = item_no;
 	}

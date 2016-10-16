@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
-import com.spring.Hit.dto.BoardDto;
 import com.spring.Hit.dto.MemberDto;
 import com.spring.Hit.dto.ProductDto;
 
