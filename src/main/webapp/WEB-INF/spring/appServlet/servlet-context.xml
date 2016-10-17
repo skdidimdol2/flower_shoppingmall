@@ -31,7 +31,7 @@
 	<!-- JdbcTemplate 빈이 참조할 DriverManagerDataSource빈 생성 -->
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
-		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></beans:property>
+		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"></beans:property>
 		<beans:property name="username" value="spring"/>
 		<beans:property name="password" value="java"/>
 	</beans:bean>	
@@ -48,7 +48,23 @@
 		<beans:constructor-arg index="0" ref="sqlSessionFactory"/>
 	</beans:bean>
 	
+	<!-- 파일업로드 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
+	<!-- 파일다운로드 -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="viewResolvers" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="order" value="2"/>
+		<beans:property name="prefix" value="/WEB-INF/views/"/>
+		<beans:property name="suffix" value=".jsp"/>
+	</beans:bean>
+	
+	<beans:bean id="downloadView" class="com.spring.Hit.DownloadView"></beans:bean>
+	<beans:bean id="uploadView" class="com.spring.Hit.UploadView"></beans:bean>
+	
 	<beans:bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
 		<beans:property value="smtp.gmail.com" name="host"/>
 		<beans:property value="25" name="port"/>

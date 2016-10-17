@@ -79,48 +79,66 @@
 	</update>
 
 	<!-- 리뷰 -->
-	<!-- 리뷰 전체 목록 -->
-	<select id="getReview" resultType="com.spring.Hit.dto.ReviewDto"
-		parameterType="java.lang.Integer">
-		select * from review_t where item_no =
-		#{item_no,jdbcType=VARCHAR}
-	</select>
+	
 	<!-- 리뷰 전체 목록(아이디) -->
 	<select id="getReviewList" resultType="com.spring.Hit.dto.ReviewDto">
 		select * from review_t where id = #{id}
 	</select>
 
+	<!-- 전체 리뷰 목록 -->
+	<select id="selectAllReview" resultType="com.spring.Hit.dto.ReviewDto">
+		select * from review_t
+	</select>
+	
+	<!-- 상품별 리뷰 목록 -->
+	<select id="getReview" resultType="com.spring.Hit.dto.ReviewDto" parameterType="java.lang.Integer">
+		select * from review_t where item_no = #{item_no,jdbcType=VARCHAR}
+	</select>
+	
 	<!-- 리뷰 추가 -->
 	<insert id="addReview" parameterType="com.spring.Hit.dto.ReviewDto">
 		insert into review_t
-		values(review_seq.nextval, #{id}, #{item_no}, #{review_tit},
-		#{review_con}, #{review_img}, sysdate )
+		values(review_seq.nextval, #{id}, #{item_no}, #{review_tit}, #{review_con}, #{review_img}, sysdate )
 	</insert>
-
+	
 	<!-- 리뷰 수정 -->
 	<update id="updateReview" parameterType="com.spring.Hit.dto.ReviewDto">
 		update review_t
-		set
-		review_con = ${review_con} where review_no = ${review_no}
+		set review_con = ${review_con} where review_no = ${review_no}
 	</update>
-
+	
 	<!-- 리뷰 삭제 -->
 	<delete id="deleteReview" parameterType="com.spring.Hit.dto.ReviewDto">
-		delete from review_t
-		where review_no=${review_no}
+		delete from review_t where review_no=${review_no}
 	</delete>
 	
+	<!-- 리뷰 갯수 // 페이징 처리 -->
+	<select id="reviewCount" resultType="java.lang.Integer">
+		select count(review_no) from review_t
+	</select>
+	
+	<!-- boardList에서 여러개 삭제 -->
+	<delete id="deleteList" parameterType="com.spring.Hit.dto.ReviewDto">
+		delete from ${id}_t where ${id}_no = ${review_no}
+	</delete>
+	
+	<!-- boardList에서 리뷰 한개 select -->
+	<select id="selectReview" parameterType="java.lang.Integer" resultType="com.spring.Hit.dto.ReviewDto">
+		select * from review_t where review_no = #{review_no}
+	</select>
 	
 	<!-- 구매자 정보 (단일 구매) -->
 	<select id="vmemDao" resultType="com.spring.Hit.dto.MemberDto"> 
 		select id, name, email, phone
 		from member_t where id = #{id} </select>
+		
 	<!-- 결제하기 -->
 	<insert id="orderinsertDao"> 
 		INSERT INTO order_t(order_no, item_no, id,
 		order_vol, payment_way, payment_bool, payment_price, del_bool)
 		VALUES(order_seq.nextval,#{item_no},#{id},#{order_vol},#{payment_way},'Y',#{payment_price}, 'N')
 	</insert>
+	
 	<!-- 주문목록 -->
 	<select id="vieworderDao" resultType="com.spring.Hit.dto.OrderDto"> 
 		select * from order_t
@@ -136,11 +154,11 @@
 		 >= (select sysdate - 90 from dual)) and o.item_no = i.item_no
 		order by order_date desc 
 	</select>	
+	
 	<!-- 결제 취소 -->
 	<delete id="deleteorder"> 
 		delete from order_t where order_no = #{order_no}
 	</delete>
-	
 	
 	<!--  주문 취소 대기 -->
 	<update id="orderdel" parameterType="com.spring.Hit.dto.OrderDto">
@@ -148,7 +166,6 @@
 		set
 		cancel_bool = 'Y' where order_no = #{order_no}
 	</update>
-
 
 	<!--  재고 수량 빼기 -->
 	<update id="minuspd" parameterType="com.spring.Hit.dto.OrderDto">
