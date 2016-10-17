@@ -56,7 +56,7 @@ public interface AdminIDao {
 	
 	public List<MemberDto> adminMemberSortDao(MemberDto dto);
 	
-	
+	public int todayorder(); // Admin Main 주문 현황 
 	
 	//상품 상세 정보 페이지 , 상품 즉시 구매
 //	public ProductDto viewDao(int item_no);

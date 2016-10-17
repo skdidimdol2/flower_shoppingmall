@@ -118,5 +118,12 @@
 	</select>
 
 
+	<!-- Admin main 오늘 주문 현황 -->
+	<select id="todayorder" resultType="java.lang.Integer">
+		select count(*) 
+		from order_t 
+		where order_date BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 0.99999421
+	</select>
+
 
 </mapper>

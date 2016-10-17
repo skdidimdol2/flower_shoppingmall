@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import com.spring.Hit.dto.MemberDto;
 import com.spring.Hit.dto.OrderDto;
 import com.spring.Hit.dto.ProductDto;
+import com.sun.media.jfxmedia.logging.Logger;
 
 @Repository
 public class AdminIDaoImpl implements AdminIDao{
@@ -210,6 +211,14 @@ public class AdminIDaoImpl implements AdminIDao{
 	
 	
 	
+		// Admin Main 오늘 주문 현황
+		@Override
+		public int todayorder(){
+			
+			return session.selectOne("todayorder");
+			
+			
+		}
 	
 /*	@Override //상품 상세 정보보기(select one), 상품 즉시 구매(one)
 	public ProductDto viewDao(int item_no) {

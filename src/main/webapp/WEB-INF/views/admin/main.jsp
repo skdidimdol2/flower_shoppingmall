@@ -58,7 +58,7 @@
                            </div>
                         </div>
                         <div class="panel-body text-center">
-                           <h1>145</h1>
+                      		<h1>${order}</h1>
                            <p>New Orders</p>
                            <hr />
                         </div>

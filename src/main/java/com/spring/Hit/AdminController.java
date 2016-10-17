@@ -33,10 +33,12 @@ public class AdminController {
 
 	// 관리자 메인 페이지
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String main(HttpSession session) {
+	public String main(HttpSession session, Model model) {
 		logger.info("메인 페이지");
 		if (session.getAttribute("id") != null) {
 			if (session.getAttribute("id").equals("admin123") == true) {
+				model.addAttribute("order", dao.todayorder());
+				
 				return "/admin/main";
 			} else {
 				return "/member/error";
@@ -44,6 +46,7 @@ public class AdminController {
 		} else {
 			return "/member/error";
 		}
+		
 	}
 
 	// 관리자 상품관리
