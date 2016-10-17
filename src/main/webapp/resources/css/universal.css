@@ -1,0 +1,176 @@
+.ml-transition {
+    transition: 0.5s;
+}
+
+
+.ml-effect-fadeIn {
+    opacity: 1;
+    animation: ml_fadein 0.5s;
+    -moz-animation: ml_fadein 0.5s; /* Firefox */
+    -webkit-animation: ml_fadein 0.5s; /* Safari and Chrome */
+    -o-animation: ml_fadein 0.5s; /* Opera */
+}
+
+@keyframes ml_fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes ml_fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes ml_fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes ml_fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+
+
+.ml-effect-slideOut {
+    top: -100%;
+    animation: ml_slideout 0.5s;
+    -moz-animation: ml_slideout 0.5s; /* Firefox */
+    -webkit-animation: ml_slideout 0.5s; /* Safari and Chrome */
+    -o-animation: ml_slideout 0.5s; /* Opera */
+}
+
+@keyframes ml_slideout {
+    from {
+        top: 0;
+    }
+    to {
+        top: -100%;
+    }
+}
+@-moz-keyframes ml_slideout { /* Firefox */
+    from {
+        top: 0;
+    }
+    to {
+        top: -100%;
+    }
+}
+@-webkit-keyframes ml_slideout { /* Safari and Chrome */
+    from {
+        top: 0;
+    }
+    to {
+        top: -100%;
+    }
+}
+@-o-keyframes ml_slideout { /* Opera */
+    from {
+        top: 0;
+    }
+    to {
+        top: -100%;
+    }
+}
+
+
+
+.ml-effect-slideIn {
+    top: 0;
+    animation: ml_slidein 0.5s;
+    -moz-animation: ml_slidein 0.5s; /* Firefox */
+    -webkit-animation: ml_slidein 0.5s; /* Safari and Chrome */
+    -o-animation: ml_slidein 0.5s; /* Opera */
+}
+
+@keyframes ml_slidein {
+    from {
+        top: -100%;
+    }
+    to {
+        top: 0;
+    }
+}
+@-moz-keyframes ml_slidein { /* Firefox */
+    from {
+        top: -100%;
+    }
+    to {
+        top: 0;
+    }
+}
+@-webkit-keyframes ml_slidein { /* Safari and Chrome */
+    from {
+        top: -100%;
+    }
+    to {
+        top: 0;
+    }
+}
+@-o-keyframes ml_slidein { /* Opera */
+    from {
+        top: -100%;
+    }
+    to {
+        top: 0;
+    }
+}
+
+
+
+.ml-effect-fadeOut {
+    opacity:0;
+    animation: ml_fadeout 0.5s;
+    -moz-animation: ml_fadeout 0.5s; /* Firefox */
+    -webkit-animation: ml_fadeout 0.5s; /* Safari and Chrome */
+    -o-animation: ml_fadeout 0.5s; /* Opera */
+}
+
+@keyframes ml_fadeout {
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+}
+@-moz-keyframes ml_fadeout { /* Firefox */
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+}
+@-webkit-keyframes ml_fadeout { /* Safari and Chrome */
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+}
+@-o-keyframes ml_fadeout { /* Opera */
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+}

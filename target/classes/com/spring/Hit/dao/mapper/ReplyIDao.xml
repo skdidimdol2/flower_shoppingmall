@@ -70,6 +70,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select item_no from reply_t where reply_no = #{reply_no}
 	</select>
 	
+	<!-- 경희/댓글 전체 리스트 -->
+
+	<!-- 댓글 갯수 -->
+	<select id="replyCountDao" resultType="java.lang.Integer">
+		select count(reply_con) from reply_t where reply_level = 0
+	</select>
+	
+	<!-- 게시판 댓글 목록 보기 & 페이징 처리 , 비교연산자가 있는 경우 CDATA-->
+	<select id="replyList" resultType="com.spring.Hit.dto.ReplyDto">
+		<![CDATA[
+		select * from (select a.*, rownum as rnum from (reply_t)a where rownum<= #{strNum}+14 and reply_con is not null and reply_level = 0)a where rnum>=#{strNum} order by rnum asc
+		]]>
+	</select> 
+	
+	<!-- 게시판 댓글에 대한 대댓글 불러오기 -->
+	<select id="replyDtail" resultType="com.spring.Hit.dto.ReplyDto">
+		select * from reply_t where reply_level > 0 and reply_group = #{reply_group} order by reply_step
+	</select> 
+	
+	
+	
 	
 </mapper>
 

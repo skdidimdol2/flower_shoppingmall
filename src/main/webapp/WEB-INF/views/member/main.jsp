@@ -24,7 +24,11 @@
 		<div class="contatiner-fluid">
 			<div id="users">
 				<c:if test="${sessionScope.id!=null}">
+<<<<<<< HEAD
 					${sessionScope.id}님 환영합니다&emsp;&emsp;
+=======
+					<b>${sessionScope.name}</b>님 환영합니다&emsp;&emsp;
+>>>>>>> origin/master
 				</c:if>
 				<c:if test="${sessionScope.id.equals('admin123')==true}">
 					<a href="../admin/main" style="color:red">관리자페이지로 이동</a>&emsp;&emsp;

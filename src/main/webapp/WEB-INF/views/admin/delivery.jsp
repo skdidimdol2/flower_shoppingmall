@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/font-awesome.min.css"/>"/>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/datatables.bootstrap.min.css"/>"/>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/animate.min.css"/>"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/style.css" />"/>
+<%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/style.css" />"/> --%>
 <!-- end: Css -->
 <link rel="shortcut icon" href="/resources/asset/img/logomi.png">
 	
@@ -23,117 +23,10 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<!-- header -->
+<%@include file="header.jsp" %>
+<!-- header end -->
 
-<style>
-
-<%-- header --%> 
-	a{text-decoration:none;}
-	a:hover{text-decoration:none;}
-	a:active{text-decoration: none}
-	
-	header>div>a{
-		font-size:40px; 
-		color:#000000;
-		text-shadow:2px 2px #000000;
-		margin-left:10px;  
-	} 
-	header>div>a:hover{
-		text-decoration:none; 
-	} 
-	
-	#users{
-		float:right;
-	}
-	#users>a{
-		color:#000000;
-	}
-	#users>a:hover{
-		text-decoration:none; 
-	}
-<%-- navbar --%> 
-	.navbar {
-    	margin-bottom: 0;
-    	border-radius: 0;
-    	background-color: #ff5555;
-    }
-    .navbar-header{
-    	width:100%
-    }
-    #mobileNavbar .navbar-toggle{
-    	background-color:#ffffff;
-    }
-    #mobileNavbar>form>a{
-    	color: #ff5555; 
-    }
-    .navbar-default .navbar-toggle .icon-bar{
-    	background-color:#ff5555;
-    	padding-top:4px; 
-    } 
-    #mobileNavbar>form>input{
-    	background-color: #ffffff; 
-    }
-    
-    .nav{
-    	margin-top:-10px;
-    }
-    #pcNavbar>ul>li>a{
-    	color: #ffffff;
-    }
-    #pcNavbar>ul>li>a:hover{
-    	background-color:#ffffff;
-    	color:#ff5555;
-    	font-size:17px; 
-    }
-<%-- carousel --%>
-	.carousel-inner > .item > img,
-  	.carousel-inner > .item > a > img {
-    	width: 100%;
-    	height:300px;
-    	margin: auto;
-  	}
-<%-- main list --%>
-	h3{
-		width:100%
-	}
-	
-	.container>.row>.col-sm-4>div{
-		border:1px solid;
-		border-color:#dddddd;
-		font-family:고딕
-	}
-	.container>.row>.col-sm-4>div>div{
-		margin-left:7px;margin-top:7px;
-	}
- <%-- content --%>
-	.content{
-		min-height:100%; 
-		width:1200px;
-	}
-<%-- search --%>
-	#searchForm{
-		position:relative;
-		left:70px;
-	}
-	#searchBtn{
-		position:relative;
-		left:100px;
-	}
-<%-- btnGroup --%>
-	#btnGroup{
-		position:relative;
-		left:70px;
-	}		
-<%-- board --%>
-	#board_table{
-		position:relative;
-		left:20px;
-		width:1300px;
-	}
-<%-- footer --%>
-	#footer {
-		background-color:#ddddff;  
-	}  	
-</style>
 
 <script type="text/javascript">
 function searchCheck(frm){
@@ -149,44 +42,22 @@ function searchCheck(frm){
 </script>
 
 
-
-<title>delivery Page</title> 
-</head>
-<!--header -->
-	<header>
-		<div class="contatiner-fluid">		
-			<a href="main">관리자 페이지</a>
-		</div>
-	</header>
-<!-- navbar -->	
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header" id="mobileNavbar">
-				<form action="main" method="get" autocomplete="on">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target="#pcNavbar"> 
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-					</button>
-				</form>	
-			</div>
-		
-			<div class="collapse navbar-collapse" id="pcNavbar">
-				<ul class="nav navbar-nav">
-					<li><a href="main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
-					<li><a href="adminMember">회원 관리</a></li>
-					<li><a href="itemMan">상품 관리</a></li>
-					<li><a href="javascript:void(0);">게시판 관리</a></li>
-					<li><a href="admin_sales?bool=0">매출 관리</a></li>
-					<li><a href="delivery">배송 관리</a></li>			
-				</ul>
-			</div>
-		</div>
-	</nav>
 <!-- body -->
 
 	<body>
+	
+	  <!-- content -->
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-head-line"> Delivery Page </h4>
+
+                </div>
+
+            </div>
+	
+	
 	<div class="search">
 		<div>
 			<button onclick="order()">전체 목록</button>&emsp;
@@ -257,6 +128,8 @@ function searchCheck(frm){
 			</tbody>
 		</table>
 	</div>
+</div>
+</div>
 </div>	
 	<br>
 	
@@ -283,7 +156,10 @@ $(document).ready(function(){
 	$('#datatable').DataTable();
 });
 
+
+
 </script>
+
 
 </body>
 

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import com.spring.Hit.dto.MemberDto;
 import com.spring.Hit.dto.OrderDto;
 import com.spring.Hit.dto.ProductDto;
+import com.sun.media.jfxmedia.logging.Logger;
 
 @Repository
 public class AdminIDaoImpl implements AdminIDao{
@@ -200,17 +201,23 @@ public class AdminIDaoImpl implements AdminIDao{
 			}
 			
 		}
-		//회원 리스트 정렬
-		@Override
-		public List<MemberDto> adminMemberSortDao(MemberDto dto) {
-			// TODO Auto-generated method stub
-			return session.selectList("adminMemberSortDao", dto);
-		}
 
+<<<<<<< HEAD
 	
 	
 	
+		// Admin Main 오늘 주문 현황
+		@Override
+		public int todayorder(){
+			
+			return session.selectOne("todayorder");
+			
+			
+		}
 	
+=======
+		
+>>>>>>> origin/chaehwi
 /*	@Override //상품 상세 정보보기(select one), 상품 즉시 구매(one)
 	public ProductDto viewDao(int item_no) {
 		return session.selectOne("viewDao", item_no);

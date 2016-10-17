@@ -158,6 +158,7 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.2</version>
 		</dependency>
+		
 		<!-- Commons FileUpload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -169,6 +170,13 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
+		
+		<!-- 엑셀파일 처리 -->
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>2.6.12</version>
+		</dependency>
 
 		<!-- mail send support function -->
 		<dependency>
@@ -176,6 +184,7 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>4.0.4.RELEASE</version>
 		</dependency>
+		
 		<!-- Java Mail API -->
 		<dependency>
 			<groupId>javax.mail</groupId>

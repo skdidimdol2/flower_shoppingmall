@@ -1,87 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!-- fn은 jstl에서 substring을 사용하기 위해서 -->	
 <!DOCTYPE>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	
-<!-- plugins -->
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/font-awesome.min.css"/>"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/datatables.bootstrap.min.css"/>"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/animate.min.css"/>"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/style.css" />"/>
-<!-- end: Css -->
-<link rel="shortcut icon" href="/resources/asset/img/logomi.png">
-	
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <title>회원관리 페이지</title>
 <style>	
-<%-- header --%> 
-	a{text-decoration:none;}
-	a:hover{text-decoration:none;}
-	a:active{text-decoration: none}
-	
-	header>div>a{
-		font-size:40px; 
-		color:#000000;
-		text-shadow:2px 2px #000000;
-		margin-left:10px;  
-	} 
-	header>div>a:hover{
-		text-decoration:none; 
-	} 
-	
-	#users{
-		float:right;
-	}
-	#users>a{
-		color:#000000;
-	}
-	#users>a:hover{
-		text-decoration:none; 
-	}
-<%-- navbar --%> 
-	.navbar {
-    	margin-bottom: 0;
-    	border-radius: 0;
-    	background-color: #ff5555;
-    }
-    .navbar-header{
-    	width:100%
-    }
-    #mobileNavbar .navbar-toggle{
-    	background-color:#ffffff;
-    }
-    #mobileNavbar>form>a{
-    	color: #ff5555; 
-    }
-    .navbar-default .navbar-toggle .icon-bar{
-    	background-color:#ff5555;
-    	padding-top:4px; 
-    } 
-    #mobileNavbar>form>input{
-    	background-color: #ffffff; 
-    }
-    
-    .nav{
-    	margin-top:-10px;
-    }
-    #pcNavbar>ul>li>a{
-    	color: #ffffff;
-    }
-    #pcNavbar>ul>li>a:hover{
-    	background-color:#ffffff;
-    	color:#ff5555;
-    	font-size:17px; 
-    }
 
 <%-- main list --%>
 	h3{
@@ -118,41 +47,24 @@
 <%-- board --%>
 	#board_table{
 		position:relative;
-		left:20px;
-		width:1300px;
+		left:-80px;
+		width:1245px;
 	}
 </style>
-
+<!-- header -->
+<%@include file="header.jsp" %>
+<!-- header end -->
 </head>
 <body>
-
-<!-- navbar -->	
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header" id="mobileNavbar">
-				<form action="main" method="get" autocomplete="on">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target="#pcNavbar"> 
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-					</button>
-				</form>	
-			</div>
-		
-			<div class="collapse navbar-collapse" id="pcNavbar">
-				<ul class="nav navbar-nav">
-					<li><a href="../member/main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
-					<li><a href="adminMember">회원 관리</a></li>
-					<li><a href="itemMan">상품 관리</a></li>
-					<li><a href="javascript:void(0);">게시판 관리</a></li>
-					<li><a href="admin_sales?bool=0">매출 관리</a></li>
-					<li><a href="delivery">배송 관리</a></li>				
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<p></p>
+	<!-- content -->
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-head-line"> Member Page </h4>
+                </div>
+            </div>
+          
 	<div class="content">
 		<form action="adminSearchMember" method="get">
 			<div>
@@ -210,22 +122,7 @@
 						<th>가입일</th>
 						<th>댓글수</th>
 						<th>리뷰수</th>
-						<th>관리자</th>
-			<!-- 			
-						<th onmouseover="show('Tid');" onmouseout="hide('Tid');">아이디<span class="glyphicon glyphicon-resize-vertical" id="Tid" onclick="sort('id');"></span></th>
-						<th onmouseover="show('Tpd');" onmouseout="hide('Tpd');">비밀번호<span class="glyphicon glyphicon-resize-vertical" id="Tpd" onclick="sort('password');"></span></th>
-						<th onmouseover="show('Tna');" onmouseout="hide('Tna');">이름<span class="glyphicon glyphicon-resize-vertical" id="Tna" onclick="sort('name');"></span></th>
-						<th onmouseover="show('Tbi');" onmouseout="hide('Tbi');">생일<span class="glyphicon glyphicon-resize-vertical" id="Tbi" onclick="sort('birthday');"></span></th>
-						<th onmouseover="show('Tem');" onmouseout="hide('Tem');">이메일<span class="glyphicon glyphicon-resize-vertical" id="Tem" onclick="sort('email');"></span></th>
-						<th onmouseover="show('Tph');" onmouseout="hide('Tph');">연락처<span class="glyphicon glyphicon-resize-vertical" id="Tph" onclick="sort('phone');"></span></th>
-						<th onmouseover="show('Tad');" onmouseout="hide('Tad');">주소<span class="glyphicon glyphicon-resize-vertical" id="Tad" onclick="sort('address');"></span></th>
-						<th onmouseover="show('Tge');" onmouseout="hide('Tge');">성별<span class="glyphicon glyphicon-resize-vertical" id="Tge" onclick="sort('gender');"></span></th>
-						<th onmouseover="show('Tpo');" onmouseout="hide('Tpo');">포인트<span class="glyphicon glyphicon-resize-vertical" id="Tpo" onclick="sort('point');"></span></th>
-						<th onmouseover="show('Tjo');" onmouseout="hide('Tjo');">가입일<span class="glyphicon glyphicon-resize-vertical" id="Tjo" onclick="sort('joindate');"></span></th>
-						<th onmouseover="show('Trp');" onmouseout="hide('Trp');">댓글수<span class="glyphicon glyphicon-resize-vertical" id="Trp" onclick="sort('reply');"></span></th>
-						<th onmouseover="show('Trv');" onmouseout="hide('Trv');">리뷰수<span class="glyphicon glyphicon-resize-vertical" id="Trv" onclick="sort('review');"></span></th>
-						<th onmouseover="show('Tam');" onmouseout="hide('Tam');">관리자<span class="glyphicon glyphicon-resize-vertical" id="Tam" onclick="sort('admin');"></span></th>
-				-->		
+						<th>관리자</th>	
 					</tr>
 				</thead>
 				<tbody id="memberList">
@@ -241,7 +138,7 @@
 							<td>${dto.address}</td>
 							<td>${dto.gender}</td>
 							<td>${dto.point}</td>
-							<td>${dto.joindate}</td>
+							<td>${fn:substring(dto.joindate,0,10)}</td>
 							<td>${dto.reply}</td>
 							<td>${dto.review}</td>
 							<td>${dto.admin}</td>
@@ -253,13 +150,8 @@
 	</div>
 	<input type="hidden" id="sort" value="${requestScope.sort }"/>
 	<input type="hidden" id="col2" value="${requestScope.col2 }"/>
-
-<!-- plugins -->
-<script src="<c:url value="/resources/asset/js/plugins/moment.min.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/resources/asset/js/plugins/jquery.datatables.min.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/resources/asset/js/plugins/datatables.bootstrap.min.js"/>" type="text/javascript"></script> 
-<script src="<c:url value="/resources/asset/js/plugins/jquery.nicescroll.js"/>" type="text/javascript"></script>
-
+	</div>
+	</div>
 <script>
 	<%-- checkbox 전체 선택 jstl varStatus(현재index값) 이용해서 id값 지정--%>
 	function selectAll(cnt){
@@ -304,25 +196,8 @@
 	<%-- toggle --%>
 	$(document).ready(function(){
 		$('#datatables').DataTable();
-		//$(".glyphicon-resize-vertical").hide();
 	});
-	
-	function show(col){
-		$("#"+col).show();
-	}
-	function hide(col){
-		$("#"+col).hide();
-	}
-	<%-- sort column --%>
-	function sort(col){
-		//한번 정렬한 칼럼 값을 다시 받아서 내림 차순을 할 것인지 다른 칼럼 오름차순을 할 것인지 판별.
-		var sort = "";
-		var col2 = "";
-			sort = $("#sort").val();
-			col2 = $("#col2").val();
-		
-		location.href="adminMemberSort?col1="+col+"&col2="+col2+"&sort="+sort;	
-	}
+
 	function refresh(){
 		location.href="adminMember";
 	}
