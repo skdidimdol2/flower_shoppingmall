@@ -24,14 +24,10 @@
 		<div class="contatiner-fluid">
 			<div id="users">
 				<c:if test="${sessionScope.id!=null}">
-<<<<<<< HEAD
-					${sessionScope.id}님 환영합니다&emsp;&emsp;
-=======
 					<b>${sessionScope.name}</b>님 환영합니다&emsp;&emsp;
->>>>>>> origin/master
 				</c:if>
 				<c:if test="${sessionScope.id.equals('admin123')==true}">
-					<a href="../admin/main" style="color:red">관리자페이지로 이동</a>&emsp;&emsp;
+					<a href="../admin/main" style="color:blue">관리자페이지로 이동</a>&emsp;&emsp;
 				</c:if>
 				<c:choose>
 					<c:when test="${sessionScope.id==null}">
@@ -77,8 +73,8 @@
 					<li><a href="../product/list?category=서양란">서양란</a></li>
 					<li><a href="../product/list?category=축하화환">축하화환</a></li>
 					<li><a href="../product/list?category=근조화환">근조화환</a></li>
-					<li><a href="../board/boardList">자유게시판</a></li>
-					<li><a href="../product/myorder">주문</a></li>
+					<li><a href="../board/boardList">게시판</a></li>
+					
 					
 					
 				</ul>

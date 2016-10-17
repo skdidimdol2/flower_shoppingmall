@@ -349,7 +349,7 @@ body .container .content .signup-cont {
 		<div class="contatiner-fluid">
 			<div id="users">
 			<c:if test="${sessionScope.id!=null}">
-				${sessionScope.id}님 환영합니다&emsp;&emsp;
+				${sessionScope.name}님 환영합니다&emsp;&emsp;
 			</c:if>
 			<c:choose>
 				<c:when test="${sessionScope.id}님 환영합니다&emsp;&emsp;">
