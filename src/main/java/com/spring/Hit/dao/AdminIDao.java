@@ -58,6 +58,4 @@ public interface AdminIDao {
 
 	public int todayorder(); // Admin Main 주문 현황 
 	
-
-
 }

@@ -126,5 +126,4 @@
 		where order_date BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 0.99999421
 	</select>
 
-
 </mapper>
