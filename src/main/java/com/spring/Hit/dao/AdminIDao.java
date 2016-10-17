@@ -57,10 +57,7 @@ public interface AdminIDao {
 	public void adminMemberDeleteDao(Model model);
 
 	// 경희
-	
-<<<<<<< HEAD
-	
-	
+		
 	public int todayorder(); // Admin Main 주문 현황 
 	
 	//상품 상세 정보 페이지 , 상품 즉시 구매
@@ -78,7 +75,7 @@ public interface AdminIDao {
 	//리뷰 삭제
 	//public void deleteReview(int item_no);
 	
-=======
+
 	// 상품 상세 정보 페이지 , 상품 즉시 구매
 	// public ProductDto viewDao(int item_no);
 
@@ -93,6 +90,4 @@ public interface AdminIDao {
 	// public void updateReview(ReviewDto rd);
 	// 리뷰 삭제
 	// public void deleteReview(int item_no);
-
->>>>>>> origin/kyoung-hee
 }

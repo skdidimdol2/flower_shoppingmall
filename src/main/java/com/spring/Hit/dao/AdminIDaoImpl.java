@@ -202,10 +202,6 @@ public class AdminIDaoImpl implements AdminIDao{
 			
 		}
 
-<<<<<<< HEAD
-	
-	
-	
 		// Admin Main 오늘 주문 현황
 		@Override
 		public int todayorder(){
@@ -214,10 +210,7 @@ public class AdminIDaoImpl implements AdminIDao{
 			
 			
 		}
-	
-=======
-		
->>>>>>> origin/chaehwi
+
 /*	@Override //상품 상세 정보보기(select one), 상품 즉시 구매(one)
 	public ProductDto viewDao(int item_no) {
 		return session.selectOne("viewDao", item_no);
