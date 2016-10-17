@@ -1,9 +1,13 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
 Built-By: won
 =======
 Built-By: chaehwi
 >>>>>>> origin/chaehwi
+=======
+Built-By: ￪ﾲﾽ￭ﾝﾬ
+>>>>>>> origin/kyoung-hee
 Build-Jdk: 1.8.0_101
 Created-By: Maven Integration for Eclipse
 
