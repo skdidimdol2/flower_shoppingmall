@@ -85,6 +85,10 @@
 		select * from review_t where item_no =
 		#{item_no,jdbcType=VARCHAR}
 	</select>
+	<!-- 리뷰 전체 목록(아이디) -->
+	<select id="getReviewList" resultType="com.spring.Hit.dto.ReviewDto">
+		select * from review_t where id = #{id}
+	</select>
 
 	<!-- 리뷰 추가 -->
 	<insert id="addReview" parameterType="com.spring.Hit.dto.ReviewDto">
@@ -122,6 +126,16 @@
 		select * from order_t
 		where id = #{id}
 		order by order_no desc </select>
+	
+	<!-- 주문목록(최근) -->
+	<select id="viewRecentOrderDao" resultType="com.spring.Hit.dto.OrderDto2"> 
+		select order_no, o.item_no, i.item_name as item_name, id, order_vol, payment_bool, order_date,
+		payment_price, img
+		from order_t o, item_t i
+		where order_no in (select order_no from order_t where id = #{id} and to_char(order_date,'YY/MM/DD')
+		 >= (select sysdate - 90 from dual)) and o.item_no = i.item_no
+		order by order_date desc 
+	</select>	
 	<!-- 결제 취소 -->
 	<delete id="deleteorder"> 
 		delete from order_t where order_no = #{order_no}

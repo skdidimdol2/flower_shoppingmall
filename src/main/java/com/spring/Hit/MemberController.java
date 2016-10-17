@@ -10,7 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.Hit.dao.BasketIDao;
 import com.spring.Hit.dao.MemberIDao;
+import com.spring.Hit.dao.ProductIDao;
+import com.spring.Hit.dto.BasketDto;
 import com.spring.Hit.dto.MemberDto;
 
 
@@ -21,6 +24,10 @@ public class MemberController {
 	
 	@Inject
 	private MemberIDao dao;
+	@Inject
+	private ProductIDao pdao;
+	@Inject
+	private BasketIDao bdao;
 	
 	//메인 페이지 & 간략한 상품 리스트
 	@RequestMapping("/main")
@@ -77,8 +84,12 @@ public class MemberController {
    public String myPage(Model model, HttpSession session) {
       
       String id = (String)session.getAttribute("id");
-      
-      model.addAttribute("dto", dao.viewMemberDao(id));
+      BasketDto dto = new BasketDto();
+      dto.setId(id);
+      model.addAttribute("orderlist", pdao.viewRecentOrderDao(id));
+      model.addAttribute("basketlist", bdao.viewbasketDao(dto));
+      model.addAttribute("me", dao.viewMemberDao(id));
+      model.addAttribute("re", pdao.getReviewList(id));
       
       return "/member/myPage";
    }
@@ -95,27 +106,18 @@ public class MemberController {
    
    //정보수정 처리
    @RequestMapping("/modifyInfoProc")
-   public String modifyInfoProc(Model model, MemberDto dto, HttpSession session){
-	   System.out.println("1111");
-      
-      dao.updateDao(dto);
-      session.setAttribute("password", dto.getPassword());
-      session.setAttribute("email", dto.getEmail());
-      session.setAttribute("phone", dto.getPhone());
-      
-      return "/member/modifyInfo";
+   public String modifyInfoProc(Model model, HttpServletRequest req, HttpSession sess){
+      model.addAttribute("req", req);
+	  
+      return dao.updateMemberDao(model, sess);
    }
    
    //회원 탈퇴
    @RequestMapping("/deleteDao")
-   public String deleteDao(Model model, MemberDto dto, HttpSession session){
-   
-      String id = (String)session.getAttribute("id");
+   public String deleteDao(Model model, HttpServletRequest req,  MemberDto dto, HttpSession sess){
+	  model.addAttribute("req", req);
       
-      dao.deleteDao(id);
-      session.removeAttribute("id");
-      
-      return "/member/main";
+      return dao.deleteMemberDao(model, sess);
    }
 /*
 * 	작성자 : 전도해

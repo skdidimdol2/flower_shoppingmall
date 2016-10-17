@@ -35,6 +35,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                	<a href="../member/main"><strong>[ Shop Main ]</strong></a>
                     <a href="../admin/main"><strong>[ Admin Page ]</strong></a>
                 </div>
 
@@ -103,13 +104,12 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a class="menu-top-active" href="../member/main">HOME</a></li>
+                            <li><a class="menu-top-active" href="main">HOME</a></li>
                             <li><a href="adminMember">회원 관리</a></li>
                             <li><a href="itemMan">상품 관리</a></li>
                             <li><a href="boardList">게시판 관리</a></li>
-                            <li><a href="admin_sales?bool=0"">매출 관리</a></li>
+                            <li><a href="admin_sales?bool=0">매출 관리</a></li>
                             <li><a href="delivery">배송 관리</a></li>
-
                         </ul>
                     </div>
                 </div>
@@ -119,6 +119,11 @@
     </section>
     <!-- navbar end --> 
     
+<!-- plugins -->
+<script src="<c:url value="/resources/asset/js/plugins/moment.min.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/resources/asset/js/plugins/jquery.datatables.min.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/resources/asset/js/plugins/datatables.bootstrap.min.js"/>" type="text/javascript"></script> 
+<script src="<c:url value="/resources/asset/js/plugins/jquery.nicescroll.js"/>" type="text/javascript"></script>
     
 </body>
 </html>

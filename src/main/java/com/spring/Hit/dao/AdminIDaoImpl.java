@@ -201,13 +201,8 @@ public class AdminIDaoImpl implements AdminIDao{
 			}
 			
 		}
-		//회원 리스트 정렬
-		@Override
-		public List<MemberDto> adminMemberSortDao(MemberDto dto) {
-			// TODO Auto-generated method stub
-			return session.selectList("adminMemberSortDao", dto);
-		}
 
+<<<<<<< HEAD
 	
 	
 	
@@ -220,6 +215,9 @@ public class AdminIDaoImpl implements AdminIDao{
 			
 		}
 	
+=======
+		
+>>>>>>> origin/chaehwi
 /*	@Override //상품 상세 정보보기(select one), 상품 즉시 구매(one)
 	public ProductDto viewDao(int item_no) {
 		return session.selectOne("viewDao", item_no);

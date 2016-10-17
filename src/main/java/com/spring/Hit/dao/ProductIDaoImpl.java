@@ -69,6 +69,12 @@ public class ProductIDaoImpl implements ProductIDao,BasketIDao{
 		return session.selectList("getReview", item_no);
 	}
 	
+	//리뷰 목록 가져오기(아이디)
+	@Override
+	public List<ReviewDto>getReviewList(String id) {
+		return session.selectList("getReviewList", id);
+	}
+	
 	//리뷰등록
 	@Override
 	public void addReview(ReviewDto rd) {
@@ -126,7 +132,12 @@ public class ProductIDaoImpl implements ProductIDao,BasketIDao{
 			
 			return session.selectList("vieworderDao", id);
 		}
-
+		
+		// 최근 주문 목록 보기
+		@Override
+		public List<OrderDto> viewRecentOrderDao(String id) {
+			return session.selectList("viewRecentOrderDao", id);
+		}
 
 		// 결제 취소
 		@Override

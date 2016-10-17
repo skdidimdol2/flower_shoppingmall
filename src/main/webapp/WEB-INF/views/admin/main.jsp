@@ -10,11 +10,7 @@
 <%@include file="header.jsp" %>
 <!-- header end -->
 </head>
-
-
 <body>
-
-    
     <!-- content -->
     <div class="content-wrapper">
         <div class="container">

@@ -112,6 +112,7 @@
 	<delete id="adminMemberDeleteDao">
 		 delete from member_t where id = #{id} 
 	</delete>
+<<<<<<< HEAD
 	<select id="adminMemberSortDao" resultType="com.spring.Hit.dto.MemberDto"> 
 		select * from
 		member_t order by ${id} 
@@ -125,5 +126,7 @@
 		where order_date BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 0.99999421
 	</select>
 
+=======
+>>>>>>> origin/chaehwi
 
 </mapper>

@@ -2,6 +2,7 @@ package com.spring.Hit.mail;
 
 import java.util.Map;
 
+import javax.mail.Message.RecipientType;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +36,7 @@ public class SendMail {
 			message.setSubject(subject);
             message.setText(content);	//글 내용
             
-            message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(receiver));
+            message.setRecipients(RecipientType.TO, InternetAddress.parse(receiver));
             mailSender.send(message);
             
             System.out.println("메일 보내기 성공");
