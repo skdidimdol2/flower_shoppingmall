@@ -1,7 +1,7 @@
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <!DOCTYPE>
@@ -12,45 +12,59 @@
 
 <%@ include file="header.jsp"%>
 
-<title>admin Page</title> 
+<title>admin Page</title>
 </head>
 <body>
-<div class="first">
-	<div class="second" style="margin-left: 50;margin-top: 100">
 
-		<table border="1" style="width: 700; width: 90%; "> 
-		<tr style="background-color: red">
-			<td align="center">상품 번호</td>
-			<td align="center">상품명</td>
-			<td align="center">카테고리</td>
-			<td align="center">가격</td>
-			<td align="center">수량</td>
-			<td align="center">등록 일자</td>
-		</tr>
-		<c:forEach items="${item}" var="item"> 
-			<tr>
-				<td align="center">${item.item_no }</td>
-				<td align="center"><a href="modifyItem?item_no=${item.item_no }">${item.item_name}</a></td>
-				<td align="center">${item.category}</td>
-				<td align="center">${item.price}</td>
-				<td align="center">${item.volume}</td>
-				<td align="center">${item.reg_date }</td>
-			</tr>
-		</c:forEach>
-		</table>
-		<a href="insertItem"><h3>새 상품 추가</h3></a>
-	</div>
-	<br><br><br><br><br>
-</div>
-<!-- footer -->	
-	<footer class="container-fluid text-left" id="footer">
-		
-		<div style="margin-left:40px;margin-bottom:15px;">
+	<div class="content-wrapper">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h4 class="page-head-line">Product Page</h4>
+				</div>
+			</div>
+
+			<ul class="nav nav-tabs">
+					<li class="active"><a id="freeClick" onclick="free()">상품목록</a></li>
+					<li class="active">
+				      	<a class="dropdown-toggle" data-toggle="dropdown" href="#">상품
+				        <span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+				          <li><a href="insertItem">단품</a></li>
+				          <li><a href="addProduct">서식 업로드</a></li>
+				          <li><a href="excelDownload">서식 다운로드</a></li>
+				        </ul>
+				     </li></ul>
+			<div id="content">
+			
 			<br>
-			상호 : Flower  |  Tel : 112  |  Fax : 119<br>
-			주소 : 대한민국 꽃밭 어디든<br>
-			Copyright ⓒ <b>Java Study</b> All rights reserved. 
+			
+				<div class="panel panel-default">
+						<table class="table table-hover">
+							<tr>
+								<td align="center">상품 번호</td>
+								<td align="center">상품명</td>
+								<td align="center">카테고리</td>
+								<td align="center">가격</td>
+								<td align="center">수량</td>
+								<td align="center">등록 일자</td>
+							</tr>
+							<c:forEach items="${item}" var="item">
+								<tr>
+									<td align="center">${item.item_no }</td>
+									<td align="center"><a
+										href="modifyItem?item_no=${item.item_no }">${item.item_name}</a></td>
+									<td align="center">${item.category}</td>
+									<td align="center">${item.price}</td>
+									<td align="center">${item.volume}</td>
+									<td align="center">${item.reg_date }</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
-	</footer>
 </body>
 </html>

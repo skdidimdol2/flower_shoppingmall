@@ -41,7 +41,7 @@ public class AdminController {
 
 	@Inject
 	private BoardIDao boa_dao;
-	
+
 	@Inject
 	private AdminIDao dao;
 
@@ -55,7 +55,7 @@ public class AdminController {
 		if (session.getAttribute("id") != null) {
 			if (session.getAttribute("id").equals("admin123") == true) {
 				model.addAttribute("order", dao.todayorder());
-				
+
 				return "/admin/main";
 			} else {
 				return "/member/error";
@@ -63,7 +63,7 @@ public class AdminController {
 		} else {
 			return "/member/error";
 		}
-		
+
 	}
 
 	// 관리자 상품관리
@@ -264,50 +264,50 @@ public class AdminController {
 
 		return mav;
 	}
-	
-	
-//	// 경희 개인구현 
-//	// 상품추가 페이지 이동
-//	@RequestMapping("addProduct")
-//	String addProduct() {
-//		return "/admin/addProduct";
-//	}
-//
-//	// 상품추가 - 엑셀 파일 다운로드
-//	@RequestMapping("excelDownload")
-//	ModelAndView download() {
-//		String path = "C:\\workspace_spring\\Spring_ShoppingMall\\src\\main\\webapp\\resources\\addproduct_excel\\";
-//		ModelAndView mav = new ModelAndView();
-//		mav.addObject("fileName", new File(path + "addProductFile.xls"));
-//		mav.setViewName("downloadView");
-//		return mav;
-//
-//	}
-//
-//	// 상품추가 - 엑셀 파일 업로드
-//	@RequestMapping("excelUpload")
-//	ModelAndView upload(MultipartHttpServletRequest mReq) {
-//		System.out.println("upload start");
-//		ModelAndView mav = new ModelAndView("/admin/excel_addProduct");
-//		List<List<ProductDto>> list = null;
-//		List<ProductDto> pdList = null;
-//		List<ProductDto> new_pdList = null;
-//		UploadView upload = new UploadView();
-//		list = upload.upload(mReq);
-//
-//		pdList = list.get(0);
-//		new_pdList = list.get(1);
-//
-//		System.out.println(pdList.size() + "사이즈" + new_pdList.size());
-//
-//		// 기존상품추가 - 지금 있는 상품인지 체크
-//		// 새상품추가 - 지금 있는 상품과 이름 같은지 체크
-//
-//		mav.addObject("pdList", pdList);
-//		mav.addObject("new_pdList", new_pdList);
-//
-//		System.out.println("upload end");
-//		return mav;
-//	}
+
+	// 경희 개인구현
+	// 상품추가 페이지 이동
+	@RequestMapping("addProduct")
+	String addProduct() {
+		return "/admin/addProduct";
+	}
+
+	// 상품추가 - 엑셀 파일 다운로드
+	@RequestMapping("excelDownload")
+	ModelAndView download() {
+		String path = "C:\\workspace_spring\\Spring_ShoppingMall\\src\\main\\webapp\\resources\\addproduct_excel\\";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("fileName", new File(path + "addProductFile.xls"));
+		mav.setViewName("downloadView");
+		return mav;
+
+	}
+
+	// 상품추가 - 엑셀 파일 업로드
+	@RequestMapping("excelUpload")
+	ModelAndView upload(MultipartHttpServletRequest mReq) {
+		System.out.println("upload start");
+		ModelAndView mav = new ModelAndView("/admin/addProduct");
+		List<List<ProductDto>> list = null;
+		List<ProductDto> pdList = null;
+		List<ProductDto> new_pdList = null;
+		UploadView upload = new UploadView();
+		list = upload.upload(mReq);
+
+		pdList = list.get(0);
+		new_pdList = list.get(1);
+		
+		System.out.println(pdList.size() + "사이즈" + new_pdList.size());
+
+		// 기존상품추가 - 지금 있는 상품인지 체크
+		// 새상품추가 - 지금 있는 상품과 이름 같은지 체크
+		int i = 0;
+		mav.addObject("i", i);
+		mav.addObject("pdList", pdList);
+		mav.addObject("new_pdList", new_pdList);
+
+		System.out.println("upload end");
+		return mav;
+	}
 
 }

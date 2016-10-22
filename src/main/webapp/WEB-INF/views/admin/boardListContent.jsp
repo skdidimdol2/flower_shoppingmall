@@ -93,7 +93,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4 class="page-head-line">상세내용</h4>
+					<h4 class="page-head-line">DETAIL PAGE</h4>
 				</div>
 			</div>
 
@@ -137,7 +137,6 @@
 			</table>
 			</c:if>	
 			</div>
-			<br>
 			<input type="button" onclick="del('board','${board.board_no}')" value="삭제">
 			<input type="button" onclick="cancle()" value="닫기">
 	</div>
@@ -152,7 +151,7 @@
 			</c:if>
 			<div class="panel panel-default">
 			<c:if test="${not empty review}">
-			<table style="width:70%; height: 70%" border="1" class="text-center">
+			<table class="table table-hover">
 				<thead>
 				<tr> 
 					<td>리뷰번호</td>
@@ -171,7 +170,7 @@
 					<td colspan="3">${review.review_tit}</td>
 				</tr>
 				<tr>
-					<td>리뷰사진</td>
+					<td>리뷰</td>
 					<td><img src="${pageContext.request.contextPath }/resources/review_img/${re.review_img}"
 							 width="100" height="100"></td>
 					<td colspan="4" align="left" valign="top" style="height:250" >
@@ -182,22 +181,22 @@
 				</table>
 			</c:if>
 			</div>	
-			<br>
-			<input type="button" onclick="del('review','${review.review_no}')" value="삭제">
+			<input type="button" onclick="del('review','${review.review_no}')" value="삭제" >
 			<input type="button" onclick="cancle()" value="닫기">
 	</div>
+	<!-- 리뷰게시판 상세내용 끝-->
 	
-
+	<!-- 댓글게시판 상세내용 -->
 	<div align="center" id="reply_content" style="display: none;">
-		<h2>상세내용</h2><br>
 		<p></p>
 		<p></p>
 			<c:if test="${empty reply}">
 				<h3>목록이 없습니다.</h3> 
 			</c:if>
+			<div class="panel panel-default">
 			<c:if test="${not empty reply}">
-			<table style="width: 90%; height: 35%" border="1" class="text-center">
-				<tr style="background-color: #BCE55C">
+			<table class="table table-hover">
+				<tr>
 						<td><input type="checkbox" id="allreplyCheck"
 							onClick="allSelectCheck('replyCheck')"></td>
 						<td>댓글번호</td>
@@ -207,22 +206,22 @@
 						<td>등록일</td>
 					<tr>
 						<c:forEach items="${reply }" var="r">
-							<tr onmouseover="this.style.backgroundColor='#F6FFCC'"
-								onmouseout="this.style.backgroundColor='#FFFFFF'">
+							<tr>
 								<td><input type="checkbox" name="replyCheck" value="${r.reply_no}"></td>
 								<td>${r.reply_no}</a></td>
 								<td>${r.item_no}</a></td>
 								<td>${r.reply_con}</a></td>
 								<td>${r.id}</a></td>
 								<td>${r.reply_date}</a></td>
-							<tr>
+							</tr>
 						</c:forEach>
 			</table>	
 			</c:if>
-			<br><br>
+			</div>
 			<input type="button" onclick="checkDel('reply')" value="삭제">
 			<input type="button" onclick="cancle()" value="닫기">
 	</div></div></div></div>
+	<!-- 댓글게시판 상세내용 끝-->
 
 </body>
 </html>
