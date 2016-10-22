@@ -26,6 +26,7 @@ import com.spring.Hit.dto.ZipcodeSearchDto;
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping("/zipcode")
 public class ZipcodeController{
 	
 	private static final Logger logger = LoggerFactory.getLogger(ZipcodeController.class);
@@ -38,7 +39,7 @@ public class ZipcodeController{
      * @return String
      * @throws Exception
      */
-    @RequestMapping(value = "/zipcode")
+    @RequestMapping(value = "/zipcodemain")
     public String zipcode() throws Exception {
          
         return "zipcode/zipcode";
@@ -109,7 +110,7 @@ public class ZipcodeController{
                 	zipcodeDto.setAddress(element.select("rnaddress").text());//도로명 주소
                 	zipcodeDto.setLnmAddress(element.select("lnmaddress").text());//지번 주소
                      
-                    // 지번 검색일 경우
+                // 지번 검색일 경우
                 } else {
                 	zipcodeDto.setAddress(element.select("address").text());
                 }
@@ -130,7 +131,7 @@ public class ZipcodeController{
             paramMap.put("errorCode", errorCode);
             paramMap.put("errorMessage", errorMessage);
         }
-        System.out.println((new Gson()).toJson(paramMap));
+ //       System.out.println((new Gson()).toJson(paramMap));
         return (new Gson()).toJson(paramMap);
     }
 	

@@ -372,6 +372,7 @@ body .container .content .signup-cont {
 }
 
 </style>
+<title>Flower</title>
 </head>
 <body>
 <!--header -->
@@ -469,7 +470,8 @@ body .container .content .signup-cont {
 						<input type="text" name="name" id="name" class="inpt" required="required" placeholder="이름"> 
 						<input type="date" name="birthday" id="birthday" class="inpt">
 						<input type="email" name="email" id="email" class="inpt" required="required" placeholder="이메일">
-						<input type="address" name="address" id="address" class="inpt" placeholder="주소를 입력해주세요">
+						<input type="button" id="addressBtn" class="inpt" onclick="addressSearch();" value="주소검색"/>
+						<input type="text" name="address" id="address" class="inpt" placeholder="주소를 입력해주세요">
 						<input type="text" name="phone" class="inpt" placeholder="휴대폰번호를 '-'없이 입력해주세요" maxlength="11">
 						<input type="radio" name="gender" id="gender1" value="남">
 						남자&emsp;
@@ -627,6 +629,14 @@ body .container .content .signup-cont {
 					var amountMovedY = (e.pageY * -1 / 9);
 					$(this).css('background-position', amountMovedX + 'px ' + amountMovedY + 'px');
 		});
+		
+		//zipcode
+		function addressSearch(){
+			var option = "toolbar=no, menubar=no, location=no, directories=no, status=no, scrollbars=no,"
+				option += "resizable=no, width=500, height=500, top=100, left=300";
+			window.open("../zipcode/zipcodemain","",option);
+		}
+		
 	</script>
 </body>
 </html>

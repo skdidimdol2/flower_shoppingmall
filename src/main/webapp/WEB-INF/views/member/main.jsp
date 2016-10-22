@@ -196,7 +196,7 @@
 	</footer>
 	
 <!-- javascript -->	
-<script language="javascript" >
+<script>
 	$(document).ready(function(){
 	    // Activate Carousel
 	    $("#mainCarousel").carousel({interval: 3000, pause: "hover"});
