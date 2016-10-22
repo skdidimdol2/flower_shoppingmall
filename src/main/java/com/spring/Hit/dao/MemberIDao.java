@@ -21,7 +21,16 @@ public interface MemberIDao {
 	//회원 가입
 	public void memberJoinDao(Model model);
 	//ID 중복 확인
-	public String memberId(Model model);
+	public String member_Id(String id);
+	//ID 찾기
+	public String idsearch(MemberDto dto) throws Exception;
+	//비밀번호 찾기
+	public String pwdsearch(MemberDto dto) throws Exception;
+	//비밀번호 가져오기
+	public String pwdDao(String id) throws Exception;
+	//비밀번호 바꾸기
+	public void resetpwd(MemberDto dto);
+
 
 /*
  * 	작성자 : 이지원

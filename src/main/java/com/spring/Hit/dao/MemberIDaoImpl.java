@@ -30,6 +30,7 @@ public class MemberIDaoImpl implements MemberIDao{
  * 	작성자 : 박종영
  * 	수정일 : 2016.10.3
  */	
+	//회원가입
 	@Override
 	public void memberJoinDao(Model model) {
 		// TODO Auto-generated method stub
@@ -41,19 +42,35 @@ public class MemberIDaoImpl implements MemberIDao{
 		String name = req.getParameter("name");
 		Date birthday = Date.valueOf(req.getParameter("birthday"));
 		String email = req.getParameter("email");
+		String address = req.getParameter("address");
 		String phone = req.getParameter("phone");
 		String gender = req.getParameter("gender");
-		MemberDto dto = new MemberDto(id, password, name, birthday, email, phone, null, gender, 0, new Timestamp(System.currentTimeMillis()/1000), 0, 0, null);
+		MemberDto dto = new MemberDto(id, password, name, birthday, email, address, phone, gender, 0, new Timestamp(System.currentTimeMillis()/1000), 0, 0, null);
 		session.insert("memberJoinDao", dto);
 	}
-
+	//ID 중복 확인
 	@Override
-	public String memberId(Model model) {
-		Map<String,Object> map = model.asMap();
-		HttpServletRequest req = (HttpServletRequest)map.get("req");
-		String id = req.getParameter("id");
-		
+	public String member_Id(String id) {
 		return session.selectOne("memberId",id);
+	}	
+	//ID 찾기
+	@Override
+	public String idsearch(MemberDto dto) throws Exception{
+		return session.selectOne("idsearch2", dto);
+	}
+	//비밀번호 찾기
+	@Override
+	public String pwdsearch(MemberDto dto) throws Exception{
+		return session.selectOne("pwdsearch2", dto);
+	}
+	// 비밀번호 가져오기
+	public String pwdDao(String id){
+		return session.selectOne("pwdDao",id);
+	}
+	//비밀번호 바꾸기
+	@Override
+	public void resetpwd(MemberDto	dto){
+		session.update("resetpwd", dto);
 	}	
 /*
  * 	작성자 : 이지원

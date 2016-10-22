@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import com.spring.Hit.dto.MemberDto;
 import com.spring.Hit.dto.OrderDto;
 import com.spring.Hit.dto.ProductDto;
-import com.sun.media.jfxmedia.logging.Logger;
 
 @Repository
 public class AdminIDaoImpl implements AdminIDao{
