@@ -11,6 +11,12 @@
 	<select id="mainDao" resultType="com.spring.Hit.dto.ProductDto">
 		select * from item_t order by item_no desc
 	</select>
+	<!-- 마이페이지 리뷰 내용보기 -->
+	<select id="reviewContent" resultType="com.spring.Hit.dto.ReviewDto">
+		select * from review_t where id = #{id} and review_no = #{review_no}
+	</select>
+	<!-- 장바구니 -->
+	
 <!-- 박종영 -->
 	<!-- 회원 가입 쿼리 -->
 	<insert id="memberJoinDao"> 
@@ -69,4 +75,5 @@
 	<select id="cartDao" resultType="com.spring.Hit.dto.BoardDto"> 
 		select * from basket_t where id=#{id} 
 	</select>
+	
 </mapper>

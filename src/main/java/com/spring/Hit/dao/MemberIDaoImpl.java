@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 
 import com.spring.Hit.dto.MemberDto;
 import com.spring.Hit.dto.ProductDto;
+import com.spring.Hit.dto.ReviewDto;
 
 @Repository
 public class MemberIDaoImpl implements MemberIDao{
@@ -25,6 +26,19 @@ public class MemberIDaoImpl implements MemberIDao{
 	public List<ProductDto> mainDao() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	//마이페이지 리뷰 상세보기
+	@Override
+	public ReviewDto reviewContentDao(Model model, HttpSession sess) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest req = (HttpServletRequest)map.get("req");
+		int review_no = Integer.parseInt(req.getParameter("review_no"));
+		String id = (String)sess.getAttribute("id");
+		ReviewDto dto = new ReviewDto();
+		dto.setId(id);
+		dto.setReview_no(review_no);
+		return session.selectOne("reviewContent", dto);
 	}
 /*
  * 	작성자 : 박종영
@@ -160,5 +174,6 @@ public class MemberIDaoImpl implements MemberIDao{
 	   }
       
    }
+
    
 }

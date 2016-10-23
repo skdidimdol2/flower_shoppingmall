@@ -88,9 +88,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="replyDtail" resultType="com.spring.Hit.dto.ReplyDto">
 		select * from reply_t where reply_level > 0 and reply_group = #{reply_group} order by reply_step
 	</select> 
-	
-	
-	
-	
+
 </mapper>
 

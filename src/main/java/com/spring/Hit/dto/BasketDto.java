@@ -11,7 +11,7 @@ public class BasketDto extends ProductDto{
 	}
 	
 	public BasketDto(int basket_no, int item_no, String id, int buy_vol) {
-		
+		super();
 		this.basket_no = basket_no;
 		this.item_no = item_no;
 		this.id = id;

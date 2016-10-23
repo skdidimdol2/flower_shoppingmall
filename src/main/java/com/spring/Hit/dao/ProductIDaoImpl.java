@@ -185,11 +185,12 @@ public class ProductIDaoImpl implements ProductIDao, BasketIDao {
 		ProductIDao pdo = session.getMapper(ProductIDao.class);
 		pdo.pluspd(order);
 	}
-
+	//마이페이지 리뷰 id로 리스트
 	@Override
 	public List<ReviewDto> getReviewList(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		return session.selectList("getReviewList", id);
 	}
 
 }

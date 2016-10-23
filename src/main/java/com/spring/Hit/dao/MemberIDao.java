@@ -8,12 +8,15 @@ import org.springframework.ui.Model;
 
 import com.spring.Hit.dto.MemberDto;
 import com.spring.Hit.dto.ProductDto;
+import com.spring.Hit.dto.ReviewDto;
 
 public interface MemberIDao {
 	
 
 	//메인페이지 & 간략한 상품 리스트
 	public List<ProductDto> mainDao();
+	//마이페이지 리뷰 보기
+	public ReviewDto reviewContentDao(Model model, HttpSession sess);
 /*
  * 	작성자 : 박종영
  * 	수정일 : 2016.10.3

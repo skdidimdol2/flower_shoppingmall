@@ -16,13 +16,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.spring.Hit.dao.BasketIDao;
 import com.spring.Hit.dao.MemberIDao;
 import com.spring.Hit.dao.ProductIDao;
 import com.spring.Hit.dto.BasketDto;
 import com.spring.Hit.dto.MemberDto;
-
-import com.google.gson.Gson;
 
 
 @Controller
@@ -44,6 +43,14 @@ public class MemberController {
 		model.addAttribute("list", dao.mainDao());
 		
 		return "/member/main";
+	}
+	//리뷰 상세 보기
+	@RequestMapping("/reviewContent")
+	public String reviewContent(Model model, HttpServletRequest req, HttpSession sess){
+		model.addAttribute("req", req);
+		model.addAttribute("dto", dao.reviewContentDao(model, sess));
+		
+		return "/member/reviewPage";
 	}
 /*
  * 	작성자 : 박종영
@@ -243,12 +250,6 @@ public class MemberController {
 	   session.setAttribute("logininfo", true);
    }
 	
-//   @RequestMapping("/myPage")
-//   public String myPage(Model model, HttpSession session) {
-//	   String id = (String)session.getAttribute("id");
-//	   System.out.println(id);
-//	   model.addAttribute("dto", dao.viewMemberDao(id)); 
-//	   return "/member/myPage";
-//   }
+
    
 }
