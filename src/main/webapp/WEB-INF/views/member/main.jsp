@@ -3,6 +3,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE>
 <html>
+
+<!-- 도해추가 -->
+<%@include file="top.jsp"%>
+<script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script type="text/javascript"
+		src="../resources/js/jquery.eislideshow.js"></script>
+<script type="text/javascript"
+		src="../resources/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript">
+
+$(function() {
+	$('#ei-slider').eislideshow({
+		animation : 'center',
+		autoplay : true,
+		slideshow_interval : 2000,
+		titlesFactor : 0
+	});
+});
+</script>
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,15 +33,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+
+
 <jsp:include page="../include/style.jsp"></jsp:include>
 
 <title>Flower</title> 
 </head>
 <body>
 
-<!--header -->
-	<header>
+<%-- 	<header>
 		<div class="contatiner-fluid">
 			<div id="users">
 				<c:if test="${sessionScope.id!=null}">
@@ -43,8 +64,9 @@
 			</div>		
 			<a href="main">Flower</a>
 		</div>
-	</header>
-<!-- navbar -->	
+	</header> --%>
+	
+<!--	
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header" id="mobileNavbar">
@@ -82,7 +104,7 @@
 				<a href="#"><span class="glyphicon glyphicon-search" style="color:#ffffff"></span></a>
 			</div>
 		</div>
-	</nav>
+	</nav> -->
 		
 <!-- mainpage photo roll -->	
 	<div id="mainCarousel" class="carousel slide">
