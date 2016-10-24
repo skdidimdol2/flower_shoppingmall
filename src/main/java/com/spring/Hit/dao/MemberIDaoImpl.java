@@ -88,7 +88,6 @@ public class MemberIDaoImpl implements MemberIDao{
 	public void resetpwd(MemberDto	dto){
 		session.update("resetpwd", dto);
 	}	
-
 /*
  * 	작성자 : 이지원
  * 	수정일 : 2016.10.3
@@ -151,7 +150,7 @@ public class MemberIDaoImpl implements MemberIDao{
  * 	작성자 : 전도해
  * 	수정일 : 2016.10.3
  */
-   
+ 
 	@Override
 	public String loginDao(Model model, HttpSession sess) {
 			Map<String,Object> map = model.asMap();

@@ -36,19 +36,16 @@
 
 	<!-- 비밀번호 찾기 쿼리 -->
 	<select resultType="String" id="pwdsearch2"> 
-
 		select password from member_t where id = #{id} and name = #{name} and phone = #{phone} 
-
 	</select>
 
 	<!-- 비밀번호 가져오기 쿼리 -->
 	<select resultType="String" id="pwdDao"> 
-	select password from member_t where id = #{id} 
+		select password from member_t where id = #{id} 
 	</select>
 
 	<!-- 비밀번호 바꾸기 -->
 	<update id="resetpwd"> 
-
 		update member_t set password = #{password} where id = #{id} 
 	</update>
 

@@ -56,108 +56,6 @@ public class MemberController {
  * 	작성자 : 박종영
  * 	수정일 : 2016.10.3
  */
-	// 회원가입 입력 페이지
-		@RequestMapping("/member_join")
-		public String member_join(Model model, HttpServletRequest req) {
-			model.addAttribute("req", req);
-			dao.memberJoinDao(model);
-
-			return "/member/main";
-		}
-
-		// ID 중복 확인
-		/*@RequestMapping("/member_Id")
-		public @ResponseBody String member_Id(Model model, HttpServletRequest req, HttpServletResponse response) throws IOException {
-			String id = req.getParameter("jid");
-			Map<String, Object> map = new HashMap<String, Object>();
-			String a = dao.member_Id(id);
-			System.out.println(a);
-			map.put("b", a); //b를 ajax의 success : function(result)에서 if(result.b <-요기로 불러줌) 
-			System.out.println((new Gson()).toJson(map));
-			return (new Gson()).toJson(map);
-//			return "/member/member_join";
-		}*/
-		
-		//ID찾기 페이지
-		@RequestMapping("/idsearch")
-		public String idsearch(Model model, HttpServletRequest req) throws Exception{
-			model.addAttribute("req", req);
-			return "/member/idsearch";
-		}
-		
-		//ID찾기
-		//@RequestMapping("/idsearch2")
-		/*public @ResponseBody String idsearch2(Model model, HttpServletRequest req) throws Exception{
-			model.addAttribute("req", req);
-			Map<String, Object> map = new HashMap<String, Object>();
-			String name = req.getParameter("name");
-			String phone = req.getParameter("phone");
-//			System.out.println(name +"  "+ phone);
-			
-			MemberDto dto = new MemberDto();
-			dto.setName(name);
-			dto.setPhone(phone);
-			String d = dao.idsearch(dto);
-//			System.out.println(dao.idsearch(dto));
-			map.put("name", name);
-			map.put("phone", phone);
-			map.put("i", d);
-//			System.out.println((new Gson()).toJson(map));
-			return (new Gson()).toJson(map);
-		}*/
-		
-		//비밀번호 찾기 페이지
-		@RequestMapping("/pwdsearch")
-		public String pwdsearch(Model model, HttpServletRequest req) throws Exception{
-			model.addAttribute("req", req);
-			return "/member/pwdsearch";
-		}
-		
-		//비밀번호 찾기
-		/*@RequestMapping("/pwdsearch2")
-		public @ResponseBody String pwdsearch2(Model model, HttpServletRequest req) throws Exception{
-			model.addAttribute("req", req);
-			Map<String, Object> map = new HashMap<String, Object>();
-			String id = req.getParameter("id");
-			String name = req.getParameter("name");
-			String phone = req.getParameter("phone");
-			
-			MemberDto dto = new MemberDto();
-			dto.setId(id);
-			dto.setName(name);
-			dto.setPhone(phone);
-			map.put("id", id);
-			map.put("name", name);
-			map.put("phone", phone);
-			map.put("p", dao.pwdsearch(dto));
-			return (new Gson()).toJson(map);
-		}
-		
-		//비밀번호 바꾸기 페이지
-		@RequestMapping("/pwd_reset")
-		public String pwd_reset(Model model, HttpServletRequest req) throws Exception {
-			model.addAttribute("req", req);
-			String id = req.getParameter("id");
-			
-			model.addAttribute("pwd", dao.pwdDao(id));
-			model.addAttribute("id", id);
-			return "/member/pwd_reset";
-		}
-		
-		//비밀번호 바꾸기
-		@RequestMapping("/resetpwd")
-		public String resetpwd(Model model, HttpServletRequest req, HttpSession session) throws Exception{
-			String password = req.getParameter("pwd");
-			System.out.println(password);
-			String id = req.getParameter("id");
-			System.out.println(id);
-			MemberDto dto = new MemberDto();
-			dto.setPassword(password);
-			dto.setId(id);
-			dao.resetpwd(dto);
-			return "redirect:loginForm";
-		}
-=======
 	
 	// 회원가입 입력 페이지
 	@RequestMapping("/member_join")
@@ -178,7 +76,6 @@ public class MemberController {
 		map.put("b", a); //b를 ajax의 success : function(result)에서 if(result.b <-요기로 불러줌) 
 		System.out.println((new Gson()).toJson(map));
 		return (new Gson()).toJson(map);
-//		return "/member/member_join";
 	}
 	
 	//ID찾기 페이지
@@ -261,7 +158,6 @@ public class MemberController {
 		return "redirect:loginForm";
 	}
 
->>>>>>> origin/chaehwi
 
 /*
  * 	작성자 : 이지원

@@ -24,7 +24,6 @@
 		<div class="contatiner-fluid">
 			<div id="users">
 				<c:if test="${sessionScope.id!=null}">
-					${sessionScope.id}님 환영합니다&emsp;&emsp;
 					<b>${sessionScope.name}</b>님 환영합니다&emsp;&emsp;
 				</c:if>
 				<c:if test="${sessionScope.id.equals('admin123')==true}">
@@ -74,7 +73,9 @@
 					<li><a href="../product/list?category=서양란">서양란</a></li>
 					<li><a href="../product/list?category=축하화환">축하화환</a></li>
 					<li><a href="../product/list?category=근조화환">근조화환</a></li>
-					<li><a href="../board/boardList">자유게시판</a></li>
+
+					<li><a href="../board/boardList">게시판</a></li>
+					
 
 				</ul>
 				<input type="text" style="width:170px;margin-bottom:10px;margin-left:3px;" placeholder=" 검색어 입력">

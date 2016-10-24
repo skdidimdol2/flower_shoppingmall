@@ -471,13 +471,9 @@ px
 				<%
 					}
 				%>
-				<a href="cart">Cart(0)</a>&emsp;&emsp; <a href="order">Order</a>&emsp;&emsp;
-<<<<<<< HEAD
-				&emsp;&emsp; <a href="myPage">My
-=======
-				<a href="wishList">Wish List</a>&emsp;&emsp; <a href="myPage">My
->>>>>>> origin/chaehwi
-					Page</a>&emsp;&emsp;
+				<a href="cart">Cart</a>&emsp;&emsp;
+				<a href="order">Order</a>&emsp;&emsp;
+				<a href="myPage">MyPage</a>&emsp;&emsp;
 			</div>
 			<a href="main">Flower</a>
 		</div>

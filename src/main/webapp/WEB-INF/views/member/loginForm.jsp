@@ -463,6 +463,7 @@ body .container .content .signup-cont {
        					        </form>
     				        </div>
     				        <div class="signup-cont cont">
+
 								<form action="member_join" method="post">
 
 						<input type="text" name="id" id="join_id" class="inpt" required="required" value="${requestScope.id}" placeholder="ID를 입력해주세요 (30자이내)" onblur="idlength();" maxlength="30">
@@ -470,23 +471,25 @@ body .container .content .signup-cont {
 						<input type="password" name="password" id="password1" class="inpt" required="required" placeholder="비밀번호를 입력해주세요 (6~30자 내)" onblur="pwdlength();" maxlength="30"> 
 						<input type="password" name="password2" id="password2" class="inpt" required="required" placeholder="비밀번호를 다시 한번 입력해주세요" onblur="passwordchk();" maxlength="30">
 						<input type="text" name="name" id="name" class="inpt" required="required" placeholder="이름"> 
-						<input type="date" name="birthday" id="birthday" class="inpt">
+						<input type="date" name="birthday" id="birthday" required="required" class="inpt">
 						<input type="email" name="email" id="email" class="inpt" required="required" placeholder="이메일">
-						<input type="address" name="address" id="address" class="inpt" placeholder="주소를 입력해주세요">
-						<input type="text" name="phone" class="inpt" placeholder="휴대폰번호를 '-'없이 입력해주세요" maxlength="11">
-						<input type="radio" name="gender" id="gender1" value="남" class="checkbox">
-						<label for="gender1">남자</label>
-						<input type="radio" name="gender" id="gender2" value="여" class="checkbox">
-						<label for="gender2">여자</label>
+						<input type="button" id="addressBtn" class="inpt" onclick="addressSearch();" value="주소검색"/>
+						<input type="text" name="address" id="address" class="inpt" required="required" placeholder="주소를 입력해주세요">
+						<input type="text" name="phone" id="phone" class="inpt" placeholder="휴대폰번호를 '-'없이 입력해주세요" required="required" maxlength="11">
+						<input type="radio" name="gender" id="gender" value="남" checked="checked">남자&emsp;
+						<input type="radio" name="gender" id="gender" value="여">여자
+					
+
 						<p></p>
 						<div class="submit-wrap">
 							<input type="submit" value="회원가입" class="submit" onclick="formchk();">
 							<a href="#" class="more">Terms and conditions</a>
 						</div>
 					</form>
-            </div>
 
 				</div>
+			</div>
+
 		    </article>
 		    <div class="half bg"></div>
 	</section>
@@ -494,186 +497,10 @@ body .container .content .signup-cont {
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
-<script type="text/javascript">
-$('.tabs .tab').click(function(){
-    if ($(this).hasClass('signin')) {
-        $('.tabs .tab').removeClass('active');
-        $(this).addClass('active');
-        $('.cont').hide();
-        $('.signin-cont').show();
-    } 
-    if ($(this).hasClass('signup')) {
-        $('.tabs .tab').removeClass('active');
-        $(this).addClass('active');
-        $('.cont').hide();
-        $('.signup-cont').show();
-    }
-});
-$('.container .bg').mousemove(function(e){
-    var amountMovedX = (e.pageX * -1 / 30);
-    var amountMovedY = (e.pageY * -1 / 9);
-    $(this).css('background-position', amountMovedX + 'px ' + amountMovedY + 'px');
-});
-
-
-/* function pwdlength() {
-	if($("#password1").val().length < 6){
-		 alert("비밀번호는 최소 6자리 이상 입력해주세요");
-		 $("#password1").val("");
-		 $("#password1").focus();
-	}
-} */
-/* function passwordchk(){
-	 if($("#password1").val()!=$("#password2").val()){
-		$("#password1").val("");
-		$("#password2").val("");
-		alert("비밀번호가 다릅니다");
-		$("#password1").focus();
-	} 
-}*/
-function idlength(){
-	
-	 if($("#join_id").val()==""){
-		//$("#idsearch").val("아이디를 입력해주세요");
-		//alert("아이디를 입력해주세요");
-		var idmsg = document.getElementById("idmsg")
-		idmsg.innerHTML = "아이디를 입력해주세요";
-		$("#join_id").focus();
-	return false;
-	}else{
-		var idmsg = document.getElementById("idmsg")
-		idmsg.innerHTML = "";
-	}
-	 
-	var jid = $("#join_id").val();
-	
-	$.ajax({
-		url : "member_Id",
-		type : "POST",
-		data : {jid : jid},
-		dataType : "json",
-
-		success : function(result) {	
-			
-			if(result.b == null)
-			{
-				
-				alert("아이디가 중복이 되지 않습니다. 쓰셔도 됩니다.")
-				
-			}
-			else
-			{
-				alert("아이디가 중복이 됩니다. 다시 입력 해주세요");
-				$("#join_id").val("");
-				$("#join_id").focus();
-				return false;
-			}	
-		},
-	 	 error : function(request, status, error) {
-			if (request.status != '0') {
-				alert("code : " + request.status + "\r\nmessage : "
-						+ request.reponseText + "\r\nerror : " + error);
-			}
-		} 
-
-
-	});
-}
-
-function formchk() {
-	var id = document.getElementById("join_id");
-	var password1 = document.getElementById("password1");
-	var password2 = document.getElementById("password2");
-	var name = document.getElementById("name");
-	//var birthday = document.getElementById("birthday");
-	var email = document.getElementById("email");
-	var address = document.getElementById("address");
-	var phone = document.getElementById("phone");
-	
-	if(join_id.value =="" || join_id.value == null ){
-		alert("아이디를 입력해주세요");
-		$("#join_id").focus();
-		return false;
-	}else if($("#password1").val().length < 6){
-		 alert("비밀번호는 최소 6자리 이상 입력해주세요");
-		 $("#password1").val("");
-		 $("#password1").focus();
-	}else if($("#password1").val()!=$("#password2").val()){
-		$("#password1").val("");
-		$("#password2").val("");
-		alert("비밀번호가 다릅니다");
-		$("#password1").focus();
-	}else if(name.value =="" || name.value == null ){
-		alert("이름을 입력해주세요");
-		$("#name").focus();
-		return false;
-	}else if(email.value =="" || email.value == null ){
-		alert("이메일을 입력해주세요");
-		$("#email").focus();
-		return false;
-	}else if(address.value =="" || address.value == null ){
-		alert("주소를 입력해주세요");
-		$("#address").focus();
-		return false;
-	}else if(phone.value =="" || phone.value == null || phone.value == "-" ){
-		alert("휴대전화번호를 입력해주세요");
-		$("#phone").focus();
-		return false;
-	}else{
-		alert("회원가입이 완료 되써요!!!!!");
-		window.location.href="../member/loginForm";
-	}
-}
-
- function idsearch() {
-	 window.location.href="/Hit/member/idsearch";
-} 
- function pwdsearch() {
-	 window.location.href="/Hit/member/pwdsearch";
-} 
-$('.tabs .tab').click(function() {
-	if ($(this).hasClass('signup')) {
-		$('.tabs .tab').removeClass('active');
-		$(this).addClass('active');
-		$('.cont').hide();
-		$('.signup-cont').show();
-	}
-	if ($(this).hasClass('signin')) {
-		$('.tabs .tab').removeClass('active');
-		$(this).addClass('active');
-		$('.cont').hide();
-		$('.signin-cont').show();
-	}
-
-});
-
-$('.container .bg').mousemove(
-		function(e) {
-			var amountMovedX = (e.pageX * -1 / 30);
-			var amountMovedY = (e.pageY * -1 / 9);
-			$(this).css('background-position', amountMovedX + 'px ' + amountMovedY + 'px');
-		});
-</script>
-
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript">
 	
-		/* function pwdlength() {
-			if($("#password1").val().length < 6){
-				 alert("비밀번호는 최소 6자리 이상 입력해주세요");
-				 $("#password1").val("");
-				 $("#password1").focus();
-			}
-		} */
-		/* function passwordchk(){
-			 if($("#password1").val()!=$("#password2").val()){
-				$("#password1").val("");
-				$("#password2").val("");
-				alert("비밀번호가 다릅니다");
-				$("#password1").focus();
-			} 
-		}*/
+	
 		function idlength(){
 			
 			 if($("#join_id").val()==""){
@@ -730,6 +557,7 @@ $('.container .bg').mousemove(
 			var email = document.getElementById("email");
 			var address = document.getElementById("address");
 			var phone = document.getElementById("phone");
+			var gender = document.getElementById("gender");
 			
 			if(join_id.value =="" || join_id.value == null ){
 				alert("아이디를 입력해주세요");
@@ -759,6 +587,10 @@ $('.container .bg').mousemove(
 			}else if(phone.value =="" || phone.value == null || phone.value == "-" ){
 				alert("휴대전화번호를 입력해주세요");
 				$("#phone").focus();
+				return false;
+			}else if(gender.value =="" || gender.value==null){
+				alert("성별을 선택해주세요");
+				$("#gender").focus();
 				return false;
 			}else{
 				alert("회원가입이 완료 되써요!!!!!");
