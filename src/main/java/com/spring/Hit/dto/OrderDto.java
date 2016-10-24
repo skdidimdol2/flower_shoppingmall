@@ -2,7 +2,7 @@ package com.spring.Hit.dto;
 
 import java.sql.Timestamp;
 
-public class OrderDto {
+public class OrderDto extends ProductDto{
 	private int order_no;
 	private int item_no;
 	private String id;
@@ -29,6 +29,7 @@ public class OrderDto {
 	public OrderDto(int order_no, int item_no, String id, int order_vol, String payment_way, String payment_bool,
 			Timestamp order_date, Timestamp pay_date, int payment_price, int payment_price_sum, String month, 
 			String del_bool, String cancel_bool, String category, String content) {
+		super();
 		this.order_no = order_no;
 		this.item_no = item_no;
 		this.id = id;
@@ -186,7 +187,4 @@ public class OrderDto {
 		this.month = month;
 	}
 	
-	
-	
-
 }

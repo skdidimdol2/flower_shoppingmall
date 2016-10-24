@@ -93,7 +93,7 @@ function searchCheck(frm){
 					<th>배송상태</th>
 				</tr>
 			</thead>
-			<tbody id=orderlist">
+			<tbody id="orderlist">
 			 <c:forEach items="${list}" var="l">
 				<tr>
 					<td>${l.order_no}</td>

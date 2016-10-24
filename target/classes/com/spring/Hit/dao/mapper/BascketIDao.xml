@@ -9,10 +9,10 @@
 
 	<!-- 장바구니 전체 목록 보기 (select *) -->
 	<select id="viewbasketDao" resultType="com.spring.Hit.dto.BasketDto">
-		select b.item_no,i.img,
-		i.item_name,i.category,b.buy_vol,i.price*b.buy_vol price,b.basket_no
-		from item_t i,basket_t b
-		where i.item_no=b.item_no order by basket_no
+		select b.item_no, i.img,
+		i.item_name, i.category, b.buy_vol, i.price*b.buy_vol price, b.basket_no
+		from item_t i, basket_t b
+		where i.item_no = b.item_no order by basket_no
 	</select>
 
 	<!-- 장바구니에 보관하기 (insert into ) -->

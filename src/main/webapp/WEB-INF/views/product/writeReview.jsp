@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
    <script>
    
@@ -15,7 +15,7 @@
          var img = document.getElementById('img').value;
          alert(img);
          document.f.submit();
-         alert("µî·ÏµÇ¾ú½À´Ï´Ù.");
+         alert("ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
          parent.opener.location.reload();
          window.close();
          
@@ -32,19 +32,19 @@
    <form name="f" action="addReview" method="post" enctype="multipart/form-data">
       <div id="writeReview" align="center">
       
-         <b>¸®ºäÀÛ¼º</b><hr color="#828282"  width="500">
+         <b>ë¦¬ë·°ì‘ì„±</b><hr color="#828282"  width="500">
          
-         »óÇ°¹øÈ£ : ${item_no }<br> 
+         ìƒí’ˆë²ˆí˜¸ : ${item_no }<br> 
          <input type="hidden" name="item_no" value="${item_no }">
          
-         ÀÛ¼ºÀÚ : user01 <br> 
+         ì‘ì„±ì : user01 <br> 
          <input type="hidden" name="id" value="user01" value="user01">
          
-         Á¦¸ñ : <input type="text" name="review_tit"><br>
-         <textarea name="review_con" rows="10" cols="50" placeholder="¸®ºä¸¦ ³²°ÜÁÖ¼¼¿ä."></textarea> <br>
-         »çÁøÃ·ºÎ : <input type="file" name="imgfile" id="img"> <br><br>
+         ì œëª© : <input type="text" name="review_tit"><br>
+         <textarea name="review_con" rows="10" cols="50" placeholder="ë¦¬ë·°ë¥¼ ë‚¨ê²¨ì£¼ì„¸ìš”."></textarea> <br>
+         ì‚¬ì§„ì²¨ë¶€ : <input type="file" name="imgfile" id="img"> <br><br>
          
-         <input type="button" id="addBtn" onclick="addReview()" value="µî·Ï"> <input type="button" onclick="cancle()" value="Ãë¼Ò">
+         <input type="button" id="addBtn" onclick="addReview()" value="ë“±ë¡"> <input type="button" onclick="cancle()" value="ì·¨ì†Œ">
       
       </div>
    </form>

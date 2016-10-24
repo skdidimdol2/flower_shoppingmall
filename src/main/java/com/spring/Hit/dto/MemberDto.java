@@ -4,33 +4,29 @@ import java.sql.Timestamp;
 import java.sql.Date;
 
 public class MemberDto {
-	private String id;
-	private String password;
-	private String name;
-	private Date birthday;
-	private String email;
-	private String phone;
-	private String address;
-	private String gender;
-	private int point;
-	private Timestamp joindate;
-	private int reply;
-	private int review;
-	private String admin;
+	private String id;			//아이디
+	private String password;	//비밀번호
+	private String name;		//이름
+	private Date birthday;		//생일
+	private String email;		//이메일
+	private String address;		//주소
+	private String phone;		//연락처
+	private String gender;		//성별
+	private int point;			//포인트 적립
+	private Timestamp joindate;	//가입일
+	private int reply;			//댓글 수
+	private int review;			//리뷰 수
+	private String admin;		//관리자 판별
 	
-	public MemberDto() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public MemberDto(String id, String password, String name, Date birthday, String email, String phone, String address,
-			String gender, int point, Timestamp joindate, int reply, int review, String admin) {
+	public MemberDto(String id, String password, String name, Date birthday, String email, String address, String phone, String gender,
+			int point, Timestamp joindate, int reply, int review, String admin ) {
 		this.id = id;
 		this.password = password;
 		this.name = name;
 		this.birthday = birthday;
 		this.email = email;
-		this.phone = phone;
 		this.address = address;
+		this.phone = phone;
 		this.gender = gender;
 		this.point = point;
 		this.joindate = joindate;
@@ -39,6 +35,9 @@ public class MemberDto {
 		this.admin = admin;
 	}
 
+	public MemberDto() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getId() {
 		return id;
 	}
@@ -87,14 +86,6 @@ public class MemberDto {
 		this.phone = phone;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	public String getGender() {
 		return gender;
 	}
@@ -137,6 +128,14 @@ public class MemberDto {
 
 	public String getAdmin() {
 		return admin;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public void setAdmin(String admin) {

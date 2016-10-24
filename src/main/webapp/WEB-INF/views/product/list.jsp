@@ -21,11 +21,11 @@ function searchitem(a,b){
 </script>
 	
 <!-- 상품 리스트들에 대한 목록 표시 -->
-
+<jsp:include page="../include/style.jsp"></jsp:include>
 
 <title>Flower</title>    
-<style>
-<%-- header --%> 
+
+<%-- <%-- header 
 	a{text-decoration:none;}
 	a:hover{text-decoration:none;}
 	a:active{text-decoration: none}
@@ -49,11 +49,11 @@ function searchitem(a,b){
 	#users>a:hover{
 		text-decoration:none; 
 	}
-	<%-- footer --%>
+	footer
 	#footer {
 		background-color:#ddddff;  
 	} 
-</style>
+</style>--%>
 
 </head>
 <body>
@@ -75,12 +75,48 @@ function searchitem(a,b){
 					</c:otherwise>
 				</c:choose>
 				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../member/wishList">Wish List</a>&emsp;&emsp;
 				<a href="../member/myPage">My Page</a>&emsp;&emsp;
 			</div>
 			<a href="../member/main">Flower</a>
 		</div>
 	</header>
+	<!-- navbar -->	
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header" id="mobileNavbar">
+				<form action="main" method="get" autocomplete="on">
+					<input type="submit" class="navbar-toggle" value="검색"/>
+					<input type="text" name="item_name" class="navbar-toggle" style="width:150px;" placeholder="검색어 입력"/>
+					
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#pcNavbar"> 
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+					</button>
+				</form>	
+			</div>
+		
+			<div class="collapse navbar-collapse" id="pcNavbar">
+				
+				
+				<ul class="nav navbar-nav">
+					<li><a href="main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
+					<li><a href="../product/list?category=꽃바구니">꽃바구니</a></li>
+					<li><a href="../product/list?category=꽃다발">꽃다발</a></li>
+					<li><a href="../product/list?category=꽃상자">꽃상자</a></li>
+					<li><a href="../product/list?category=동양란">동양란</a></li>
+					<li><a href="../product/list?category=서양란">서양란</a></li>
+					<li><a href="../product/list?category=축하화환">축하화환</a></li>
+					<li><a href="../product/list?category=근조화환">근조화환</a></li>
+					<li><a href="../board/boardList">자유게시판</a></li>
+			
+				</ul>
+				<input type="text" style="width:170px;margin-bottom:10px;margin-left:3px;" placeholder=" 검색어 입력">
+				<a href="#"><span class="glyphicon glyphicon-search" style="color:#ffffff"></span></a>
+			</div>
+		</div>
+	</nav>
 <!-- board -->
 	<div class="container">
 		<div class="row">
@@ -101,19 +137,21 @@ function searchitem(a,b){
                            <a href="detail?item_no=${pdt.item_no}"> <img
                               src="${pdt.img}" width="300" height="300"></a>
                         </tr>
+                        <tr>
                         </tr>
                         <tr>
-                           ${pdt.item_name}
-                           <br>
+                     ${pdt.item_name}
+                     <br>
                         </tr>
                         <tr>
-                           ${pdt.price}원
-                           <br>
+                      ${pdt.price}원
+                      <br>
                         </tr>
                         <tr>
-                           적립금 : ${pdt.price*0.05}원
-                           <br>
+                     적립금 : ${pdt.price*0.05}원
+ 						<br>
                         </tr>
+                    
                      </table>
                   </td>
                   <c:if test="${i%j == j-1 }">

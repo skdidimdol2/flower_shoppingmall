@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import com.spring.Hit.dto.MemberDto;
 import com.spring.Hit.dto.OrderDto;
 import com.spring.Hit.dto.ProductDto;
-import com.sun.media.jfxmedia.logging.Logger;
 
 @Repository
 public class AdminIDaoImpl implements AdminIDao{
@@ -202,22 +201,13 @@ public class AdminIDaoImpl implements AdminIDao{
 			
 		}
 
-<<<<<<< HEAD
-	
-	
-	
 		// Admin Main 오늘 주문 현황
 		@Override
-		public int todayorder(){
-			
+		public int todayorder(){		
 			return session.selectOne("todayorder");
-			
-			
 		}
-	
-=======
-		
->>>>>>> origin/chaehwi
+
+
 /*	@Override //상품 상세 정보보기(select one), 상품 즉시 구매(one)
 	public ProductDto viewDao(int item_no) {
 		return session.selectOne("viewDao", item_no);
@@ -269,19 +259,8 @@ public class AdminIDaoImpl implements AdminIDao{
 		System.out.println(rd.getReview_con());
 		System.out.println(rd.getReview_tit());
 		session.insert("addReview", rd);
-	}
-
-	//리뷰수정
-	@Override
-	public void updateReview(ReviewDto rd) {
-		session.update("updateReview", rd);
-	}
-	
-	//리뷰삭제
-	@Override
-	public void deleteReview(int item_no) {
-		session.delete("item_no", item_no);
 	}*/
-	
+
+
 	
 }

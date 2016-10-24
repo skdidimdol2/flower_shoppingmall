@@ -67,7 +67,6 @@
 					</c:otherwise>
 				</c:choose>
 				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../member/main">Wish List</a>&emsp;&emsp;
 				<a href="../member/main">My Page</a>&emsp;&emsp;
 			</div>
 			<a href="../member/main">Flower</a>
@@ -96,33 +95,43 @@
 	<div class="basket2" style="margin-left: 100;margin-bottom: 10;margin-right: 10">
 	&nbsp;&nbsp;&nbsp;&nbsp;
 		<h3><b><font color="red">구매자 정보</font></b>  </h3>
-		<table border="1" style="margin-left: 10;margin-top: 20;margin-bottom:20;margin-right: 10">
-				<tr>
-					<td style="background-color: red" align="center" >아이디</td>
-					<td style="background-color: red" align="center" >상품번호</td>
-					<td style="background-color: red" align="center" >이름</td>
-					<td style="background-color: red" align="center" >이메일</td>
-					<td style="background-color: red" align="center" >연락처</td>
-					<td style="background-color: red" align="center" >구매수량</td>
-					<td style="background-color: red" align="center" >주문금액</td>
-				</tr>
-		
 	    <form id="insert" method="POST" action="../basket/insert">
+		<table border="1" style="margin-left: 10;margin-top: 20;margin-bottom:20;margin-right: 10;">
+		
 		<c:forEach items="${mlist}" var="m">
 		<c:forEach items="${list}" var="val">
 				<tr>
+					<td style="background-color: red" align="center" width="100" >아이디</td>
 					<td align="center" ><input type="text" value="${m.id}" name="id" style="border: 0px;width:100px"></td>
+					<td style="background-color: red" align="center"  width="100">상품번호</td>
 					<td align="center" ><input type="text" value="${val.item_no}" name="item_no" style="border: 0px;width:100px"></td>
+				</tr>
+				<tr>
+					<td style="background-color: red" align="center" >이름</td>
 					<td align="center" ><input type="text" value="${m.name}" name="name" style="border: 0px;width:100px"></td>
-					<td align="center" ><input type="text" value="${m.email}" name="email" style="border: 0px"></td>	
+					<td style="background-color: red" align="center" >이메일</td>
+					<td align="center" ><input type="text" value="${m.email}" name="email" style="border: 0px"></td>
+				</tr>
+				<tr>
+					<td style="background-color: red" align="center" >연락처</td>
 					<td align="center" ><input type="text" value="${m.phone}" name="phone" style="border: 0px"></td>
+					<td style="background-color: red" align="center" >구매수량</td>
 					<td align="center" ><input type="text" value="${val.buy_vol }" name="order_vol" style="border: 0px;width:100px"></td>
-					<td align="center" ><input type="text" value="${val.price}" name="payment_price" style="border: 0px;width:100px"><td>
-					<input type="hidden" value="${val.basket_no }" name="basket_no" ></td>
-					<td><select name="type" id="type" style="height:30">
-					<option value="0">--결제방법--</option>
+				</tr>
+				<tr>
+					<td style="background-color: red" align="center" >주문금액</td>
+					<td align="center" ><input type="text" value="${val.price}" name="payment_price" style="border: 0px;width:100px"></td>
+					<td style="background-color: red"align="center">결제 방법</td>
+					<td>
+					<select name="type" id="type" style="height:30">
 					<option value="신용카드">신용카드</option>
 					<option value="휴대폰결제">휴대폰결제</option>
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<input type="hidden" value="${val.basket_no }" name="basket_no" ></td>
+					<td>
 					</td>
 			
 				</tr>

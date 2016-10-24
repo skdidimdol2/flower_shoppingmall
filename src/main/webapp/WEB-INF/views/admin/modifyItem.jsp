@@ -1,13 +1,15 @@
 <!-- admin 권한의 상품 수정 페이지-->
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -17,14 +19,14 @@
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 <script type="text/javascript">
+
 function readImg(input){
-	
-	if(input.files&&input.files[0]){
+	if(input.files&&input.files[0]){ //파일을 선택했을때 파라미터로 보내는 값;
 		var reader = new FileReader();
 		reader.onload=function(e){
-			 $("#image").attr("src", e.target.result);
-		};
-		reader.readAsDataURL(input.files[0]);
+			 $("#image").attr("src", e.target.result); //이미지 파일 표시~
+		}
+		reader.readAsDataURL(input.files[0]); //파일의 경로를 읽는다.
 	}
 }
 
@@ -36,103 +38,29 @@ function adminDelitem(a){
 		return false;	
 	}
 }
+function noChange(){
+	var v = 
+	document.getElementById('form1').submit();
+}
+
 </script>
-
-<!-- 상품 상세 정보 -->
-<style type="text/css">
-<%-- header --%> 
-	a{text-decoration:none;}
-	a:hover{text-decoration:none;}
-	a:active{text-decoration: none}
-	
-	header>div>a{
-		font-size:40px; 
-		color:#000000;
-		text-shadow:2px 2px #000000;
-		margin-left:10px;  
-	} 
-	header>div>a:hover{
-		text-decoration:none; 
-	} 
-	
-	#users{
-		float:right;
-	}
-	#users>a{
-		color:#000000;
-	}
-	#users>a:hover{
-		text-decoration:none; 
-	}
-
-</style>
-
+<%@ include file="header.jsp"%>
 <title>상품 수정</title>
-<jsp:include page="../include/style.jsp"></jsp:include>
 
 </head>
-<body>
-
-	<!--header -->
-	<header>
-		<div class="contatiner-fluid">		
-			<a href="main">관리자 페이지</a>
-			<div id="users">
-				<c:if test="${sessionScope.id!=null}">
-					${sessionScope.id}님 환영합니다&emsp;&emsp;
-				</c:if>
-				<c:choose>
-					<c:when test="${sessionScope.id==null}">
-						<a href="../member/loginForm">Login</a>&emsp;&emsp;
-					</c:when>
-					<c:otherwise>
-						<a href="../member/logout">logout</a><span></span>&emsp;&emsp;
-						<a href="../product/myorder">Order</a>&emsp;&emsp;
-					</c:otherwise>
-				</c:choose>
-				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../member/myPage">My Page</a>&emsp;&emsp;
-			</div>
-		</div>
-	</header>
-	<!-- navbar -->	
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header" id="mobileNavbar">
-				<form action="main" method="get" autocomplete="on">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target="#pcNavbar"> 
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-					</button>
-				</form>	
-			</div>
-		
-			<div class="collapse navbar-collapse" id="pcNavbar">
-				<ul class="nav navbar-nav">
-					<li><a href="../member/main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
-					<li><a href="adminMember">회원 관리</a></li>
-					<li><a href="itemMan">상품 관리</a></li>
-					<li><a href="javascript:void(0);">게시판 관리</a></li>
-					<li><a href="admin_sales?bool=0">매출 관리</a></li>
-					<li><a href="../admin/delivery">배송 관리</a></li>			
-				</ul>
-			</div>
-		</div>
-	</nav>
 <body>
 	<!-- 상품 상세 설명 -->
 	<div class="container" style="margin-top: 50;margin-left: 50">
 		<p></p>
 		<p></p>
-		<form name="form1" action="modifyOk">
+		<form name="form1" action="modifyOk" id="form1">
 			<input type="hidden" name="item_no" value="${item.item_no}">
 			<table style="width: 700; width:70%; height: 400;" border="1">
 				<tr>
 					<td rowspan="5" width="300" height="250">
-					<input type="file" id="img" name="img" onchange="readImg(this);" style="display: none; ">
-					<img id="image" src="${item.img}" style="cursor:pointer;"width=100% height=100% onclick="document.all.img.click();"/>
+					<input type="file" id="imgs" name="imgs" onchange="readImg(this);" style="display: none; "/>
+					<img id="image" src="${item.img}" style="cursor:pointer;"width=100% height=100% onclick="document.all.imgs.click();"/>
+					<input type="hidden" id="img" name="img" value="${item.img }"/>
 				</tr>
 				<tr>
 					<td colspan="2" height="50" style="background-color: red;"
@@ -163,7 +91,7 @@ function adminDelitem(a){
 			</table>
 			<p></p>
 			<input type="submit" style="display: none;">
-			<a href="#" onclick="form1.submit();">상품 수정</a>			
+			<a href="#" onclick="noChange();">상품 수정</a>			
 		</form>		
 	<a href="#" onclick="adminDelitem(${item.item_no});"><h4>상품 삭제</h4></a>
 	</div>

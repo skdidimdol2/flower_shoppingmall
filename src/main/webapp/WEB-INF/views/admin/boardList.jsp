@@ -12,7 +12,6 @@
 <title>admin Page</title>
 
 
-
 <script type="text/javascript">
 
 
@@ -99,7 +98,7 @@
 	
 	function boardDetail(type, no){
      	
-		window.open('${pageContext.request.contextPath}/admin/boardDetail?type='+type+"&"+type+"_no="+no,'', 'scrollbars=yes, resizeable=no, width=800, height=500');
+		window.open('${pageContext.request.contextPath}/admin/boardDetail?type='+type+"&"+type+"_no="+no,'', 'scrollbars=yes, resizeable=yes, width=700, height=550');
 	
 	}
 
@@ -114,7 +113,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4 class="page-head-line">게시판 관리</h4>
+					<h4 class="page-head-line">Board Page</h4>
 				</div>
 			</div>
 
@@ -123,7 +122,6 @@
 
 				<ul class="nav nav-tabs">
 					<li class="active"><a id="freeClick" onclick="free()">자유게시판</a></li>
-					 
 					<li class="active"><a id="reviewClick" onclick="review()"
 						style="background-color: #EAEAEA">리뷰게시판</a></li>
 					<li class="active"><a id="replyClick" onclick="reply()">댓글게시판</a></li>
@@ -133,9 +131,11 @@
 				<!-- 자유게시판 -->
 				<div id="freeTable" class="responsive-table" style="display: none;">
 					<form id="2">
+						<div align="right">
+							<input type="button" style="width: 15%;" class=" btn btn-default"
+								   value="삭제" onclick="del('board')"><p></p>
+						</div>
 						<div class="panel panel-default">
-							<input type="button" class=" btn btn-round btn-primary" value="삭제" onclick="del('board')"><br>
-							<br>
 							<table id="freetalbes" class="table table-hover">
 								<thead>
 									<tr>
@@ -157,16 +157,16 @@
 										<td>${f.title}</a></td>
 										<td>${f.category}</a></td>
 										<td>${f.post_date}</a></td>
-									<tr>
+									</tr>
 								</c:forEach>
-
 							</table>
-							<p></p>
-							<c:forEach var="cnt" begin="1" end="${freeCount/15+1}">
-								<button type="button" class="btn btn-primary"
-									onclick="paging(${freeCount})">${cnt}</button>
-							</c:forEach>
-						</div>
+							</div>
+							<div align="center">
+								<c:forEach var="cnt" begin="1" end="${freeCount/15+1}">
+									<button type="button" class="btn btn-default"
+										onclick="paging(${freeCount})">${cnt}</button>
+								</c:forEach>
+							</div>
 					</form>
 				</div>
 				<!-- 자유게시판 끝 -->
@@ -175,9 +175,11 @@
 				<!-- 리뷰게시판 -->
 				<div id="reviewTable" class="responsive-table">
 					<form id="1">
+						<div align="right">
+							<input type="button" style="width: 15%;" class=" btn btn-default"
+								   value="삭제" onclick="del('review')"><p></p>
+						</div>
 						<div class="panel panel-default">
-							<input type="button"  class=" btn btn-round btn-primary" value="삭제" onclick="del('review')"><br>
-							<br>
 							<table id="reviewtables" class="table table-hover">
 								<thead>
 									<tr>
@@ -199,59 +201,63 @@
 										<td>${r.review_tit}</td>
 										<td>${r.id}</td>
 										<td>${r.review_date}</td>
-									<tr>
+									</tr>
 								</c:forEach>
 							</table>
-				<p></p>
-				<c:forEach var="cnt" begin="1" end="${freeCount/15+1}">
-					<button type="button" class="btn btn-primary"
-						onclick="paging(${reviewCount})">${cnt}</button>
-				</c:forEach>
-			</div>
-			</form>
-		</div>
-		<!-- 리뷰게시판 끝 -->
+						</div>
+						<div align="center">
+							<c:forEach var="cnt" begin="1" end="${freeCount/15+1}">
+								<button type="button" class="btn btn-default"
+									onclick="paging(${reviewCount})">${cnt}</button>
+							</c:forEach>
+						</div>
+					</form>
+				</div>
+				<!-- 리뷰게시판 끝 -->
 
 
 		<!-- 댓글게시판 -->
-		<div id="replyTable" class="responsive-table" style="display: none;">
-			<form id="3">
-				<div class="panel panel-default">
-					<input type="button"  class=" btn btn-round btn-primary" value="삭제" onclick="del('reply')"><br>
-					<br>
-					<table id="replytables" class="table table-hover">
-						<thead>
-							<tr>
-								<td><input type="checkbox" id="allreplyCheck"
-									onClick="allSelectCheck('replyCheck')"></td>
-								<td>댓글번호</td>
-								<td>상품번호</td>
-								<td>댓글내용</td>
-								<td>아이디</td>
-								<td>등록일</td>
-							</tr>
-						</thead>
-						<c:forEach items="${replyList }" var="r">
-							<tr onclick="boardDetail('reply','${r.reply_no}')">
-								<td><input type="checkbox" name="replyCheck"
-									value="${r.reply_no}"></td>
-								<td>${r.reply_no}</a></td>
-								<td>${r.item_no}</a></td>
-								<td>${r.reply_con}</a></td>
-								<td>${r.id}</a></td>
-								<td>${r.reply_date}</a></td>
-							</tr>
-						</c:forEach>
-					</table>
-					<p></p>
-					<c:forEach var="cnt" begin="1" end="${replyCount/15+1}">
-						<button type="button" class="btn btn-primary"
-							onclick="paging(${replyCount})">${cnt}</button>
-					</c:forEach>
+				<div id="replyTable" class="responsive-table" style="display: none;">
+					<form id="3">
+						<div align="right">
+							<input type="button" style="width: 15%;" class=" btn btn-default"
+								   value="삭제" onclick="del('reply')"><p></p>
+						</div>
+						<div class="panel panel-default">
+							<table id="replytables" class="table table-hover">
+								<thead>
+									<tr>
+										<td><input type="checkbox" id="allreplyCheck"
+											onClick="allSelectCheck('replyCheck')"></td>
+										<td>댓글번호</td>
+										<td>상품번호</td>
+										<td>댓글내용</td>
+										<td>아이디</td>
+										<td>등록일</td>
+									</tr>
+								</thead>
+								<c:forEach items="${replyList }" var="r">
+									<tr onclick="boardDetail('reply','${r.reply_no}')">
+										<td><input type="checkbox" name="replyCheck"
+											value="${r.reply_no}"></td>
+										<td>${r.reply_no}</a></td>
+										<td>${r.item_no}</a></td>
+										<td>${r.reply_con}</a></td>
+										<td>${r.id}</a></td>
+										<td>${r.reply_date}</a></td>
+									</tr>
+								</c:forEach>
+							</table>
+						</div>
+						<div align="center">
+							<c:forEach var="cnt" begin="1" end="${replyCount/15+1}">
+								<button type="button" class="btn btn-default"
+									onclick="paging(${replyCount})">${cnt}</button>
+							</c:forEach>
+						</div>
+					</form>
 				</div>
-			</form>
-		</div>
-		<!-- 댓글게시판 끝 -->
+				<!-- 댓글게시판 끝 -->
 
 	</div>
 	</div>
