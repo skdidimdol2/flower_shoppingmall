@@ -175,7 +175,7 @@
 					<thead>
 						<tr>
 							<th>주문번호</th>
-							<th>상품명</th>
+							<th style="width:90;">상품명</th>
 							<th>금액</th>
 							<th>수량</th>
 							<th>배송</th>
@@ -186,7 +186,7 @@
 							<tr>
 								<td><b>${fn:substring(dto.order_date,2,10)}</b><br>
 								<a href="../product/myorder">${dto.order_no}</a></td>
-								<td><a href="../product/detail?item_no=${dto.item_no}"><b>${dto.item_name}</b></a><br>
+								<td style="width:90;"><a href="../product/detail?item_no=${dto.item_no}"><b>${dto.item_name}</b></a><br>
 								<img src="${dto.img }"/></td>
 								<td>${dto.payment_price}</td>
 								<td>${dto.order_vol}</td>
@@ -201,7 +201,7 @@
 				<table id="orderlist" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th>상품번호</th>
+							<th style="width:90;">상품번호</th>
 							<th>상품명</th>
 							<th>수량</th>
 						</tr>
@@ -209,7 +209,7 @@
 					<tbody>
 						<c:forEach items="${basketlist}" var="dto">
 							<tr>
-								<td>${dto.item_no}</td>
+								<td style="width:90;">${dto.item_no}</td>
 								<td>
 									<a href="../product/detail?item_no=${dto.item_no}"><b>${dto.item_name}</b></a>
 									<br>
@@ -287,7 +287,7 @@
 				      </div>
 				   </div>
 				 </div>
-				 			</div>
+			</div>
 			<div class="col-sm-4">	
 				<b>리뷰보기</b>
 				<table id="reviewlist" class="table table-striped table-bordered">
