@@ -85,7 +85,7 @@ public class ProductController {
 		System.out.println("addReview start");
 		String fileName = rd.getImgfile().getOriginalFilename();
 		System.out.println(fileName);
-		String path = "C:\\Users\\MyTreasure\\workspace\\Spring_ShoppingMall\\src\\main\\webapp\\resources\\review_img\\"
+		String path = "C:\\Users\\chaehwi\\workspace\\flower_shoppingmall\\src\\main\\webapp\\resources\\review_img\\"
 				+ fileName;
 		File f = new File(path);
 		try {

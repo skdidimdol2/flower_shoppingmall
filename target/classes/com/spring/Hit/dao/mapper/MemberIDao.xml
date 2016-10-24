@@ -11,16 +11,44 @@
 	<select id="mainDao" resultType="com.spring.Hit.dto.ProductDto">
 		select * from item_t order by item_no desc
 	</select>
+	<!-- 마이페이지 리뷰 내용보기 -->
+	<select id="reviewContent" resultType="com.spring.Hit.dto.ReviewDto">
+		select * from review_t where id = #{id} and review_no = #{review_no}
+	</select>
+	<!-- 장바구니 -->
+	
 <!-- 박종영 -->
 	<!-- 회원 가입 쿼리 -->
 	<insert id="memberJoinDao"> 
-		INSERT INTO member_t(id, password, name, birthday, email, phone, gender) 
-		VALUES(#{id},#{password},#{name},#{birthday},#{email},#{phone},#{gender}) 
+		INSERT INTO member_t(id, password, name, birthday, email, address, phone, gender) 
+		VALUES(#{id},#{password},#{name},#{birthday},#{email},#{address},#{phone},#{gender}) 
 	</insert>
+
 	<!-- ID중복확인 쿼리 -->
-	<select id="memberId" resultType="String"> 
+	<select resultType="String" id="memberId" parameterType="String"> 
 		select id from member_t where id = #{id} 
 	</select>
+
+	<!-- ID찾기 쿼리 -->
+	<select resultType="String" id="idsearch2"> 
+		select id from member_t where name = #{name} and phone = #{phone} 
+	</select>
+
+	<!-- 비밀번호 찾기 쿼리 -->
+	<select resultType="String" id="pwdsearch2"> 
+		select password from member_t where id = #{id} and name = #{name} and phone = #{phone} 
+	</select>
+
+	<!-- 비밀번호 가져오기 쿼리 -->
+	<select resultType="String" id="pwdDao"> 
+		select password from member_t where id = #{id} 
+	</select>
+
+	<!-- 비밀번호 바꾸기 -->
+	<update id="resetpwd"> 
+		update member_t set password = #{password} where id = #{id} 
+	</update>
+
 <!-- 이지원 -->	
 	<!-- 회원 체크 -->
 	<select id="checkDao" resultType="java.lang.Integer"> 
@@ -47,4 +75,5 @@
 	<select id="cartDao" resultType="com.spring.Hit.dto.BoardDto"> 
 		select * from basket_t where id=#{id} 
 	</select>
+	
 </mapper>

@@ -116,7 +116,7 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${list}" var="dto">
-						<tr onclick="boardContent(${dto.board_no});">
+						<tr onclick="boardContent(${dto.board_no});" style="cursor:pointer;">
 							<td>${dto.board_no}</td>
 							<td>${dto.name}</td>
 							<td>${dto.title}</td>

@@ -185,7 +185,7 @@
 						<c:forEach items="${orderlist}" var="dto">
 							<tr>
 								<td><b>${fn:substring(dto.order_date,2,10)}</b><br>
-								<a href="">${dto.order_no}</a></td>
+								<a href="../product/myorder">${dto.order_no}</a></td>
 								<td><a href="../product/detail?item_no=${dto.item_no}"><b>${dto.item_name}</b></a><br>
 								<img src="${dto.img }"/></td>
 								<td>${dto.payment_price}</td>
@@ -197,11 +197,11 @@
 				</table>
 			</div>
 			<div class="col-sm-4">	
-				<b>장바구니</b>
+				<b>장바구니</b>&emsp;| <a href="../basket/mybasket">이동</a>
 				<table id="orderlist" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th>주문번호</th>
+							<th>상품번호</th>
 							<th>상품명</th>
 							<th>수량</th>
 						</tr>
@@ -209,8 +209,12 @@
 					<tbody>
 						<c:forEach items="${basketlist}" var="dto">
 							<tr>
-								<td>${dto.basket_no}</td>
 								<td>${dto.item_no}</td>
+								<td>
+									<a href="../product/detail?item_no=${dto.item_no}"><b>${dto.item_name}</b></a>
+									<br>
+									<img src="${dto.img }"/>
+								</td>
 								<td>${dto.buy_vol}</td>
 							</tr>
 						</c:forEach>
@@ -289,7 +293,7 @@
 				<table id="reviewlist" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th>리뷰번호</th>
+							<th>번호</th>
 							<th>상품명</th>
 							<th>제목</th>
 							<th>작성일</th>
@@ -297,10 +301,10 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${re}" var="dto">
-							<tr>
+							<tr onclick="reviewContent(${dto.review_no});" style="cursor:pointer;">
 								<td>${dto.review_no}</td>
 								<td>${dto.item_no}</td>
-								<td>${dto.review_tit}</td>
+								<td>${fn:substring(dto.review_tit,0,8)}..</td>
 								<td>${dto.review_date}</td>
 							</tr>
 						</c:forEach>
@@ -327,6 +331,11 @@
 	function deleteMember(){
 		var password = $("#pw").val();
 		location.href="deleteDao?password="+password;
+	}
+	function reviewContent(no){
+		var option = "toolbar=no, menubar=no, location=no, directories=no, status=no, scrollbars=no,"
+			option += "resizable=no, width=500, height=500, top=100, left=300";
+			window.open("reviewContent?review_no="+no,"",option);
 	}
 </script>
 </body>

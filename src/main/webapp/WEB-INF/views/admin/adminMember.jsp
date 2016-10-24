@@ -65,7 +65,6 @@
                 </div>
             </div>
           
-	<div class="content">
 		<form action="adminSearchMember" method="get">
 			<div>
 				<span id="searchForm">
