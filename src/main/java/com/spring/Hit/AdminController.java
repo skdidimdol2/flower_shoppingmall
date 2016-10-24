@@ -86,8 +86,8 @@ public class AdminController {
 		pdt.setCategory(req.getParameter("category"));
 		pdt.setPrice(Integer.parseInt(req.getParameter("price")));
 		pdt.setVolume(Integer.parseInt(req.getParameter("volume")));
-		pdt.setImg("../resources/image/" + req.getParameter("img"));
 		pdt.setItem_content(req.getParameter("item_content"));
+		pdt.setImg("../resources/image/"+req.getParameter("img"));
 		dao.adminInsitem(pdt);
 		return "redirect:itemMan";
 	}
@@ -99,13 +99,15 @@ public class AdminController {
 		model.addAttribute("item", dao.adminOneitem(item_no));
 		return "/admin/modifyItem";
 	}
-
+	//상품 수정
 	@RequestMapping(value = "/modifyOk")
 	public String modifyItem(HttpServletRequest req, ProductDto pdt) {
 		pdt.setItem_name(req.getParameter("item_name"));
 		pdt.setPrice(Integer.parseInt(req.getParameter("price")));
 		pdt.setVolume(Integer.parseInt(req.getParameter("volume")));
-		pdt.setImg("../resources/image/" + req.getParameter("img"));
+		//pdt.setImg("../resources/image/" + req.getParameter("img"));
+		pdt.setImg(req.getParameter("img"));
+		System.out.println(req.getParameter("img"));
 		pdt.setItem_content(req.getParameter("item_content"));
 		pdt.setItem_no(Integer.parseInt(req.getParameter("item_no")));
 		dao.adminModitem(pdt);

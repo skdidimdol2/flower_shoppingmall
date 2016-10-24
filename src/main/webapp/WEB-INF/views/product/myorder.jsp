@@ -72,7 +72,6 @@
 					</c:otherwise>
 				</c:choose>
 				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../member/main">Wish List</a>&emsp;&emsp;
 				<a href="../member/main">My Page</a>&emsp;&emsp;
 			</div>
 			<a href="../member/main">Flower</a>

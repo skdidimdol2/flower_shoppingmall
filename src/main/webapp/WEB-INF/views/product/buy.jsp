@@ -82,14 +82,13 @@ function listmul(a){
 					</c:otherwise>
 				</c:choose>
 				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../member/main">Wish List</a>&emsp;&emsp;
 				<a href="../member/main">My Page</a>&emsp;&emsp;
 			</div>
 			<a href="../member/main">Flower</a>
 		</div>
 	</header>
-<div class="basket1" style="margin-bottom: 50;margin-right: 10">
-	<div class="basket2" style="margin-left: 100;margin-bottom: 10;margin-right: 10">
+<div class="basket1" style="margin-right: 10">
+	<div class="basket2" style="margin-left: 100;margin-right: 10">
 	&nbsp;&nbsp;&nbsp;&nbsp;
 		<h3><b><font color="red">주문서</font></b>  >  결제완료</h3>
 		<div class="buy3">
@@ -109,7 +108,7 @@ function listmul(a){
 	</div>
 </div>
 
-<div class="basket1" style="margin-bottom: 50;margin-right: 10">
+<div class="basket1" style="margin-bottom: 40;margin-right: 10">
 	<div class="basket2" style="margin-left: 100;margin-bottom: 10;margin-right: 10">
 	&nbsp;&nbsp;&nbsp;&nbsp;
 		<h3>  <b><font color="red">구매자 정보</font></b> </h3>

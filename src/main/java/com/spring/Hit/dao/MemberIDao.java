@@ -1,7 +1,9 @@
 package com.spring.Hit.dao;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
@@ -33,8 +35,6 @@ public interface MemberIDao {
 	public String pwdDao(String id) throws Exception;
 	//비밀번호 바꾸기
 	public void resetpwd(MemberDto dto);
-
-
 /*
  * 	작성자 : 이지원
  * 	수정일 : 2016.10.3

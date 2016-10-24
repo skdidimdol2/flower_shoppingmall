@@ -203,11 +203,8 @@ public class AdminIDaoImpl implements AdminIDao{
 
 		// Admin Main 오늘 주문 현황
 		@Override
-		public int todayorder(){
-			
+		public int todayorder(){		
 			return session.selectOne("todayorder");
-			
-			
 		}
 
 	

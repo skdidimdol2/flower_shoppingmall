@@ -125,7 +125,6 @@
 					</c:otherwise>
 				</c:choose>
 				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="wishList">Wish List</a>&emsp;&emsp;
 				<a href="myPage">My Page</a>&emsp;&emsp;
 			</div>		
 			<a href="main">Flower</a>
