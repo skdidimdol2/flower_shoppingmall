@@ -125,7 +125,6 @@ footer --%> #footer {
 					</c:otherwise>
 				</c:choose>
 				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../member/wishList">Wish List</a>&emsp;&emsp;
 				<a href="../member/myPage">My Page</a>&emsp;&emsp;
 			</div>
 			<a href="../member/main">Flower</a>

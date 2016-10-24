@@ -3,6 +3,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE>
 <html>
+
+<!-- 도해추가 -->
+<%@include file="top.jsp"%>
+<script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script type="text/javascript"
+		src="../resources/js/jquery.eislideshow.js"></script>
+<script type="text/javascript"
+		src="../resources/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript">
+
+$(function() {
+	$('#ei-slider').eislideshow({
+		animation : 'center',
+		autoplay : true,
+		slideshow_interval : 2000,
+		titlesFactor : 0
+	});
+});
+</script>
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,15 +33,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+
+
 <jsp:include page="../include/style.jsp"></jsp:include>
 
 <title>Flower</title> 
 </head>
 <body>
 
-<!--header -->
-	<header>
+<%-- 	<header>
 		<div class="contatiner-fluid">
 			<div id="users">
 				<c:if test="${sessionScope.id!=null}">
@@ -38,13 +59,14 @@
 					</c:otherwise>
 				</c:choose>
 				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="order">Order</a>&emsp;&emsp;
+				<a href="../product/myorder">Order</a>&emsp;&emsp;
 				<a href="myPage">My Page</a>&emsp;&emsp;
 			</div>		
 			<a href="main">Flower</a>
 		</div>
-	</header>
-<!-- navbar -->	
+	</header> --%>
+	
+<!--	
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header" id="mobileNavbar">
@@ -73,16 +95,16 @@
 					<li><a href="../product/list?category=서양란">서양란</a></li>
 					<li><a href="../product/list?category=축하화환">축하화환</a></li>
 					<li><a href="../product/list?category=근조화환">근조화환</a></li>
+
 					<li><a href="../board/boardList">게시판</a></li>
 					
-					
-					
+
 				</ul>
 				<input type="text" style="width:170px;margin-bottom:10px;margin-left:3px;" placeholder=" 검색어 입력">
 				<a href="#"><span class="glyphicon glyphicon-search" style="color:#ffffff"></span></a>
 			</div>
 		</div>
-	</nav>
+	</nav> -->
 		
 <!-- mainpage photo roll -->	
 	<div id="mainCarousel" class="carousel slide">
@@ -123,7 +145,7 @@
 			<div class="col-sm-4">
 				<div onclick="Moving();">
 					<a href="../product/detail?item_no=8"><img alt="flower" src="../resources/image/flower8.jpg" style="width: 100%;height:30%" class="img-responsive"></a>
-					<div>카네이션꽃바구니</div>
+					<div>장미꽃바구니</div>
 					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
 					<span><b>20,000원</b></span>
 					<p></p>
@@ -132,7 +154,7 @@
 			<div class="col-sm-4">
 				<div onclick="Moving();">
 					<a href="../product/detail?item_no=10"><img alt="flower" src="../resources/image/flower10.jpg" style="width:100%;height:30%" class="img-responsive"></a>
-					<div>누군가에게</div>
+					<div>너만을 사랑해</div>
 					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
 					<span><b>5,000원</b></span>
 					<p></p>
@@ -141,9 +163,9 @@
 			<div class="col-sm-4">
 				<div onclick="Moving();">
 					<a href="../product/detail?item_no=11"><img alt="flower" src="../resources/image/flower11.jpg" style="width:100%;height:30%" class="img-responsive"></a>
-					<div>너만을 사랑해 </div>
+					<div>축하해요</div>
 					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
-					<span><b>10,000원</b></span>
+					<span><b>5,000원</b></span>
 					<p></p>
 				</div>
 			</div>
@@ -156,7 +178,7 @@
 			<div class="col-sm-4">
 				<div onclick="Moving();">
 					<a href="../product/detail?item_no=22"><img alt="flower" src="../resources/image/flower22.jpg" style="width:100%;height:30%" class="img-responsive"></a>
-					<div>축하수국3단</div>
+					<div>선물화환1단</div>
 					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
 					<span><b>200,000원</b></span>
 					<p></p>
@@ -165,7 +187,7 @@
 			<div class="col-sm-4">
 				<div onclick="Moving();">
 					<a href="../product/detail?item_no=18"><img alt="flower" src="../resources/image/flower18.jpg" style="width:100%;height:30%" class="img-responsive"></a>
-					<div>만천홍</div>
+					<div>연핑크호접</div>
 					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
 					<span><b>120,000원</b></span>
 					<p></p>
@@ -174,7 +196,7 @@
 			<div class="col-sm-4">
 				<div onclick="Moving();">
 					<a href="../product/detail?item_no=27"><img alt="flower" src="../resources/image/flower27.jpg" style="width:100%;height:30%" class="img-responsive"></a>
-					<div>고급화환3단</div>
+					<div>고급조화2단</div>
 					<span style="font-size:15;color:red"><b>&nbsp;가격</b></span>
 					<span><b>230,000원</b></span>
 					<p></p>

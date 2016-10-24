@@ -24,7 +24,7 @@
 			<if test="category == '서양란'">
 				where category = '서양란'
 			</if>
-			<if test="category == '축히화환'">
+			<if test="category == '축하화환'">
 				where category = '축하화환'
 			</if>
 			<if test="category == '근조화환'">

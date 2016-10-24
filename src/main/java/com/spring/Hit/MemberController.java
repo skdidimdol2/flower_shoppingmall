@@ -76,7 +76,6 @@ public class MemberController {
 		map.put("b", a); //b를 ajax의 success : function(result)에서 if(result.b <-요기로 불러줌) 
 		System.out.println((new Gson()).toJson(map));
 		return (new Gson()).toJson(map);
-//		return "/member/member_join";
 	}
 	
 	//ID찾기 페이지
@@ -220,7 +219,7 @@ public class MemberController {
    }
 	
    @RequestMapping("/login")
-   public String login(Model model, HttpServletRequest req, HttpSession sess) {
+   public String login(Model model, HttpServletRequest req, HttpSession sess){
 	   model.addAttribute("req", req);
 	   return dao.loginDao(model, sess);
    }

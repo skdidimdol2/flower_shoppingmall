@@ -90,6 +90,7 @@ body .container {
   width: 700px;
   height: 850px;
   margin: 80px auto 0;
+  margin-bottom: 100px;
   background-color: #ffffff;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
@@ -462,53 +463,44 @@ body .container .content .signup-cont {
        					        </form>
     				        </div>
     				        <div class="signup-cont cont">
-					<form action="member_join" method="post">
+
+								<form action="member_join" method="post">
+
 						<input type="text" name="id" id="join_id" class="inpt" required="required" value="${requestScope.id}" placeholder="ID를 입력해주세요 (30자이내)" onblur="idlength();" maxlength="30">
 						<div id="idmsg"></div>
 						<input type="password" name="password" id="password1" class="inpt" required="required" placeholder="비밀번호를 입력해주세요 (6~30자 내)" onblur="pwdlength();" maxlength="30"> 
 						<input type="password" name="password2" id="password2" class="inpt" required="required" placeholder="비밀번호를 다시 한번 입력해주세요" onblur="passwordchk();" maxlength="30">
 						<input type="text" name="name" id="name" class="inpt" required="required" placeholder="이름"> 
-						<input type="date" name="birthday" id="birthday" class="inpt">
+						<input type="date" name="birthday" id="birthday" required="required" class="inpt">
 						<input type="email" name="email" id="email" class="inpt" required="required" placeholder="이메일">
 						<input type="button" id="addressBtn" class="inpt" onclick="addressSearch();" value="주소검색"/>
-						<input type="text" name="address" id="address" class="inpt" placeholder="주소를 입력해주세요">
-						<input type="text" name="phone" class="inpt" placeholder="휴대폰번호를 '-'없이 입력해주세요" maxlength="11">
-						<input type="radio" name="gender" id="gender1" value="남">
-						남자&emsp;
-						<input type="radio" name="gender" id="gender2" value="여">
-						여자
+						<input type="text" name="address" id="address" class="inpt" required="required" placeholder="주소를 입력해주세요">
+						<input type="text" name="phone" id="phone" class="inpt" placeholder="휴대폰번호를 '-'없이 입력해주세요" required="required" maxlength="11">
+						<input type="radio" name="gender" id="gender" value="남" checked="checked">남자&emsp;
+						<input type="radio" name="gender" id="gender" value="여">여자
+					
+
 						<p></p>
 						<div class="submit-wrap">
 							<input type="submit" value="회원가입" class="submit" onclick="formchk();">
 							<a href="#" class="more">Terms and conditions</a>
 						</div>
 					</form>
+
 				</div>
 			</div>
+
 		    </article>
 		    <div class="half bg"></div>
 	</section>
 
 
 
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript">
 	
-		/* function pwdlength() {
-			if($("#password1").val().length < 6){
-				 alert("비밀번호는 최소 6자리 이상 입력해주세요");
-				 $("#password1").val("");
-				 $("#password1").focus();
-			}
-		} */
-		/* function passwordchk(){
-			 if($("#password1").val()!=$("#password2").val()){
-				$("#password1").val("");
-				$("#password2").val("");
-				alert("비밀번호가 다릅니다");
-				$("#password1").focus();
-			} 
-		}*/
+	
 		function idlength(){
 			
 			 if($("#join_id").val()==""){
@@ -565,6 +557,7 @@ body .container .content .signup-cont {
 			var email = document.getElementById("email");
 			var address = document.getElementById("address");
 			var phone = document.getElementById("phone");
+			var gender = document.getElementById("gender");
 			
 			if(join_id.value =="" || join_id.value == null ){
 				alert("아이디를 입력해주세요");
@@ -594,6 +587,10 @@ body .container .content .signup-cont {
 			}else if(phone.value =="" || phone.value == null || phone.value == "-" ){
 				alert("휴대전화번호를 입력해주세요");
 				$("#phone").focus();
+				return false;
+			}else if(gender.value =="" || gender.value==null){
+				alert("성별을 선택해주세요");
+				$("#gender").focus();
 				return false;
 			}else{
 				alert("회원가입이 완료 되써요!!!!!");

@@ -28,7 +28,8 @@
    .navbar {
        margin-bottom: 0;
        border-radius: 0;
-       background-color: #ff5555;
+       background-color: #ffffff;
+       border-color:#ffffff;
     }
     .navbar-header{
        width:100%
@@ -40,24 +41,25 @@
        color: #ff5555; 
     }
     .navbar-default .navbar-toggle .icon-bar{
-       background-color:#ff5555;
+       background-color:#222222;
        padding-top:4px; 
     } 
     #mobileNavbar>form>input{
        background-color: #ffffff; 
-    }
-    
+    }    
     .nav{
        margin-top:-10px;
     }
     #pcNavbar>ul>li>a{
        color: #ffffff;
+       
     }
     #pcNavbar>ul>li>a:hover{
        background-color:#ffffff;
        color:#ff5555;
        font-size:17px; 
     }
+    
 <%-- carousel --%>
    .carousel-inner > .item > img,
      .carousel-inner > .item > a > img {
@@ -69,7 +71,7 @@
    h3{
       width:100%
    }
-   
+
    .container>.row>.col-sm-4>div{
       border:1px solid;
       border-color:#dddddd;
