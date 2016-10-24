@@ -52,45 +52,11 @@ function searchitem(a,b){
 <!-- 상품 리스트들에 대한 목록 표시 -->
 <jsp:include page="../include/style.jsp"></jsp:include>
 
-<title>Flower</title>    
-
-<<<<<<< HEAD
-=======
-<%-- <%-- header 
-	a{text-decoration:none;}
-	a:hover{text-decoration:none;}
-	a:active{text-decoration: none}
-	
-	header>div>a{
-		font-size:40px; 
-		color:#000000;
-		text-shadow:2px 2px #000000;
-		margin-left:10px;  
-	} 
-	header>div>a:hover{
-		text-decoration:none; 
-	} 
-	
-	#users{
-		float:right;
-	}
-	#users>a{
-		color:#000000;
-	}
-	#users>a:hover{
-		text-decoration:none; 
-	}
-	footer
-	#footer {
-		background-color:#ddddff;  
-	} 
-</style>--%>
->>>>>>> origin/donggun
+<title>Flower</title>
 
 </head>
 <body>
 
-<<<<<<< HEAD
 <section class="listings">
 		<div class="wrapper">
 			<ul class="properties_list">
@@ -108,136 +74,10 @@ function searchitem(a,b){
 			</ul>
 			<div class="more_listing">
 				<a href="#"  class="more_listing_btn">위로 가기</a>
-=======
-<!--header -->
-	<header>
-		<div class="contatiner-fluid">
-			<div id="users">
-				<c:if test="${sessionScope.id!=null}">
-					${sessionScope.id}님 환영합니다&emsp;&emsp;
-				</c:if>
-				<c:choose>
-					<c:when test="${sessionScope.id==null}">
-						<a href="../member/loginForm">Login</a>&emsp;&emsp;
-					</c:when>
-					<c:otherwise>
-						<a href="../member/logout">logout</a><span></span>&emsp;&emsp;
-						<a href="../product/myorder">Order</a>&emsp;&emsp;
-					</c:otherwise>
-				</c:choose>
-				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../member/myPage">My Page</a>&emsp;&emsp;
->>>>>>> origin/donggun
 			</div>
 		</div>
-<<<<<<< HEAD
 	</section>
-
-
-=======
-	</header>
-	<!-- navbar -->	
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header" id="mobileNavbar">
-				<form action="main" method="get" autocomplete="on">
-					<input type="submit" class="navbar-toggle" value="검색"/>
-					<input type="text" name="item_name" class="navbar-toggle" style="width:150px;" placeholder="검색어 입력"/>
-					
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target="#pcNavbar"> 
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-					</button>
-				</form>	
-			</div>
-		
-			<div class="collapse navbar-collapse" id="pcNavbar">
-				
-				
-				<ul class="nav navbar-nav">
-					<li><a href="main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
-					<li><a href="../product/list?category=꽃바구니">꽃바구니</a></li>
-					<li><a href="../product/list?category=꽃다발">꽃다발</a></li>
-					<li><a href="../product/list?category=꽃상자">꽃상자</a></li>
-					<li><a href="../product/list?category=동양란">동양란</a></li>
-					<li><a href="../product/list?category=서양란">서양란</a></li>
-					<li><a href="../product/list?category=축하화환">축하화환</a></li>
-					<li><a href="../product/list?category=근조화환">근조화환</a></li>
-					<li><a href="../board/boardList">자유게시판</a></li>
-			
-				</ul>
-				<input type="text" style="width:170px;margin-bottom:10px;margin-left:3px;" placeholder=" 검색어 입력">
-				<a href="#"><span class="glyphicon glyphicon-search" style="color:#ffffff"></span></a>
-			</div>
-		</div>
-	</nav>
->>>>>>> origin/donggun
-<!-- board -->
-	.<%--   <a href="detail?item_no=${pdt.item_no}"> <img
-                              src="${pdt.img}" width="300" height="300"></a>
-<<<<<<< HEAD
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>
-                           ${pdt.item_name}
-                           <br>
-                           </td>
-                        </tr>
-                        <tr>
-                        <td>
-                           ${pdt.price}원
-                           <br>
-                           </td>
-                        </tr>
-                        <tr>
-                        <td>
-                           적립금 : ${pdt.price*0.05}원
-                           <br>
-                           </td>
-=======
-                        </tr>
-                        <tr>
-                        </tr>
-                        <tr>
-                     ${pdt.item_name}
-                     <br>
-                        </tr>
-                        <tr>
-                      ${pdt.price}원
-                      <br>
-                        </tr>
-                        <tr>
-                     적립금 : ${pdt.price*0.05}원
- 						<br>
->>>>>>> origin/donggun
-                        </tr>
-                    
-                     </table>
-                  
-                  <c:if test="${i%j == j-1 }">
-                     </tr>
-                  </c:if>
-                  <c:set var="i" value="${i+1 }" />
-               </c:forEach>
-            </table>
-            <p></p>
-			</div>
-			&nbsp;&nbsp;&nbsp;
-		</div>
-	</div>	
-<input type="button" class="btn back" value="돌아가기"/>
-<!-- <input type="button" class="btn " value=""/> -->
-
-<script>
-		$(document).ready(function(){
-			$(".back").on("click", function(){
-				window.location.href="../member/main";
-			});
-		});
-</script> --%>
+	<!--  end listing section  -->
 
 </body>
 </html>
