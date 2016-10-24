@@ -153,6 +153,7 @@ function b(){
 
 <%-- toggle --%>
 $(document).ready(function(){
+	$('.delivery').addClass('menu-top-active');
 	$('#datatable').DataTable();
 });
 

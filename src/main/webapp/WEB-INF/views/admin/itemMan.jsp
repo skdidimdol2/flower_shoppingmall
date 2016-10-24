@@ -66,5 +66,11 @@
 				</div>
 			</div>
 		</div>
+		<script>
+		$(document).ready(function(){
+			$('.item').addClass('menu-top-active');
+			
+		});
+		</script>
 </body>
 </html>

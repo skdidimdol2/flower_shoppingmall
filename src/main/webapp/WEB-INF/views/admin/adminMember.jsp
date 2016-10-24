@@ -194,6 +194,7 @@
 	}
 	<%-- toggle --%>
 	$(document).ready(function(){
+		$('.member').addClass('menu-top-active');
 		$('#datatables').DataTable();
 	});
 

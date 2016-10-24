@@ -8,6 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- header -->
 <%@include file="header.jsp" %>
+<style>
+.main{
+	menu-top-active
+}
+</style>
 <!-- header end -->
 </head>
 <body>
@@ -118,7 +123,11 @@
    </div>
    </div>
    </div>
-   
+   <script>
+   		$(document).ready(function(){
+   			$('.main').addClass('menu-top-active');
+   		});
+   </script>
    <!-- content end -->
 
 

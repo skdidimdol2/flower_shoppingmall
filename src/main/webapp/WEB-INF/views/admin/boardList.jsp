@@ -7,7 +7,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@include file="header.jsp"%>
-
+<style>
+.board{
+	menu-top-active
+}
+</style>
 
 <title>admin Page</title>
 
@@ -269,9 +273,11 @@
 <script>
 <%-- toggle --%>
 	$(document).ready(function(){
+		$('.board').addClass('menu-top-active');
 		$('#reviewtables').DataTable();
 		//$(".glyphicon-resize-vertical").hide();
 	});
+
 </script>
 <!-- hooter -->
 <%@include file="hooter.jsp"%>

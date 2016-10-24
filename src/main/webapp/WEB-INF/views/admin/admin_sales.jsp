@@ -45,6 +45,7 @@
 	  ,['${list[10].month}월', ${list[10].payment_price_sum}], ['${list[11].month}월', ${list[11].payment_price_sum}]];
 	
 	$(function(){
+		$('.sales').addClass('menu-top-active');
 		$.jqplot('chart1', [line], 
 		{
 			title: '매출 현황 그래프',
