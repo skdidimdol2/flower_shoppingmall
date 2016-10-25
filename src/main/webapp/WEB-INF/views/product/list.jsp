@@ -58,6 +58,7 @@ function searchitem(a,b){
 <body>
 
 <section class="listings">
+
       <div class="wrapper">
          <ul class="properties_list">
             <c:forEach items="${list}" var="pdt">
@@ -78,6 +79,7 @@ function searchitem(a,b){
       </div>
    </section>
    <!--  end listing section  -->
+
 
 </body>
 </html>
