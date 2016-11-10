@@ -9,10 +9,6 @@
 <!DOCTYPE>
 <html>
 
-<!-- 도해추가 -->
-
-<script type="text/javascript"
-      src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script type="text/javascript"
       src="../resources/js/jquery.eislideshow.js"></script>
 <script type="text/javascript"
@@ -73,6 +69,7 @@ function searchitem(a,b){
                   </div></li>
             </c:forEach>
          </ul>
+         <!-- 맨위로 가기 버튼 -->
          <div class="more_listing">
             <a href="#"  class="more_listing_btn">위로 가기</a>
          </div>

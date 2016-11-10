@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE>
 <html>
+<!-- top.jsp에 top부분 내용 기술. -->
+<%@include file="../member/top.jsp"%>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,30 +16,7 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Flower</title>
 <style>
-<%-- header --%> 
-	a{text-decoration:none;}
-	a:hover{text-decoration:none;}
-	a:active{text-decoration: none}
-	
-	header>div>a{
-		font-size:40px; 
-		color:#000000;
-		text-shadow:2px 2px #000000;
-		margin-left:10px;  
-	}
-	header>div>a:hover{
-		text-decoration:none; 
-	} 
-	
-	#users{
-		float:right;
-	}
-	#users>a{
-		color:#000000;
-	}
-	#users>a:hover{
-		text-decoration:none; 
-	}
+
 <%-- board --%>
 
 	#left_nav{
@@ -46,12 +25,14 @@
 		
 	}	
 	#board_list{
-		position:absolute;
-		left:200px;
-		width:900px;
-		margin-bottom:50;
+		align:center;
+		margin-left:20px;
+		margin-right:20px;
+		width:100%;
+		max-width:900px;
 	}
 	#writeFormBtn{
+		margin-top:50px;
 		float:right;
 		
 	}
@@ -59,32 +40,6 @@
 
 </head>
 <body>
-
-<!--header -->
-	<header>
-		<div class="contatiner-fluid">
-			<div id="users">
-				<c:if test="${sessionScope.id!=null}">
-					<b>${sessionScope.name}</b>님 환영합니다&emsp;&emsp;
-				</c:if>
-				<c:if test="${sessionScope.id.equals('admin123')==true}">
-					<a href="../admin/main" style="color:blue">관리자페이지로 이동</a>&emsp;&emsp;
-				</c:if>
-				<c:choose>
-					<c:when test="${sessionScope.id==null}">
-						<a href="../member/loginForm">Login</a>&emsp;&emsp;
-					</c:when>
-					<c:otherwise>
-						<a href="../member/logout">logout</a><span></span>&emsp;&emsp;
-						<a href="../product/myorder">Order</a>&emsp;&emsp;
-					</c:otherwise>
-				</c:choose>
-				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../member/myPage">My Page</a>&emsp;&emsp;
-			</div>
-			<a href="../member/main">Flower</a>
-		</div>
-	</header>
 
 <!-- board -->
 
@@ -104,7 +59,7 @@
 			<p></p>
 			<table style="width:100%;" class="text-center table table-striped">
 				<thead>
-					<tr style="background-color:ff5555">
+					<tr style="background-color:8888c8">
 						<td>글번호</td>
 						<td>이름</td>
 						<td>제목</td>
@@ -137,6 +92,9 @@
 		</form>
 	</div>
 <script>
+	$(document).ready(function(){
+		$()
+	});
 	function writeForm(){
 		if(${sessionScope.id == null}){
 			alert("로그인 후 이용해 주세요.");

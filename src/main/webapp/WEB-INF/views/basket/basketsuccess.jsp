@@ -1,11 +1,11 @@
 <!-- 장바구니에 보관을 완료하였을 때 페이지 실행 -->
 <!-- 장바구니에 담긴 창이 열리도록 구현 (중복 방지) -->
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset=utf-8>
 <title>장바구니 담기</title>
 </head>
 <body>

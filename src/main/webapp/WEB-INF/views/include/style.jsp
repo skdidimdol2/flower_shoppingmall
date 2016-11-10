@@ -77,6 +77,7 @@
       border-color:#dddddd;
       font-family:고딕
    }
+   <%-- 상품이름 --%>
    .container>.row>.col-sm-4>div>div{
       margin-left:7px;margin-top:7px;
    }

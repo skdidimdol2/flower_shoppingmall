@@ -71,7 +71,7 @@ public class ZipcodeController{
         queryUrl.append(searchDto.getCountPerPage());
         Document document = Jsoup.connect(queryUrl.toString()).get();	
         //Jsoup이란 html 문서를 읽어들인 후에 그 문서를 dom객체로 변환함.
-        //jsoup의 selector api를 이용해서 특정 element에 접근을 할 수 있고, 해당 element의 정보를 읽거나 수정할 수 있음
+        //jsoup의 select api를 이용해서 특정 element에 접근을 할 수 있고, 해당 element의 정보를 읽거나 수정할 수 있음
         //*우체국 api 반환 메시지가 xml 형식이므로 각 element에 접근해서 값을 불러올 수 있다.
          
         String errorCode = document.select("error_code").text();	//에러코드 검색

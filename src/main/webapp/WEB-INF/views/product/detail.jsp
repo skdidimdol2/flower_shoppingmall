@@ -1,10 +1,11 @@
 <!-- 상품 상세 정보 보기 -->
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE>
 <html>
+<%@include file="../member/top.jsp"%>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,8 +59,8 @@ function totalPrice(a,b){
 
 <title>상품 상세 정보</title>
 <style>
-<%--
-header --%> a {
+<%-- header --%> 
+a {
 	text-decoration: none;
 }
 
@@ -94,8 +95,15 @@ header>div>a:hover {
 	text-decoration: none;
 }
 
-<%--
-footer --%> #footer {
+<%--container--%>
+	.container{
+		width:100%;
+		background-color:#f8f8f8;
+	}
+
+<%-- footer --%> 
+
+#footer {
 	background-color: #ddddff;
 }
 
@@ -107,77 +115,27 @@ footer --%> #footer {
 
 </head>
 <body>
-
-	<!--header -->
-	<header>
-		<div class="contatiner-fluid">
-			<div id="users">
-				<c:if test="${sessionScope.id!=null}">
-					${sessionScope.id}님 환영합니다&emsp;&emsp;
-				</c:if>
-				<c:choose>
-					<c:when test="${sessionScope.id==null}">
-						<a href="../member/loginForm">Login</a>&emsp;&emsp;
-					</c:when>
-					<c:otherwise>
-						<a href="../member/logout">logout</a><span></span>&emsp;&emsp;
-						<a href="../product/myorder">Order</a>&emsp;&emsp;
-					</c:otherwise>
-				</c:choose>
-				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../member/myPage">My Page</a>&emsp;&emsp;
-			</div>
-			<a href="../member/main">Flower</a>
-		</div>
-	</header>
-<body>
 	<!-- 상품 상세 설명 -->
 	<div class="container">
 		<p></p>
 		<p></p>
 
-		<%-- <b style="color:white; background-color: black;font-size: 20px;margin-left: 250;font-style:inherit;">${list.item_name }</b><br><br><br>
-			<table style="width: 700;height: 350" border="1" >
-				<tr>
-					<td rowspan="4" width="300" height="250"><img src="${list.img}" width=100% height=100%></td>
-					<td style="background-color:red" align="center" valign="middle" width="100"><b style="font-size: 13">상품 번호</b></td>
-					<td align="center" valign="middle"><font size='3'>${list.item_no }</font></td>
-				</tr>
-				<tr>
-					<td style="background-color:red" align="center" valign="middle" width="100"><b style="font-size: 13">가격</b></td>
-					<td align="center" valign="middle"><font size='3'>${list.price }</font></td>
-				</tr>
-				<tr>
-					<td style="background-color:red" align="center" valign="middle" width="100"><b style="font-size: 13">남은 수량</b></td>
-					<td align="center" valign="middle"><font size='3'>${list.volume }</font></td>
-				</tr>
-				<tr>
-					<td style="background-color:red" align="center" valign="middle" width="100"><b style="font-size: 13">상세설명</b></td>
-					<td>${list.item_content }</td>
-				</tr>
-			</table> --%>
 		<form name="form1">
-			<table style="width: 700; height: 350" border="1">
+			<table style="max-width:700; height: 350; background-color:#fff">
 				<tr>
 					<td rowspan="5" width="300" height="300"><img
 						src="${list.img}" width=100% height=100%></td>
-					<td colspan="2" height="50" style="background-color: red;"
+					<td colspan="2" height="50"
 						align="center" valign="middle" width="100"><b
-						style="font-size: 13">상품명 : ${list.item_name }</b></td>
+						style="font-size: 28">${list.item_name }</b></td>
 				</tr>
 				<tr>
 					<td width="20%" height="50" align="center"><a
 						href="javascript:void(0);" onclick="basketinst(${list.item_no});">장바구니</a>
 					</td>
 					<td width="20%" height="50" align="center"><a
-						href="javascript:void(0);" onclick="buyitem(${list.item_no});">바로
-							구매</a></td>
-				</tr>
-				<tr>
-					<td width="20%" height="50" align="center"><a
-						href="../product/list?category=?">Q&A</a></td>
-					<td width="20%" height="50" align="center"><a
-						href="../product/list?category=?">Review</a></td>
+						href="javascript:void(0);" onclick="buyitem(${list.item_no});">바로구매</a>
+					</td>
 				</tr>
 				<tr>
 					<td width="20%" height="50" align="center"><select
@@ -199,10 +157,6 @@ footer --%> #footer {
 						${list.volume}</td>
 				</tr>
 				<tr>
-					<td colspan="2" width="20%" height="50" align="center"><a
-						href="../member/main">쇼핑계속하기(뒤로가기)</a></td>
-				</tr>
-				<tr>
 					<td colspan="3" style="background-color: orange;;" valign="middle"
 						width="100" align="center" height="40"><b
 						style="font-size: 13"></b> 상품 가격 : ${list.price}원
@@ -210,43 +164,17 @@ footer --%> #footer {
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 총 결제 금액 : <input type="text"
 						name="total"> <br></td>
 				</tr>
-				<tr>
-					<td colspan="3" style="background-color: orange;;" valign="middle"
-						width="100" align="center" height="80"><b
-						style="font-size: 13"></b>[상품 설명] <br> ${list.item_content}
-					</td>
-				</tr>
 			</table>
 		</form>
-
-		<%-- 		
-	</div>
-	<div class="first">
-		<div class="two" style="margin-left: 100;margin-top: 30">
-		<form name="form1">
-		수량 : <select id="buy_vol" name="buy_vol" onchange="totalPrice(${list.price },this.form);">
-				<option value="0">수량 선택</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-				<option value="10">10</option>
-			</select>&nbsp;&nbsp; | &nbsp;&nbsp;최대 수량 : 10개
-			&nbsp;&nbsp;&nbsp;&nbsp;
-		<!-- 장바구니와 구매 버튼을 클릭한 후, 확인을 누르면 파라미터값으로 item_no(상품번호)와 buy_vol(구매수량)값이 전송 -->
-		 	<input type="button" id="bt1" value="장바구니" style="font-size: 15;" onclick="basketinst(${list.item_no});">
-		 	&nbsp;&nbsp;&nbsp;&nbsp;
-		 	<input type="button" id="bt2" value="구매" style="font-size: 15" onclick="buyitem(${list.item_no});">
-		 	&nbsp;&nbsp;&nbsp;&nbsp;총 결제 금액 : <input type="text" name="total">
-		 	</form>
+		
+		<div style="max-width:700;background-color:#fff;">
+			<h4>상품 정보</h4>
+			<p></p>
+			${list.item_content}
 		</div>
-	<br><br>
-	</div> --%>
+		<p></p>	
+	</div>
+	<p></p>
 
 		<input type="button" onclick="writeReview('${list.item_no}')"
 			value="리뷰등록">

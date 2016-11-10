@@ -4,10 +4,8 @@
 <!DOCTYPE>
 <html>
 
-<!-- 도해추가 -->
+<!-- top.jsp에 top부분 내용 기술. -->
 <%@include file="top.jsp"%>
-<script type="text/javascript"
-		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script type="text/javascript"
 		src="../resources/js/jquery.eislideshow.js"></script>
 <script type="text/javascript"
@@ -34,60 +32,33 @@ $(function() {
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+<!-- style 추가 -->
 <jsp:include page="../include/style.jsp"></jsp:include>
 
 <title>Flower</title> 
 </head>
 <body>
-
-<%-- 	<header>
-		<div class="contatiner-fluid">
-			<div id="users">
-				<c:if test="${sessionScope.id!=null}">
-					<b>${sessionScope.name}</b>님 환영합니다&emsp;&emsp;
-				</c:if>
-				<c:if test="${sessionScope.id.equals('admin123')==true}">
-					<a href="../admin/main" style="color:blue">관리자페이지로 이동</a>&emsp;&emsp;
-				</c:if>
-				<c:choose>
-					<c:when test="${sessionScope.id==null}">
-						<a href="loginForm">Login</a>&emsp;&emsp;
-					</c:when>
-					<c:otherwise>
-						<a href="logout">logout</a><span></span>&emsp;&emsp;
-					</c:otherwise>
-				</c:choose>
-				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../product/myorder">Order</a>&emsp;&emsp;
-				<a href="myPage">My Page</a>&emsp;&emsp;
-			</div>		
-			<a href="main">Flower</a>
-		</div>
-	</header> --%>
-	
-<!--	
-	<nav class="navbar navbar-default">
+<section class="menus">
+		<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header" id="mobileNavbar">
 				<form action="main" method="get" autocomplete="on">
-					<input type="submit" class="navbar-toggle" value="검색"/>
-					<input type="text" name="item_name" class="navbar-toggle" style="width:150px;" placeholder="검색어 입력"/>
-					
+					<input type="submit" class="navbar-toggle" value="검색" />
+					<input type="text" name="item_name" class="navbar-toggle"
+						style="width: 150px;" placeholder="검색어 입력" />
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target="#pcNavbar"> 
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
+						data-target="#pcNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
 					</button>
-				</form>	
+				</form>
 			</div>
-		
+
 			<div class="collapse navbar-collapse" id="pcNavbar">
-				
-				
+			<nav class="menu-effect">
 				<ul class="nav navbar-nav">
-					<li><a href="main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
+					<li><a href="../member/main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
 					<li><a href="../product/list?category=꽃바구니">꽃바구니</a></li>
 					<li><a href="../product/list?category=꽃다발">꽃다발</a></li>
 					<li><a href="../product/list?category=꽃상자">꽃상자</a></li>
@@ -95,17 +66,13 @@ $(function() {
 					<li><a href="../product/list?category=서양란">서양란</a></li>
 					<li><a href="../product/list?category=축하화환">축하화환</a></li>
 					<li><a href="../product/list?category=근조화환">근조화환</a></li>
-
-					<li><a href="../board/boardList">게시판</a></li>
-					
-
+					<li><a href="../board/boardList">게시판</a></li>	
 				</ul>
-				<input type="text" style="width:170px;margin-bottom:10px;margin-left:3px;" placeholder=" 검색어 입력">
-				<a href="#"><span class="glyphicon glyphicon-search" style="color:#ffffff"></span></a>
+			</nav>		
 			</div>
-		</div>
-	</nav> -->
-		
+			</div>
+			</nav>
+		</section>	
 <!-- mainpage photo roll -->	
 	<div id="mainCarousel" class="carousel slide">
 	    <!-- Indicators -->

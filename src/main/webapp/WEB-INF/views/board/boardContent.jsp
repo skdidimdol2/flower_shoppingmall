@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE>
 <html>
+<%@include file="../member/top.jsp"%>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,41 +15,14 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Flower</title>
 <style>
-<%-- header --%> 
-	a{text-decoration:none;}
-	a:hover{text-decoration:none;}
-	a:active{text-decoration: none}
-	
-	header>div>a{
-		font-size:40px; 
-		color:#000000;
-		text-shadow:2px 2px #000000;
-		margin-left:10px;  
-	}
-	header>div>a:hover{
-		text-decoration:none; 
-	}
-	
-	#users{
-		float:right;
-	}
-	#users>a{
-		color:#000000;
-	}
-	#users>a:hover{
-		text-decoration:none; 
-	}
+
 <%-- board --%>	
 	
-	#left_nav{
-		margin-top:10;
-		margin-bottom:10;
-		
-	}
 	#board_content{
-		position:absolute;
-		left:200px;
-		width:900px;
+		margin-left:10px;
+		margin-right:10px;
+		width:100%;
+		max-width:900px;
 	}
 	.btn{
 		float:right;
@@ -84,33 +58,8 @@
 </style>	
 </head>
 <body>
-<!--header -->
-	<header>
-		<div class="contatiner-fluid">
-			<div id="users">
-				<c:if test="${sessionScope.id!=null}">
-					<b>${sessionScope.name}</b>님 환영합니다&emsp;&emsp;
-				</c:if>
-				<c:if test="${sessionScope.id.equals('admin123')==true}">
-					<a href="../admin/main" style="color:blue">관리자페이지로 이동</a>&emsp;&emsp;
-				</c:if>
-				<c:choose>
-					<c:when test="${sessionScope.id==null}">
-						<a href="../member/loginForm">Login</a>&emsp;&emsp;
-					</c:when>
-					<c:otherwise>
-						<a href="../member/logout">logout</a><span></span>&emsp;&emsp;
-						<a href="../product/myorder">Order</a>&emsp;&emsp;
-					</c:otherwise>
-				</c:choose>
-				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="../member/myPage">My Page</a>&emsp;&emsp;
-			</div>
-			<a href="../member/main">Flower</a>
-		</div>
-	</header>
+
 <!-- board -->
-	
 	<div class="text-center" id="board_content">
 		<p></p>
 		<b style="font-size:24">게시판 </b>
@@ -123,21 +72,21 @@
 			</c:if>
 			<table style="width:100%;" border="1" class="text-center">
 				<tr> 
-					<td style="background-color:ff5555">글번호</td>
+					<td style="background-color:8888c8">글번호</td>
 					<td style="width:200">${dto.board_no}</td>
-					<td style="background-color:ff5555">등록일</td>
+					<td style="background-color:8888c8">등록일</td>
 					<td>${dto.post_date}</td>
 				</tr>
 				<tr>	
-					<td style="background-color:ff5555">이름</td>
+					<td style="background-color:8888c8">이름</td>
 					<td>${dto.name}</td>
-					<td style="background-color:ff5555">카테고리</td> 
+					<td style="background-color:8888c8">카테고리</td> 
 					<td>${dto.category}</td>
 				</tr>
 				<tr>	
-					<td style="background-color:ff5555">제목</td>
+					<td style="background-color:8888c8">제목</td>
 					<td>${dto.title}</td>
-					<td style="background-color:ff5555">조회수</td>
+					<td style="background-color:8888c8">조회수</td>
 					<td>${dto.hits}</td>
 				</tr>
 				<tr>	

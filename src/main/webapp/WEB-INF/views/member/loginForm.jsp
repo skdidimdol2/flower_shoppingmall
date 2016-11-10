@@ -3,8 +3,9 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE>
 <html>
+<%@include file="top.jsp"%>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -21,69 +22,11 @@
   box-sizing: border-box;
 }
 
-<%-- header --%> 
-	a{text-decoration:none;}
-	a:hover{text-decoration:none;}
-	a:active{text-decoration: none}
-	
-	header>div>a{
-		font-size:40px; 
-		color:#000000;
-		text-shadow:2px 2px #000000;
-		margin-left:10px;  
-	} 
-	header>div>a:hover{
-		text-decoration:none; 
-	} 
-	
-	#users{
-		float:right;
-	}
-	#users>a{
-		color:#000000;
-	}
-	#users>a:hover{
-		text-decoration:none; 
-	}
-<%-- navbar --%> 
-	.navbar {
-    	margin-bottom: 0;
-    	border-radius: 0;
-    	background-color: #ff5555;
-    }
-    .navbar-header{
-    	width:100%
-    }
-    #mobileNavbar .navbar-toggle{
-    	background-color:#ffffff;
-    }
-    #mobileNavbar>form>a{
-    	color: #ff5555;  
-    }
-    .navbar-default .navbar-toggle .icon-bar{
-    	background-color:#ff5555;
-    	padding-top:4px; 
-    } 
-    #mobileNavbar>form>input{
-    	background-color: #ffffff; 
-    }
-    
-    .nav{
-    	margin-top:-10px;
-    }
-    #pcNavbar>ul>li>a{
-    	color: #ffffff;
-    }
-    #pcNavbar>ul>li>a:hover{
-    	background-color:#ffffff;
-    	color:#ff5555;
-    	font-size:17px; 
-    }
-
 body {
   font-family: 'Lato', sans-serif;
-  background-color: #f8f8f8;
+  background-color: #ffffff;
 }
+<%--
 body .container {
   position: relative;
   overflow: hidden;
@@ -91,14 +34,15 @@ body .container {
   height: 850px;
   margin: 80px auto 0;
   margin-bottom: 100px;
-  background-color: #ffffff;
+  background-color: #f8f8f8;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
 }
+--%>
 body .container .half {
-  float: left;
-  width: 50%;
+  margin:auto;
+  width: 350px;
   height: 100%;
   padding: 58px 40px 0;
 }
@@ -107,6 +51,7 @@ body .container .half.bg {
   background-size: 400px;
   background-repeat: no-repeat;
 }
+
 body .container h1 {
   font-size: 18px;
   font-weight: 700;
@@ -331,6 +276,7 @@ body .container .content .signup-cont {
   display: none;
 }
 
+
 @keyframes slideIn {
   0% {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
@@ -375,69 +321,7 @@ body .container .content .signup-cont {
 </style>
 <title>Flower</title>
 </head>
-<body>
-<!--header -->
-	<header>
-		<div class="contatiner-fluid">
-			<div id="users">
-			<%if(session.getAttribute("id")!=null){ %>
-				${sessionScope.id}님 환영합니다&emsp;&emsp;
-				<%
-				}%>
-				
-				<%if(session.getAttribute("id")==null){ %>
-				<a href="loginForm">Login</a>&emsp;&emsp;
-				<%
-				}else{
-					%>
-					<a href="logout">logout</a><span></span>&emsp;&emsp;
-					<%
-				}
-				%>
-				<a href="cart">Cart</a>&emsp;&emsp;
-				<a href="order">Order</a>&emsp;&emsp;
-				<a href="myPage">My Page</a>&emsp;&emsp;
-			</div>
-			<a href="main">Flower</a>
-		</div>
-	</header>
-<!-- navbar -->	
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header" id="mobileNavbar">
-				<form action="main" method="get" autocomplete="on">
-					<input type="submit" class="navbar-toggle" value="검색"/>
-					<input type="text" class="navbar-toggle" style="width:150px;" placeholder="검색어 입력"/>
-					
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target="#pcNavbar"> 
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-					</button>
-				</form>	
-			</div>
-		
-			<div class="collapse navbar-collapse" id="pcNavbar">
-				
-				
-				<ul class="nav navbar-nav">
-					<li><a href="main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
-					<li><a href="../product/list?category=꽃바구니">꽃바구니</a></li>
-					<li><a href="../product/list?category=꽃다발">꽃다발</a></li>
-					<li><a href="../product/list?category=꽃상자">꽃상자</a></li>
-					<li><a href="../product/list?category=동양란">동양란</a></li>
-					<li><a href="../product/list?category=서양란">서양란</a></li>
-					<li><a href="../product/list?category=축하화환">축하화환</a></li>
-					<li><a href="../product/list?category=근조화환">근조화환</a></li>
-					<li><a href="../board/boardList">게시판</a></li>
-				</ul>
-				<input type="text" style="width:170px;margin-bottom:10px;margin-left:3px;" placeholder=" 검색어 입력">
-				<a href="#"><span class="glyphicon glyphicon-search" style="color:#ffffff"></span></a>
-			</div>
-		</div>
-	</nav>
-		
+<body>	
 <section class="container">
 		    <article class="half">
 			        <h1>Flower</h1>
@@ -491,15 +375,9 @@ body .container .content .signup-cont {
 			</div>
 
 		    </article>
-		    <div class="half bg"></div>
-	</section>
-
-
-
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		  <%--   <div class="half bg"></div>--%>
+	</section>	
 	<script type="text/javascript">
-	
 	
 		function idlength(){
 			

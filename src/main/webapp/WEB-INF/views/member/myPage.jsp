@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- fn은 jstl에서 substring을 사용하기 위해서 -->
 <!DOCTYPE>
 <html>
+<!-- top.jsp에 top부분 내용 기술. -->
+<%@include file="top.jsp"%>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,76 +26,19 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/fullcalendar.min.css"/>"/>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/asset/css/plugins/simple-line-icons.css"/>"/>
 <title>마이페이지</title>
-<style>
-<%-- header --%> 
-	a{text-decoration:none;}
-	a:hover{text-decoration:none;}
-	a:active{text-decoration: none}
-	
-	header>div>a{
-		font-size:40px; 
-		color:#000000;
-		text-shadow:2px 2px #000000;
-		margin-left:10px;  
-	} 
-	header>div>a:hover{
-		text-decoration:none; 
-	} 
-	
-	#users{
-		float:right;
+<style>	
+<%-- content --%>
+	.container{
+		margin:auto;
 	}
-	#users>a{
-		color:#000000;
-	}
-	#users>a:hover{
-		text-decoration:none; 
-	}
-<%-- navbar --%> 
-	.navbar {
-    	margin-bottom: 0;
-    	border-radius: 0;
-    	background-color: #ff5555;
-    }
-    .navbar-header{
-    	width:100%
-    }
-    #mobileNavbar .navbar-toggle{
-    	background-color:#ffffff;
-    }
-    #mobileNavbar>form>a{
-    	color: #ff5555; 
-    }
-    .navbar-default .navbar-toggle .icon-bar{
-    	background-color:#ff5555;
-    	padding-top:4px; 
-    } 
-    #mobileNavbar>form>input{
-    	background-color: #ffffff; 
-    }
-    
-    .nav{
-    	margin-top:-10px;
-    }
-    #pcNavbar>ul>li>a{
-    	color: #ffffff;
-    }
-    #pcNavbar>ul>li>a:hover{
-    	background-color:#ffffff;
-    	color:#ff5555;
-    	font-size:17px; 
-    }	
-<%-- navbar in the content --%>
-	.contents{
-		position:relative;
-		left:10px;
-	}
+
 	.col-sm-4{
 		min-width:340px;
 		margin-bottom:20px;
-		margin-right:60px;
+		margin-right:100px;
+		margin-left:10px;
 		
-		border:1px solid #999999;
+		border:1px solid #aaaaaa;
 		border-radius:5px;
 		padding-top:10px;
 		padding-bottom:10px;
@@ -105,69 +50,11 @@
 </style>
 </head> 
 <body>
-<!--header -->
-	<header>
-		<div class="contatiner-fluid">
-			<div id="users">
-				<c:if test="${sessionScope.id!=null}">
-					<b>${sessionScope.name}</b>님 환영합니다&emsp;&emsp;
-				</c:if>
-				<c:if test="${sessionScope.id.equals('admin123')==true}">
-					<a href="../admin/main" style="color:blue">관리자페이지로 이동</a>&emsp;&emsp;
-				</c:if>
-				<c:choose>
-					<c:when test="${sessionScope.id==null}">
-						<a href="loginForm">Login</a>&emsp;&emsp;
-					</c:when>
-					<c:otherwise>
-						<a href="logout">logout</a><span></span>&emsp;&emsp;
-						<a href="../product/myorder">Order</a>&emsp;&emsp;
-					</c:otherwise>
-				</c:choose>
-				<a href="../basket/mybasket">Cart</a>&emsp;&emsp;
-				<a href="myPage">My Page</a>&emsp;&emsp;
-			</div>		
-			<a href="main">Flower</a>
-		</div>
-	</header>
-<!-- navbar -->	
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header" id="mobileNavbar">
-				<form action="main" method="get" autocomplete="on">
-					<input type="submit" class="navbar-toggle" value="검색"/>
-					<input type="text" name="item_name" class="navbar-toggle" style="width:150px;" placeholder="검색어 입력"/>
-					
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target="#pcNavbar"> 
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-					</button>
-				</form>	
-			</div>
-		
-			<div class="collapse navbar-collapse" id="pcNavbar">
-				<ul class="nav navbar-nav">
-					<li><a href="main">홈 <span class="glyphicon glyphicon-home"></span></a></li>
-					<li><a href="../product/list?category=꽃바구니">꽃바구니</a></li>
-					<li><a href="../product/list?category=꽃다발">꽃다발</a></li>
-					<li><a href="../product/list?category=꽃상자">꽃상자</a></li>
-					<li><a href="../product/list?category=동양란">동양란</a></li>
-					<li><a href="../product/list?category=서양란">서양란</a></li>
-					<li><a href="../product/list?category=축하화환">축하화환</a></li>
-					<li><a href="../product/list?category=근조화환">근조화환</a></li>
-					<li><a href="../board/boardList">게시판</a></li>				
-				</ul>
-				<input type="text" style="width:170px;margin-bottom:10px;margin-left:3px;" placeholder=" 검색어 입력">
-				<a href="#"><span class="glyphicon glyphicon-search" style="color:#ffffff"></span></a>
-			</div>
-		</div>
-	</nav>
+<p style="height:30px;"></p>
 <!-- content -->
-	<div class="contents container-fluid">
+	<div class="container" id="mypage">
 		<div class="row">
-			<div><h4>쇼핑내역</h4></div>	
+			<div><h4>쇼핑내역</h4></div><hr>	
 			<div class="col-sm-4">
 				<b>주문/배송조회</b> &emsp;최근 3달간의 주문 정보입니다.
 				<table id="orderlist" class="table table-striped table-bordered">
@@ -221,8 +108,9 @@
 				</table>
 			</div>
 		</div>
+		
 		<div class="row">
-			<div><h4>회원정보</h4></div>	
+			<div><h4>회원정보</h4></div><hr>	
 			<div class="col-sm-4">
 				<b>회원 조회/수정</b>
 				<table style="min-width:300;">
